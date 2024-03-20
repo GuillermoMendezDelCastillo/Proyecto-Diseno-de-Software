@@ -4,6 +4,12 @@
  */
 package presentacion;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author Gui26
@@ -15,6 +21,7 @@ public class LimiteCarrito extends javax.swing.JFrame {
      */
     public LimiteCarrito() {
         initComponents();
+        tabla();
     }
 
     /**
@@ -29,9 +36,8 @@ public class LimiteCarrito extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaProductos = new javax.swing.JTable();
         btnPago = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Carrito de compras");
@@ -50,18 +56,18 @@ public class LimiteCarrito extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaProductos);
 
         btnPago.setText("Pagar");
         btnPago.addActionListener(new java.awt.event.ActionListener() {
@@ -70,37 +76,28 @@ public class LimiteCarrito extends javax.swing.JFrame {
             }
         });
 
-        btnEliminar.setText("Eliminar");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVolver)
                         .addGap(183, 183, 183)
                         .addComponent(btnPago))
-                    .addComponent(btnCerrarSesion)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btnEliminar)
-                .addGap(30, 30, 30))
+                    .addComponent(btnCerrarSesion))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(btnEliminar)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver)
@@ -130,14 +127,39 @@ public class LimiteCarrito extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnPagoActionPerformed
 
-
+    public void tabla(){
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Producto");
+            modelo.addColumn("Precio");
+            modelo.addColumn("");
+            //for (Clase clase : listaclase) {
+                Object[] fila = {"Flores", "$50", "Eliminar"};
+                Object[] fila1 = {"Pelota", "$100", "Eliminar"};
+                Object[] fila2 = {"Telefono", "$3000", "Eliminar"};
+                modelo.addRow(fila);
+                modelo.addRow(fila1);
+                modelo.addRow(fila2);
+            //}
+            tablaProductos.setModel(modelo);
+            TableColumnModel columnModel = tablaProductos.getColumnModel();
+            
+            ButtonColumn btnEliminar = new ButtonColumn("Desactivar", new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //System.out.println("test");
+                }
+            });
+            
+            columnModel.getColumn(2).setCellRenderer(btnEliminar);
+            columnModel.getColumn(2).setCellEditor(btnEliminar);
+            
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnPago;
     private javax.swing.JButton btnVolver;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 }

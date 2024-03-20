@@ -108,7 +108,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="etiquetaDescripcion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Descripcion"/>
+        <Property name="text" type="java.lang.String" value="(Descripcion del producto)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCerrarSesion">

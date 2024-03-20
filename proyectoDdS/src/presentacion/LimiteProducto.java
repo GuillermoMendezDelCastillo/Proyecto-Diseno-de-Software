@@ -60,7 +60,7 @@ public class LimiteProducto extends javax.swing.JFrame {
         etiquetaImagen.setText("(Imagen)");
         etiquetaImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        etiquetaDescripcion.setText("Descripcion");
+        etiquetaDescripcion.setText("(Descripcion del producto)");
 
         btnCerrarSesion.setText("Cerrar sesion");
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
