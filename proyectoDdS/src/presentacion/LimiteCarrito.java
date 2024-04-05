@@ -5,11 +5,16 @@
 package presentacion;
 
 import dtos.ClienteDTO;
+import dtos.ProductoDTO;
+import interfaces.ITablaProductosCliente;
 import utilerias.ButtonColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import objetos_negocio.TablaProductosCliente;
 
 /**
  *
@@ -18,6 +23,7 @@ import javax.swing.table.TableColumnModel;
 public class LimiteCarrito extends javax.swing.JFrame {
     
     private ClienteDTO clienteDto;
+    private boolean tabla;
     
     /**
      * Creates new form LimiteCarrito
@@ -25,7 +31,7 @@ public class LimiteCarrito extends javax.swing.JFrame {
     public LimiteCarrito(ClienteDTO clienteDto) {
         this.clienteDto = clienteDto;
         initComponents();
-        tabla();
+        this.tabla = tabla();
     }
 
     /**
@@ -126,37 +132,42 @@ public class LimiteCarrito extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        LimitePago limite = new LimitePago(clienteDto);
-        limite.setVisible(true);
-        dispose();
+        if (tabla){
+            LimitePago limite = new LimitePago(clienteDto);
+            limite.setVisible(true);
+            dispose();
+        } else{
+            JOptionPane.showMessageDialog(this, "El carrito de compras esta vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnPagoActionPerformed
 
-    public void tabla(){
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("Producto");
-            modelo.addColumn("Precio");
-            modelo.addColumn("");
-            //for (Clase clase : listaclase) {
-                Object[] fila = {"Flores", "$50", "Eliminar"};
-                Object[] fila1 = {"Pelota", "$100", "Eliminar"};
-                Object[] fila2 = {"Telefono", "$3000", "Eliminar"};
-                modelo.addRow(fila);
-                modelo.addRow(fila1);
-                modelo.addRow(fila2);
-            //}
-            tablaProductos.setModel(modelo);
-            TableColumnModel columnModel = tablaProductos.getColumnModel();
-            
-            ButtonColumn btnEliminar = new ButtonColumn("Desactivar", new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    //System.out.println("test");
-                }
-            });
-            
-            columnModel.getColumn(2).setCellRenderer(btnEliminar);
-            columnModel.getColumn(2).setCellEditor(btnEliminar);
-            
+    public boolean tabla(){
+        
+        ITablaProductosCliente lista = new TablaProductosCliente();
+        List<ProductoDTO> productos = lista.consulta(clienteDto);
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Producto");
+        modelo.addColumn("Precio");
+        modelo.addColumn("");
+        for (ProductoDTO producto : productos){
+            Object[] fila = {producto.getNombre(), producto.getCosto(), "Eliminar"};
+            modelo.addRow(fila);
+        }
+        tablaProductos.setModel(modelo);
+        TableColumnModel columnModel = tablaProductos.getColumnModel();
+
+        ButtonColumn btnEliminar = new ButtonColumn("Desactivar", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //System.out.println("test");
+            }
+        });
+
+        columnModel.getColumn(2).setCellRenderer(btnEliminar);
+        columnModel.getColumn(2).setCellEditor(btnEliminar);
+        
+        return !productos.isEmpty();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

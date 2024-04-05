@@ -5,6 +5,11 @@
 package presentacion;
 
 import dtos.ClienteDTO;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -13,12 +18,14 @@ import dtos.ClienteDTO;
 public class LimiteProducto extends javax.swing.JFrame {
     
     private ClienteDTO clienteDto;
+    private String url;
     
     /**
      * Creates new form LimiteProducto
      */
-    public LimiteProducto(ClienteDTO clienteDto) {
+    public LimiteProducto(ClienteDTO clienteDto, String url){
         this.clienteDto = clienteDto;
+        this.url = url;
         initComponents();
     }
 
@@ -34,9 +41,14 @@ public class LimiteProducto extends javax.swing.JFrame {
         btnAñadir = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnCarrito = new javax.swing.JButton();
-        etiquetaImagen = new javax.swing.JLabel();
+        try{
+            etiquetaImagen = new javax.swing.JLabel(new ImageIcon(URI.create(url).toURL()));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(LimiteProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         etiquetaDescripcion = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalles del producto");
@@ -62,9 +74,6 @@ public class LimiteProducto extends javax.swing.JFrame {
             }
         });
 
-        etiquetaImagen.setText("(Imagen)");
-        etiquetaImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         etiquetaDescripcion.setText("(Descripcion del producto)");
 
         btnCerrarSesion.setText("Cerrar sesion");
@@ -84,7 +93,9 @@ public class LimiteProducto extends javax.swing.JFrame {
                     .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVolver)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(etiquetaImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etiquetaImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -99,16 +110,17 @@ public class LimiteProducto extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrarSesion)
-                    .addComponent(btnCarrito))
-                .addGap(10, 10, 10)
+                    .addComponent(btnCarrito)
+                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etiquetaImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAñadir))
                 .addGap(18, 18, 18)
-                .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addComponent(etiquetaDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnVolver)
                 .addGap(12, 12, 12))
@@ -149,5 +161,6 @@ public class LimiteProducto extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel etiquetaDescripcion;
     private javax.swing.JLabel etiquetaImagen;
+    private javax.swing.JLabel lblNombre;
     // End of variables declaration//GEN-END:variables
 }

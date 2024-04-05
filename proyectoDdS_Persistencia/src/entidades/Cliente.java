@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class Cliente {
         this.apodo = apodo;
         this.contrasena = contrasena;
         this.correo = correo;
+        this.carrito = new LinkedList<Producto>();
+        this.historial= new LinkedList<Pago>();
     }
 
     public String getApodo() {

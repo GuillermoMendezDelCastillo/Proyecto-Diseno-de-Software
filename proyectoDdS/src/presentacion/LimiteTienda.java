@@ -6,15 +6,17 @@ package presentacion;
 
 import dtos.ClienteDTO;
 import dtos.ProductoDTO;
-import interfaces.ITablaProductos;
+import interfaces.IAgregarProducto;
 import utilerias.ButtonColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import objetos_negocio.TablaProductos;
+import objetos_negocio.AgregarProducto;
+import objetos_negocio.TablaProductosTienda;
 import utilerias.ImageRender;
+import interfaces.ITablaProductosTienda;
 
 /**
  *
@@ -122,7 +124,7 @@ public class LimiteTienda extends javax.swing.JFrame {
 
     public void tabla(){
 
-        ITablaProductos lista = new TablaProductos();
+        ITablaProductosTienda lista = new TablaProductosTienda();
         List<ProductoDTO> productos = lista.consulta();
 
         DefaultTableModel modelo = new DefaultTableModel();
@@ -144,16 +146,20 @@ public class LimiteTienda extends javax.swing.JFrame {
         ButtonColumn btnVerProducto = new ButtonColumn("", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LimiteProducto ventana = new LimiteProducto(clienteDto);
+                String url = (String) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 1);
+                LimiteProducto ventana = new LimiteProducto(clienteDto, url);
                 ventana.setVisible(true);
                 dispose();
-            }
+            }//tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow())
         });
 
         ButtonColumn btnAñadir = new ButtonColumn("", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("test2");
+                String producto = (String) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 0);
+                
+                IAgregarProducto agrega = new AgregarProducto();
+                agrega.agregar(clienteDto, producto);
             }
         });
 

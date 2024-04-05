@@ -4,13 +4,12 @@
  */
 package interfaces;
 
-import dtos.ProductoDTO;
-import java.util.List;
+import dtos.ClienteDTO;
 
 /**
  *
  * @author Gui26
  */
-public interface ITablaProductos {
-    public List<ProductoDTO> consulta();
+public interface ICostoPago {
+    public int costo(ClienteDTO clienteDto);
 }

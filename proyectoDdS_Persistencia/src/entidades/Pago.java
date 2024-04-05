@@ -12,14 +12,14 @@ import java.util.List;
  */
 public class Pago {
     
+    private String codigoMetodo;
     private String metodo;
-    private String moneda;
     private int total;
     private List<Producto> carrito;
 
-    public Pago(String metodo, String moneda, int total, List<Producto> carrito) {
+    public Pago(String codigoMetodo, String metodo, int total, List<Producto> carrito) {
         this.metodo = metodo;
-        this.moneda = moneda;
+        this.codigoMetodo = codigoMetodo;
         this.total = total;
         this.carrito = carrito;
     }
@@ -32,12 +32,12 @@ public class Pago {
         this.metodo = metodo;
     }
 
-    public String getMoneda() {
-        return moneda;
+    public String getCodigoMetodo() {
+        return codigoMetodo;
     }
 
-    public void setMoneda(String moneda) {
-        this.moneda = moneda;
+    public void setCodigoMetodo(String codigoMetodo) {
+        this.codigoMetodo = codigoMetodo;
     }
 
     public int getTotal() {

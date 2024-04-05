@@ -7,16 +7,16 @@ package objetos_negocio;
 import dtos.ProductoDTO;
 import entidades.Producto;
 import static entidades.Tienda.TIENDA;
-import interfaces.ITablaProductos;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import interfaces.ITablaProductosTienda;
 
 /**
  *
  * @author Gui26
  */
-public class TablaProductos implements ITablaProductos{
+public class TablaProductosTienda implements ITablaProductosTienda{
     
     @Override
     public List<ProductoDTO> consulta(){
