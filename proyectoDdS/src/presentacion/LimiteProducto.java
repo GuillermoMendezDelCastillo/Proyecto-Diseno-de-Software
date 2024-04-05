@@ -4,16 +4,21 @@
  */
 package presentacion;
 
+import dtos.ClienteDTO;
+
 /**
  *
  * @author Gui26
  */
 public class LimiteProducto extends javax.swing.JFrame {
-
+    
+    private ClienteDTO clienteDto;
+    
     /**
      * Creates new form LimiteProducto
      */
-    public LimiteProducto() {
+    public LimiteProducto(ClienteDTO clienteDto) {
+        this.clienteDto = clienteDto;
         initComponents();
     }
 
@@ -118,20 +123,20 @@ public class LimiteProducto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        LimiteTienda tienda = new LimiteTienda();
-        tienda.setVisible(true);
+        LimiteTienda limite = new LimiteTienda(clienteDto);
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-        LimiteCarrito carrito = new LimiteCarrito();
-        carrito.setVisible(true);
+        LimiteCarrito limite = new LimiteCarrito(clienteDto);
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        LimiteIniciarSesion inicio = new LimiteIniciarSesion();
-        inicio.setVisible(true);
+        LimiteIniciarSesion limite = new LimiteIniciarSesion();
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 

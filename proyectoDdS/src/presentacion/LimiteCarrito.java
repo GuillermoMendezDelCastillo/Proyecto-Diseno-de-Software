@@ -4,9 +4,10 @@
  */
 package presentacion;
 
+import dtos.ClienteDTO;
+import utilerias.ButtonColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -15,11 +16,14 @@ import javax.swing.table.TableColumnModel;
  * @author Gui26
  */
 public class LimiteCarrito extends javax.swing.JFrame {
-
+    
+    private ClienteDTO clienteDto;
+    
     /**
      * Creates new form LimiteCarrito
      */
-    public LimiteCarrito() {
+    public LimiteCarrito(ClienteDTO clienteDto) {
+        this.clienteDto = clienteDto;
         initComponents();
         tabla();
     }
@@ -110,20 +114,20 @@ public class LimiteCarrito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        LimiteTienda tienda = new LimiteTienda();
-        tienda.setVisible(true);
+        LimiteTienda limite = new LimiteTienda(clienteDto);
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        LimiteIniciarSesion inicio = new LimiteIniciarSesion();
-        inicio.setVisible(true);
+        LimiteIniciarSesion limite = new LimiteIniciarSesion();
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        LimitePago pago = new LimitePago();
-        pago.setVisible(true);
+        LimitePago limite = new LimitePago(clienteDto);
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnPagoActionPerformed
 

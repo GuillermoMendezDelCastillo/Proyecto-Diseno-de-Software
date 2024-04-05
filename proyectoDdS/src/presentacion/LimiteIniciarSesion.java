@@ -4,12 +4,16 @@
  */
 package presentacion;
 
+import dtos.ClienteDTO;
+import interfaces.IIniciarSesion;
+import objetos_negocio.IniciarSesion;
+
 /**
  *
  * @author Gui26
  */
 public class LimiteIniciarSesion extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form LimiteIniciarSesion
      */
@@ -113,9 +117,16 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        LimiteTienda tienda = new LimiteTienda();
-        tienda.setVisible(true);
-        dispose();
+        
+        ClienteDTO clienteDto = new ClienteDTO(textoUsuario.getText(), textoContrasena.getText());
+        
+        IIniciarSesion sesion = new IniciarSesion();
+        if (sesion.buscar(clienteDto)){
+            LimiteTienda limite = new LimiteTienda(clienteDto);
+            limite.setVisible(true);
+            dispose();
+        }
+        
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -156,7 +167,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrarse;

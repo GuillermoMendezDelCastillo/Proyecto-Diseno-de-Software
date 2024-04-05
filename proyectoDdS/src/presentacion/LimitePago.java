@@ -4,16 +4,21 @@
  */
 package presentacion;
 
+import dtos.ClienteDTO;
+
 /**
  *
  * @author Gui26
  */
 public class LimitePago extends javax.swing.JFrame {
-
+    
+    private ClienteDTO clienteDto;
+    
     /**
      * Creates new form LimitePago
      */
-    public LimitePago() {
+    public LimitePago(ClienteDTO clienteDto) {
+        this.clienteDto = clienteDto;
         initComponents();
     }
 
@@ -111,14 +116,14 @@ public class LimitePago extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnRealizaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizaPagoActionPerformed
-        LimiteTienda tienda = new LimiteTienda();
-        tienda.setVisible(true);
+        LimiteTienda limite = new LimiteTienda(clienteDto);
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRealizaPagoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        LimiteCarrito carrito = new LimiteCarrito();
-        carrito.setVisible(true);
+        LimiteCarrito limite = new LimiteCarrito(clienteDto);
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 

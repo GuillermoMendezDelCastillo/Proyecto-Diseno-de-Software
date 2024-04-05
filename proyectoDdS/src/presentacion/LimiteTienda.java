@@ -4,21 +4,31 @@
  */
 package presentacion;
 
+import dtos.ClienteDTO;
+import dtos.ProductoDTO;
+import interfaces.ITablaProductos;
+import utilerias.ButtonColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import objetos_negocio.TablaProductos;
+import utilerias.ImageRender;
 
 /**
  *
  * @author Gui26
  */
 public class LimiteTienda extends javax.swing.JFrame {
-
+    
+    private ClienteDTO clienteDto;
+    
     /**
      * Creates new form LimiteTienda
      */
-    public LimiteTienda() {
+    public LimiteTienda(ClienteDTO clienteDto){
+        this.clienteDto = clienteDto;
         initComponents();
         tabla();
     }
@@ -99,57 +109,62 @@ public class LimiteTienda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarritoActionPerformed
-        LimiteCarrito carrito = new LimiteCarrito();
-        carrito.setVisible(true);
+        LimiteCarrito limite = new LimiteCarrito(clienteDto);
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCarritoActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        LimiteIniciarSesion inicio = new LimiteIniciarSesion();
-        inicio.setVisible(true);
+        LimiteIniciarSesion limite = new LimiteIniciarSesion();
+        limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
-public void tabla(){
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("Producto");
-            modelo.addColumn("");
-            modelo.addColumn("Precio");
-            modelo.addColumn("");
-            modelo.addColumn("");
-            //for (Clase clase : listaclase) {
-                Object[] fila = {"Flores", "", "$50", "Ver Producto", "Añadir a Carrito"};
-                Object[] fila1 = {"Pelota", "", "$100", "Ver Producto", "Añadir a Carrito"};
-                Object[] fila2 = {"Telefono", "", "$3000", "Ver Producto", "Añadir a Carrito"};
-                modelo.addRow(fila);
-                modelo.addRow(fila1);
-                modelo.addRow(fila2);
-            //}
-            tablaProductos.setModel(modelo);
-            TableColumnModel columnModel = tablaProductos.getColumnModel();
-            
-            ButtonColumn btnVerProducto = new ButtonColumn("", new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    LimiteProducto ventana = new LimiteProducto();
-                    ventana.setVisible(true);
-                    dispose();
-                }
-            });
-            
-            ButtonColumn btnAñadir = new ButtonColumn("", new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    //System.out.println("test2");
-                }
-            });
-            
-            columnModel.getColumn(3).setCellRenderer(btnVerProducto);
-            columnModel.getColumn(3).setCellEditor(btnVerProducto);
-            
-            columnModel.getColumn(4).setCellRenderer(btnAñadir);
-            columnModel.getColumn(4).setCellEditor(btnAñadir);
-            
+    public void tabla(){
+
+        ITablaProductos lista = new TablaProductos();
+        List<ProductoDTO> productos = lista.consulta();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Producto");
+        modelo.addColumn("");
+        modelo.addColumn("Precio");
+        modelo.addColumn("");
+        modelo.addColumn("");
+        for (ProductoDTO producto : productos){
+            Object[] fila = {producto.getNombre(), producto.getUrl(), producto.getCosto(), "Ver Producto", "Añadir a Carrito"};
+            modelo.addRow(fila);
+        }
+
+        tablaProductos.setRowHeight(40);
+
+        tablaProductos.setModel(modelo);
+        TableColumnModel columnModel = tablaProductos.getColumnModel();
+
+        ButtonColumn btnVerProducto = new ButtonColumn("", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LimiteProducto ventana = new LimiteProducto(clienteDto);
+                ventana.setVisible(true);
+                dispose();
+            }
+        });
+
+        ButtonColumn btnAñadir = new ButtonColumn("", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("test2");
+            }
+        });
+
+        columnModel.getColumn(1).setCellRenderer(new ImageRender());
+
+        columnModel.getColumn(3).setCellRenderer(btnVerProducto);
+        columnModel.getColumn(3).setCellEditor(btnVerProducto);
+
+        columnModel.getColumn(4).setCellRenderer(btnAñadir);
+        columnModel.getColumn(4).setCellEditor(btnAñadir);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
