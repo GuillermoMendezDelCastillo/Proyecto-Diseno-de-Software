@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import dtos.ClienteDTO;
+import dto.ClienteDTO;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.logging.Level;

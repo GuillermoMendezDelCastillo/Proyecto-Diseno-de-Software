@@ -4,7 +4,7 @@
  */
 package interfaces;
 
-import dtos.ClienteDTO;
+import dto.ClienteDTO;
 
 /**
  *

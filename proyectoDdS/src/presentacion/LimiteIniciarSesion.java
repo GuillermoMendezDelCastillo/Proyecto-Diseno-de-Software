@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import dtos.ClienteDTO;
+import dto.ClienteDTO;
 import interfaces.IIniciarSesion;
 import objetos_negocio.IniciarSesion;
 
@@ -113,7 +113,9 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        // TODO add your handling code here:
+        LimiteRegistro limite = new LimiteRegistro();
+        limite.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed

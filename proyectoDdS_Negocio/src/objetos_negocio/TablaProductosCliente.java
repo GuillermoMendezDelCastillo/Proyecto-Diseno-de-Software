@@ -4,8 +4,8 @@
  */
 package objetos_negocio;
 
-import dtos.ClienteDTO;
-import dtos.ProductoDTO;
+import dto.ClienteDTO;
+import dto.ProductoDTO;
 import entidades.Cliente;
 import entidades.Producto;
 import static entidades.Tienda.TIENDA;

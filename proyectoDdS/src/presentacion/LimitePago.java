@@ -4,7 +4,7 @@
  */
 package presentacion;
 
-import dtos.ClienteDTO;
+import dto.ClienteDTO;
 import interfaces.ICostoPago;
 import interfaces.IGenerarPago;
 import javax.swing.JOptionPane;

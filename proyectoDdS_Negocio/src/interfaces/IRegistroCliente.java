@@ -4,13 +4,13 @@
  */
 package interfaces;
 
-import dto.ProductoDTO;
-import java.util.List;
+import dto.ClienteDTO;
 
 /**
  *
  * @author Gui26
  */
-public interface ITablaProductosTienda {
-    public List<ProductoDTO> consulta();
+public interface IRegistroCliente {
+    public boolean validar(String nombre, String contrasena, String correo);
+    public boolean registrar(ClienteDTO clienteDto);
 }

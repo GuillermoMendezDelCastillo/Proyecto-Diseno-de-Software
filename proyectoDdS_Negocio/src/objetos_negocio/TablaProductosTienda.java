@@ -4,7 +4,7 @@
  */
 package objetos_negocio;
 
-import dtos.ProductoDTO;
+import dto.ProductoDTO;
 import entidades.Producto;
 import static entidades.Tienda.TIENDA;
 import java.util.LinkedList;

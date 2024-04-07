@@ -4,8 +4,8 @@
  */
 package presentacion;
 
-import dtos.ClienteDTO;
-import dtos.ProductoDTO;
+import dto.ClienteDTO;
+import dto.ProductoDTO;
 import interfaces.ITablaProductosCliente;
 import utilerias.ButtonColumn;
 import java.awt.event.ActionEvent;

@@ -4,7 +4,7 @@
  */
 package objetos_negocio;
 
-import dtos.ClienteDTO;
+import dto.ClienteDTO;
 import entidades.Cliente;
 import entidades.Pago;
 //import entidades.Producto;

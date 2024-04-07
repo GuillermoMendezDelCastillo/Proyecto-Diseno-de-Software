@@ -4,8 +4,8 @@
  */
 package interfaces;
 
-import dtos.ClienteDTO;
-import dtos.ProductoDTO;
+import dto.ClienteDTO;
+import dto.ProductoDTO;
 import java.util.List;
 
 /**
