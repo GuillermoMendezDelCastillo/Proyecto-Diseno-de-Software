@@ -11,6 +11,5 @@ import dto.ClienteDTO;
  * @author Gui26
  */
 public interface IRegistroCliente {
-    public boolean validar(String nombre, String contrasena, String correo);
-    public boolean registrar(ClienteDTO clienteDto);
+    public boolean registroCliente(ClienteDTO clienteDto);
 }

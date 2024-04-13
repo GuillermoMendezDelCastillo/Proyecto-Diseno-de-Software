@@ -10,15 +10,13 @@ import static entidades.Tienda.TIENDA;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import subsistemaTablaProductosTienda.ITablaProductosTienda;
 
 /**
  *
  * @author Gui26
  */
-public class TablaProductosTienda implements ITablaProductosTienda{
+public class TablaProductosTienda{
     
-    @Override
     public List<ProductoDTO> consulta(){
         List<ProductoDTO> productos = new LinkedList();
         

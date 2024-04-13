@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class Tienda {
     public Tienda(int uno) {
         this.clientes = new LinkedList<Cliente>();
         this.productos = new LinkedList<Producto>();
-        this.clientes.add(new Cliente("Paco", "12345", "paco@gmail.com"));
+        this.clientes.add(new Cliente("Paco", "12345", LocalDate.parse("2003-12-13"), "paco@gmail.com"));
         this.productos.add(new Producto("Manzana",
                 "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
                 10, 50));

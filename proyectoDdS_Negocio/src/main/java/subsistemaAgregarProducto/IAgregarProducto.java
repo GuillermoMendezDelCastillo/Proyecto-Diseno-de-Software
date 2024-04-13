@@ -11,5 +11,5 @@ import dto.ClienteDTO;
  * @author Gui26
  */
 public interface IAgregarProducto {
-    public void agregar(ClienteDTO clienteDto, String producto);
+    public void agregarProducto(ClienteDTO clienteDto, String producto);
 }

@@ -5,62 +5,81 @@
 package subsistemaGenerarPago;
 
 import dto.ClienteDTO;
+import dto.PagoDTO;
 import entidades.Cliente;
 import entidades.Pago;
-//import entidades.Producto;
+import entidades.TarjetaBancaria;
+import entidades.TransferenciaBancaria;
 import static entidades.Tienda.TIENDA;
-import subsistemaGenerarPago.IGenerarPago;
 import java.util.LinkedList;
-//import java.util.List;
 import java.util.ListIterator;
 
 /**
  *
  * @author Gui26
  */
-public class GenerarPago implements IGenerarPago{
+public class GenerarPago{
+    
+    private ClienteDTO clienteDTO;
+    private PagoDTO pagoDTO;
+    private Cliente cliente;
+    private Pago pago;
 
-    @Override
-    public boolean esValido(String metodo, String codigoMetodo, int total) {
-        if (total<=0){
-            return false;
-        }
-        if(metodo.isBlank()||metodo.isEmpty()||codigoMetodo.isBlank()||codigoMetodo.isEmpty()){
-            return false;
-        }
-        return true;
+    public GenerarPago(ClienteDTO clienteDTO, PagoDTO pagoDTO) {
+        this.clienteDTO = clienteDTO;
+        this.pagoDTO = pagoDTO;
+        this.cliente = null;
+        this.pago = null;
+    }
+    
+    public boolean esValido() {
+        return pagoDTO.getTotal() > 0;
     }
 
-    @Override
-    public boolean generar(ClienteDTO clienteDto, String metodo, String codigoMetodo, int total) {
-        if (esValido(metodo,codigoMetodo,total)){
-            String usuario = clienteDto.getApodo();
-            Cliente cliente;
-            ListIterator<Cliente> listaClientes = TIENDA.getClientes().listIterator();
-            while (listaClientes.hasNext()) {
-                cliente = listaClientes.next();
-                if(cliente.getApodo().equals(usuario)){
-                    Pago pago = new Pago(codigoMetodo, metodo, total, cliente.getCarrito());
-                    cliente.getHistorial().add(pago);
-                    cliente.setCarrito(new LinkedList());
-//                    historial(cliente);
-                    return true;
-                }
+    public Cliente cliente(){
+        String usuario = clienteDTO.getApodo();
+        Cliente buscado;
+        ListIterator<Cliente> listaClientes = TIENDA.getClientes().listIterator();
+        while (listaClientes.hasNext()) {
+            buscado = listaClientes.next();
+            if(buscado.getApodo().equals(usuario)){
+                this.cliente = buscado;
             }
         }
-        return false;
+        return cliente;
+    }
+    
+    public Pago pago(){
+        if (pagoDTO.getMetodo().equals("Tarjeta Bancaria")){
+            this.pago = new TarjetaBancaria(pagoDTO.getMetodo(), pagoDTO.getTotal(),
+                    pagoDTO.getNombre(), pagoDTO.getNumero(), pagoDTO.getCaducidad(),
+                    pagoDTO.getCvv(), cliente.getCarrito());
+            return pago;
+        }
+        if (pagoDTO.getMetodo().equals("Transferencia Bancaria")){
+            this.pago = new TransferenciaBancaria(pagoDTO.getMetodo(), pagoDTO.getTotal(),
+                    pagoDTO.getCorreo(), pagoDTO.getNumero(), cliente.getCarrito());
+        }
+        return pago;
+    }
+    
+    public boolean generar() {
+        cliente.getHistorial().add(pago);
+        cliente.setCarrito(new LinkedList());
+//        historial(cliente);
+        return true;
     }
     
 //    private void historial(Cliente cliente){
-//        Pago pago;
+//        Pago registrado;
 //        ListIterator<Pago> iterador = cliente.getHistorial().listIterator();
 //        while (iterador.hasNext()) {
-//            pago = iterador.next();
-//            System.out.println(pago.getCodigoMetodo());
-//            System.out.println(pago.getMetodo());
-//            System.out.println(pago.getTotal());
+//            registrado = iterador.next();
+//            System.out.println(registrado.getClass());
+//            System.out.println(registrado.getMetodo());
+//            System.out.println(registrado.getTotal());
 //            Producto producto;
-//            ListIterator<Producto> iterador2 = pago.getCarrito().listIterator();
+//            ListIterator<Producto> iterador2 = registrado.getCarrito().listIterator();
 //            while (iterador2.hasNext()) {
 //                producto = iterador2.next();
 //                System.out.println(producto.getNombre());

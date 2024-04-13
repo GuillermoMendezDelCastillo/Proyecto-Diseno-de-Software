@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,15 +17,26 @@ public class Cliente {
     private String apodo;
     private String contrasena;
     private String correo;
+    private LocalDate nacimiento;
     private List<Producto> carrito;
     private List<Pago> historial;
 
-    public Cliente(String apodo, String contrasena, String correo) {
+    public Cliente(String apodo, String contrasena, LocalDate nacimiento, String correo) {
         this.apodo = apodo;
         this.contrasena = contrasena;
+        this.nacimiento = nacimiento;
         this.correo = correo;
         this.carrito = new LinkedList<Producto>();
         this.historial= new LinkedList<Pago>();
+    }
+
+    public Cliente(String apodo, String contrasena, String correo, LocalDate nacimiento, List<Producto> carrito, List<Pago> historial) {
+        this.apodo = apodo;
+        this.contrasena = contrasena;
+        this.correo = correo;
+        this.nacimiento = nacimiento;
+        this.carrito = new LinkedList<Producto>();
+        this.historial = new LinkedList<Pago>();
     }
 
     public String getApodo() {
@@ -51,6 +63,14 @@ public class Cliente {
         this.correo = correo;
     }
 
+    public LocalDate getNacimiento() {
+        return nacimiento;
+    }
+
+    public void setNacimiento(LocalDate nacimiento) {
+        this.nacimiento = nacimiento;
+    }
+    
     public List<Producto> getCarrito() {
         return carrito;
     }

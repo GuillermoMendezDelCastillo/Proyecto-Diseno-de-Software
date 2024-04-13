@@ -12,14 +12,12 @@ import java.util.List;
  */
 public class Pago {
     
-    private String codigoMetodo;
     private String metodo;
     private int total;
     private List<Producto> carrito;
 
-    public Pago(String codigoMetodo, String metodo, int total, List<Producto> carrito) {
+    public Pago(String metodo, int total, List<Producto> carrito) {
         this.metodo = metodo;
-        this.codigoMetodo = codigoMetodo;
         this.total = total;
         this.carrito = carrito;
     }
@@ -30,14 +28,6 @@ public class Pago {
 
     public void setMetodo(String metodo) {
         this.metodo = metodo;
-    }
-
-    public String getCodigoMetodo() {
-        return codigoMetodo;
-    }
-
-    public void setCodigoMetodo(String codigoMetodo) {
-        this.codigoMetodo = codigoMetodo;
     }
 
     public int getTotal() {

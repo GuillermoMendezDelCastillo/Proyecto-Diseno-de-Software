@@ -8,17 +8,14 @@ import dto.ClienteDTO;
 import entidades.Cliente;
 import entidades.Producto;
 import static entidades.Tienda.TIENDA;
-import subsistemaAgregarProducto.IAgregarProducto;
 import java.util.ListIterator;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Gui26
  */
-public class AgregarProducto implements IAgregarProducto{
+public class AgregarProducto{
 
-    @Override
     public void agregar(ClienteDTO clienteDto, String nombreProducto) {
         
         Producto producto = null;
@@ -44,7 +41,6 @@ public class AgregarProducto implements IAgregarProducto{
         } else {
             System.out.println("Fallo inesperado: no se encontro el Producto");
         }
-        
         
     }
     

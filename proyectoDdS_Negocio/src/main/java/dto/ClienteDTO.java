@@ -4,6 +4,8 @@
  */
 package dto;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Gui26
@@ -12,6 +14,7 @@ public class ClienteDTO {
     
     private String apodo;
     private String contrasena;
+    private LocalDate nacimiento;
     private String correo;
     
     public ClienteDTO(String apodo, String contrasena) {
@@ -19,9 +22,10 @@ public class ClienteDTO {
         this.contrasena = contrasena;
     }
     
-    public ClienteDTO(String apodo, String contrasena, String correo) {
+    public ClienteDTO(String apodo, String contrasena, LocalDate nacimiento, String correo) {
         this.apodo = apodo;
         this.contrasena = contrasena;
+        this.nacimiento = nacimiento;
         this.correo = correo;
     }
     
@@ -31,6 +35,10 @@ public class ClienteDTO {
 
     public String getContrasena() {
         return contrasena;
+    }
+
+    public LocalDate getNacimiento() {
+        return nacimiento;
     }
 
     public String getCorreo() {

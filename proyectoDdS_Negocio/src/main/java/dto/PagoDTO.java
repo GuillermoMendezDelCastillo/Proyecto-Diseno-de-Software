@@ -4,7 +4,7 @@
  */
 package dto;
 
-import java.util.List;
+import java.time.LocalDate;
 
 /**
  *
@@ -12,20 +12,40 @@ import java.util.List;
  */
 public class PagoDTO {
     
-    private String codigoMetodo;
+    private String numero;
     private String metodo;
     private int total;
-    private List<ProductoDTO> carrito;
+    
+    private String nombre;
+    private LocalDate caducidad;
+    private String cvv;
+    
+    private String correo;
 
-    public PagoDTO(String codigoMetodo, String metodo, int total, List<ProductoDTO> carrito) {
-        this.codigoMetodo = codigoMetodo;
+//    public PagoDTO(String numero, String metodo, int total) {
+//        this.numero = numero;
+//        this.metodo = metodo;
+//        this.total = total;
+//    }
+    
+    public PagoDTO(String numero, String metodo, int total, String nombre, LocalDate caducidad, String cvv) {
+        this.numero = numero;
         this.metodo = metodo;
         this.total = total;
-        this.carrito = carrito;
+        this.nombre = nombre;
+        this.caducidad = caducidad;
+        this.cvv = cvv;
     }
 
-    public String getCodigoMetodo() {
-        return codigoMetodo;
+    public PagoDTO(String numero, String metodo, int total, String correo) {
+        this.numero = numero;
+        this.metodo = metodo;
+        this.total = total;
+        this.correo = correo;
+    }
+    
+    public String getNumero() {
+        return numero;
     }
 
     public String getMetodo() {
@@ -36,8 +56,20 @@ public class PagoDTO {
         return total;
     }
 
-    public List<ProductoDTO> getCarrito() {
-        return carrito;
+    public String getNombre() {
+        return nombre;
+    }
+
+    public LocalDate getCaducidad() {
+        return caducidad;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+
+    public String getCorreo() {
+        return correo;
     }
     
 }

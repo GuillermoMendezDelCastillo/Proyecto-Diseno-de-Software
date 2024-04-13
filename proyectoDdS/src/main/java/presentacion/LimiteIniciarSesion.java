@@ -5,8 +5,9 @@
 package presentacion;
 
 import dto.ClienteDTO;
+import javax.swing.JOptionPane;
 import subsistemaIniciarSesion.IIniciarSesion;
-import subsistemaIniciarSesion.IniciarSesion;
+import subsistemaIniciarSesion.fachadaIniciarSesion;
 
 /**
  *
@@ -120,14 +121,20 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         
-        ClienteDTO clienteDto = new ClienteDTO(textoUsuario.getText(), textoContrasena.getText());
-        
-        IIniciarSesion sesion = new IniciarSesion();
-        if (sesion.buscar(clienteDto)){
-            LimiteTienda limite = new LimiteTienda(clienteDto);
-            limite.setVisible(true);
-            dispose();
+        if (validar()){
+            ClienteDTO clienteDto = new ClienteDTO(textoUsuario.getText(), textoContrasena.getText());
+            IIniciarSesion sesion = new fachadaIniciarSesion();
+            if (sesion.iniciarSesion(clienteDto)){
+                LimiteTienda limite = new LimiteTienda(clienteDto);
+                limite.setVisible(true);
+                dispose();
+            } else{
+                JOptionPane.showMessageDialog(this, "No se pudo encontrar el cliente");
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
         
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
@@ -168,6 +175,11 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
                 new LimiteIniciarSesion().setVisible(true);
             }
         });
+    }
+    
+    public boolean validar() {
+        return !(textoUsuario.getText().isBlank()||textoUsuario.getText().isEmpty()
+                ||textoContrasena.getText().isBlank()||textoContrasena.getText().isEmpty());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

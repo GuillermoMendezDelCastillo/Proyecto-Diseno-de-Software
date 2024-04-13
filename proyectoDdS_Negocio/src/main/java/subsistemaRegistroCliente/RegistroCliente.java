@@ -7,32 +7,21 @@ package subsistemaRegistroCliente;
 import dto.ClienteDTO;
 import entidades.Cliente;
 import static entidades.Tienda.TIENDA;
-import subsistemaRegistroCliente.IRegistroCliente;
+import java.time.LocalDate;
 
 /**
  *
  * @author Gui26
  */
-public class RegistroCliente implements IRegistroCliente{
+public class RegistroCliente{
 
-    @Override
-    public boolean validar(String nombre, String contrasena, String correo) {
-        if(nombre.isBlank()||nombre.isEmpty()||contrasena.isBlank()||contrasena.isEmpty()||correo.isBlank()||correo.isEmpty()){
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public boolean registrar(ClienteDTO clienteDto) {
         String nombre = clienteDto.getApodo();
         String contrasena = clienteDto.getContrasena();
+        LocalDate nacimiento = clienteDto.getNacimiento();
         String correo = clienteDto.getCorreo();
-        if(validar(nombre,contrasena, correo)){
-            TIENDA.getClientes().add(new Cliente(nombre, contrasena, correo));
-            return true;
-        }
-        return false;
+        TIENDA.getClientes().add(new Cliente(nombre, contrasena, nacimiento, correo));
+        return true;
     }
     
 }

@@ -14,7 +14,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import subsistemaTablaProductosCliente.TablaProductosCliente;
+import subsistemaTablaProductosCliente.fachadaTablaProductosCliente;
 
 /**
  *
@@ -143,8 +143,8 @@ public class LimiteCarrito extends javax.swing.JFrame {
 
     public boolean tabla(){
         
-        ITablaProductosCliente lista = new TablaProductosCliente();
-        List<ProductoDTO> productos = lista.consulta(clienteDto);
+        ITablaProductosCliente lista = new fachadaTablaProductosCliente();
+        List<ProductoDTO> productos = lista.tablaProductosCliente(clienteDto);
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Producto");

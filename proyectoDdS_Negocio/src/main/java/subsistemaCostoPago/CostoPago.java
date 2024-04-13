@@ -5,22 +5,17 @@
 package subsistemaCostoPago;
 
 import dto.ClienteDTO;
-import dto.ProductoDTO;
 import entidades.Cliente;
 import entidades.Producto;
 import static entidades.Tienda.TIENDA;
-import subsistemaCostoPago.ICostoPago;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ListIterator;
 
 /**
  *
  * @author Gui26
  */
-public class CostoPago implements ICostoPago{
+public class CostoPago{
 
-    @Override
     public int costo(ClienteDTO clienteDto) {
         int costo = 0;
         String usuario = clienteDto.getApodo();

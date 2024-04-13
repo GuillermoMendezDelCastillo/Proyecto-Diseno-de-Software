@@ -13,10 +13,10 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-import subsistemaAgregarProducto.AgregarProducto;
-import subsistemaTablaProductosTienda.TablaProductosTienda;
+import subsistemaAgregarProducto.fachadaAgregarProducto;
 import utilerias.ImageRender;
 import subsistemaTablaProductosTienda.ITablaProductosTienda;
+import subsistemaTablaProductosTienda.fachadaTablaProductosTienda;
 
 /**
  *
@@ -124,8 +124,8 @@ public class LimiteTienda extends javax.swing.JFrame {
 
     public void tabla(){
 
-        ITablaProductosTienda lista = new TablaProductosTienda();
-        List<ProductoDTO> productos = lista.consulta();
+        ITablaProductosTienda lista = new fachadaTablaProductosTienda();
+        List<ProductoDTO> productos = lista.tablaProductosTienda();
 
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Producto");
@@ -158,8 +158,8 @@ public class LimiteTienda extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 String producto = (String) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 0);
                 
-                IAgregarProducto agrega = new AgregarProducto();
-                agrega.agregar(clienteDto, producto);
+                IAgregarProducto agrega = new fachadaAgregarProducto();
+                agrega.agregarProducto(clienteDto, producto);
             }
         });
 

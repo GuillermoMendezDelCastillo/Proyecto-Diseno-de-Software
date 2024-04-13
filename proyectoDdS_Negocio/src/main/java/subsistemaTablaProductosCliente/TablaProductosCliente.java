@@ -9,7 +9,6 @@ import dto.ProductoDTO;
 import entidades.Cliente;
 import entidades.Producto;
 import static entidades.Tienda.TIENDA;
-import subsistemaTablaProductosCliente.ITablaProductosCliente;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -18,9 +17,8 @@ import java.util.ListIterator;
  *
  * @author Gui26
  */
-public class TablaProductosCliente implements ITablaProductosCliente{
+public class TablaProductosCliente{
     
-    @Override
     public List<ProductoDTO> consulta(ClienteDTO clienteDto){
         List<ProductoDTO> productos = new LinkedList();
         String usuario = clienteDto.getApodo();

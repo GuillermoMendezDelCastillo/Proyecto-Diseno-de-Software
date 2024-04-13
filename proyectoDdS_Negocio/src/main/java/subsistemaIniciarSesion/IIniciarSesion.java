@@ -11,6 +11,5 @@ import dto.ClienteDTO;
  * @author Gui26
  */
 public interface IIniciarSesion {
-    public boolean validar(String usuario, String contrasena);
-    public boolean buscar(ClienteDTO clienteDto);
+    public boolean iniciarSesion(ClienteDTO clienteDto);
 }

@@ -12,5 +12,5 @@ import java.util.List;
  * @author Gui26
  */
 public interface ITablaProductosTienda {
-    public List<ProductoDTO> consulta();
+    public List<ProductoDTO> tablaProductosTienda();
 }

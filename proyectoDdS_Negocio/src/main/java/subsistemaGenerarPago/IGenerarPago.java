@@ -5,12 +5,14 @@
 package subsistemaGenerarPago;
 
 import dto.ClienteDTO;
+import dto.PagoDTO;
 
 /**
  *
  * @author Gui26
  */
 public interface IGenerarPago {
-    public boolean esValido(String metodo, String codigoMetodo, int total);
-    public boolean generar(ClienteDTO clienteDTO, String metodo, String codigoMetodo, int total);
+    
+    public boolean generarPago(ClienteDTO clienteDTO, PagoDTO pagoDTO);
+    
 }
