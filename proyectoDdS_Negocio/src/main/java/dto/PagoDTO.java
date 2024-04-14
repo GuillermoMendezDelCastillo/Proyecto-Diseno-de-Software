@@ -14,7 +14,7 @@ public class PagoDTO {
     
     private String numero;
     private String metodo;
-    private int total;
+    private float total;
     
     private String nombre;
     private LocalDate caducidad;
@@ -28,7 +28,7 @@ public class PagoDTO {
 //        this.total = total;
 //    }
     
-    public PagoDTO(String numero, String metodo, int total, String nombre, LocalDate caducidad, String cvv) {
+    public PagoDTO(String numero, String metodo, float total, String nombre, LocalDate caducidad, String cvv) {
         this.numero = numero;
         this.metodo = metodo;
         this.total = total;
@@ -37,7 +37,7 @@ public class PagoDTO {
         this.cvv = cvv;
     }
 
-    public PagoDTO(String numero, String metodo, int total, String correo) {
+    public PagoDTO(String numero, String metodo, float total, String correo) {
         this.numero = numero;
         this.metodo = metodo;
         this.total = total;
@@ -52,7 +52,7 @@ public class PagoDTO {
         return metodo;
     }
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
 

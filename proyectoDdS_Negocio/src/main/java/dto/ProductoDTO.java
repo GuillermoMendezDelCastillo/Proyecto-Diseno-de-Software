@@ -12,9 +12,9 @@ public class ProductoDTO {
     
     private String nombre;
     private String url;
-    private int costo;
+    private float costo;
 
-    public ProductoDTO(String nombre, String url, int costo) {
+    public ProductoDTO(String nombre, String url, float costo) {
         this.nombre = nombre;
         this.url = url;
         this.costo = costo;
@@ -28,7 +28,7 @@ public class ProductoDTO {
         return url;
     }
 
-    public int getCosto() {
+    public float getCosto() {
         return costo;
     }
     

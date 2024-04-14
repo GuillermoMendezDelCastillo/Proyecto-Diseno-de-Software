@@ -11,6 +11,7 @@ import entidades.Pago;
 import entidades.TarjetaBancaria;
 import entidades.TransferenciaBancaria;
 import static entidades.Tienda.TIENDA;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -33,6 +34,11 @@ public class GenerarPago{
     }
     
     public boolean esValido() {
+        if (pagoDTO.getMetodo().equals("Tarjeta Bancaria")){
+            if (pagoDTO.getCaducidad().compareTo(LocalDate.now())<0){
+                return false;
+            }
+        }
         return pagoDTO.getTotal() > 0;
     }
 

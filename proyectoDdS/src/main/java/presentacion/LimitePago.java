@@ -203,13 +203,13 @@ public class LimitePago extends javax.swing.JFrame {
             PagoDTO pagoDTO = null;
             if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")){
                 pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
-                Integer.valueOf(lblTotal.getText()), txtCorreoNombre.getText(),
+                Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
                 LocalDateTime.ofInstant(jDateFecha.getCalendar().toInstant(), jDateFecha.getCalendar().getTimeZone().toZoneId()).toLocalDate(),
                 txtCvv.getText());
             }
             if (cbMetodo.getSelectedItem().toString().equals("Transferencia Bancaria")){
                 pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
-                Integer.valueOf(lblTotal.getText()), txtCorreoNombre.getText());
+                Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText());
             }
             
             if (pago.generarPago(clienteDto, pagoDTO)){
@@ -235,7 +235,7 @@ public class LimitePago extends javax.swing.JFrame {
 
     public void mostrar(){
         ICostoPago costo= new fachadaCostoPago();
-        lblTotal.setText(Integer.toString(costo.costoPago(clienteDto)));
+        lblTotal.setText(String.format("%.02f", costo.costoPago(clienteDto)));
     }
     
     public boolean validar(){

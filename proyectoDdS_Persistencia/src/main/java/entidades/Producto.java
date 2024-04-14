@@ -12,10 +12,10 @@ public class Producto {
     
     private String nombre;
     private String urlImagen;
-    private int costo;
+    private float costo;
     private int cantidad;
 
-    public Producto(String nombre, String urlImagen, int costo, int cantidad) {
+    public Producto(String nombre, String urlImagen, float costo, int cantidad) {
         this.nombre = nombre;
         this.urlImagen = urlImagen;
         this.costo = costo;
@@ -38,11 +38,11 @@ public class Producto {
         this.urlImagen = urlImagen;
     }
 
-    public int getCosto() {
+    public float getCosto() {
         return costo;
     }
 
-    public void setCosto(int costo) {
+    public void setCosto(float costo) {
         this.costo = costo;
     }
 

@@ -13,10 +13,10 @@ import java.util.List;
 public class Pago {
     
     private String metodo;
-    private int total;
+    private float total;
     private List<Producto> carrito;
 
-    public Pago(String metodo, int total, List<Producto> carrito) {
+    public Pago(String metodo, float total, List<Producto> carrito) {
         this.metodo = metodo;
         this.total = total;
         this.carrito = carrito;
@@ -30,11 +30,11 @@ public class Pago {
         this.metodo = metodo;
     }
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(float total) {
         this.total = total;
     }
 

@@ -11,5 +11,5 @@ import dto.ClienteDTO;
  * @author Gui26
  */
 public interface ICostoPago {
-    public int costoPago(ClienteDTO clienteDto);
+    public float costoPago(ClienteDTO clienteDto);
 }

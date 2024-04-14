@@ -134,7 +134,7 @@ public class LimiteTienda extends javax.swing.JFrame {
         modelo.addColumn("");
         modelo.addColumn("");
         for (ProductoDTO producto : productos){
-            Object[] fila = {producto.getNombre(), producto.getUrl(), producto.getCosto(), "Ver Producto", "Añadir a Carrito"};
+            Object[] fila = {producto.getNombre(), producto.getUrl(), String.format("%.02f", producto.getCosto()), "Ver Producto", "Añadir a Carrito"};
             modelo.addRow(fila);
         }
 

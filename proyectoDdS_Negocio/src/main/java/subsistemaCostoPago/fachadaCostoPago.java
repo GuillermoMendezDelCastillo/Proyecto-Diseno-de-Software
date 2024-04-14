@@ -12,7 +12,7 @@ import dto.ClienteDTO;
  */
 public class fachadaCostoPago implements ICostoPago{
     @Override
-    public int costoPago(ClienteDTO clienteDto){
+    public float costoPago(ClienteDTO clienteDto){
         CostoPago costo = new CostoPago();
         return costo.costo(clienteDto);
     }

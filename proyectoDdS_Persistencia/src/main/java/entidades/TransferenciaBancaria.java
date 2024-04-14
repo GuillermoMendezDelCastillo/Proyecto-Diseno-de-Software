@@ -15,7 +15,7 @@ public class TransferenciaBancaria extends Pago{
     private String correo;
     private String numCuenta;
 
-    public TransferenciaBancaria(String metodo, int total, String correo, String numCuenta, List<Producto> carrito) {
+    public TransferenciaBancaria(String metodo, float total, String correo, String numCuenta, List<Producto> carrito) {
         super(metodo, total, carrito);
         this.correo = correo;
         this.numCuenta = numCuenta;

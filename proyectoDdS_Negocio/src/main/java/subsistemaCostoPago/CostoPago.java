@@ -16,8 +16,8 @@ import java.util.ListIterator;
  */
 public class CostoPago{
 
-    public int costo(ClienteDTO clienteDto) {
-        int costo = 0;
+    public float costo(ClienteDTO clienteDto) {
+        float costo = 0;
         String usuario = clienteDto.getApodo();
         Cliente cliente;
         ListIterator<Cliente> listaClientes = TIENDA.getClientes().listIterator();

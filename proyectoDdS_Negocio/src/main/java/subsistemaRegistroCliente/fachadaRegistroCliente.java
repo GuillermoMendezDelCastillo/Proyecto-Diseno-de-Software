@@ -13,7 +13,15 @@ import dto.ClienteDTO;
 public class fachadaRegistroCliente implements IRegistroCliente{
     @Override
     public boolean registroCliente(ClienteDTO clienteDto){
-        RegistroCliente registro = new RegistroCliente();
-        return registro.registrar(clienteDto);
+        RegistroCliente registro = new RegistroCliente(clienteDto);
+        if (registro.esValido()){
+            if (registro.buscar()){
+                System.out.println("Ya existe el apodo");
+                return false;
+            }
+            registro.registrar();
+            return true;
+        }
+        return false;
     }
 }

@@ -18,7 +18,7 @@ public class TarjetaBancaria extends Pago{
     private LocalDate caducidad;
     private String cvv;
 
-    public TarjetaBancaria(String metodo, int total, String nombreUsuario, String numTarjeta,
+    public TarjetaBancaria(String metodo, float total, String nombreUsuario, String numTarjeta,
             LocalDate caducidad, String cvv,List<Producto> carrito) {
         super(metodo, total, carrito);
         this.nombreUsuario = nombreUsuario;
