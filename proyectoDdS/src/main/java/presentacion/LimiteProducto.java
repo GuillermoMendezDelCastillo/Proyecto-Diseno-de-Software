@@ -132,6 +132,7 @@ public class LimiteProducto extends javax.swing.JFrame {
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
         // TODO add your handling code here:
+        System.out.println("Este boton todavia no es funcinal");
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

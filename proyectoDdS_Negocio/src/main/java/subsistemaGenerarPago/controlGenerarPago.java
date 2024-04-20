@@ -4,33 +4,23 @@
  */
 package subsistemaGenerarPago;
 
+import bo.PagoBO;
 import dto.ClienteDTO;
 import dto.PagoDTO;
-import entidades.Cliente;
-import entidades.Pago;
-import entidades.TarjetaBancaria;
-import entidades.TransferenciaBancaria;
-import static entidades.Tienda.TIENDA;
 import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.ListIterator;
 
 /**
  *
  * @author Gui26
  */
-public class GenerarPago{
+public class controlGenerarPago{
     
     private ClienteDTO clienteDTO;
     private PagoDTO pagoDTO;
-    private Cliente cliente;
-    private Pago pago;
 
-    public GenerarPago(ClienteDTO clienteDTO, PagoDTO pagoDTO) {
+    public controlGenerarPago(ClienteDTO clienteDTO, PagoDTO pagoDTO) {
         this.clienteDTO = clienteDTO;
         this.pagoDTO = pagoDTO;
-        this.cliente = null;
-        this.pago = null;
     }
     
     public boolean esValido() {
@@ -41,39 +31,10 @@ public class GenerarPago{
         }
         return pagoDTO.getTotal() > 0;
     }
-
-    public Cliente cliente(){
-        String usuario = clienteDTO.getApodo();
-        Cliente buscado;
-        ListIterator<Cliente> listaClientes = TIENDA.getClientes().listIterator();
-        while (listaClientes.hasNext()) {
-            buscado = listaClientes.next();
-            if(buscado.getApodo().equals(usuario)){
-                this.cliente = buscado;
-            }
-        }
-        return cliente;
-    }
-    
-    public Pago pago(){
-        if (pagoDTO.getMetodo().equals("Tarjeta Bancaria")){
-            this.pago = new TarjetaBancaria(pagoDTO.getMetodo(), pagoDTO.getTotal(),
-                    pagoDTO.getNombre(), pagoDTO.getNumero(), pagoDTO.getCaducidad(),
-                    pagoDTO.getCvv(), cliente.getCarrito());
-            return pago;
-        }
-        if (pagoDTO.getMetodo().equals("Transferencia Bancaria")){
-            this.pago = new TransferenciaBancaria(pagoDTO.getMetodo(), pagoDTO.getTotal(),
-                    pagoDTO.getCorreo(), pagoDTO.getNumero(), cliente.getCarrito());
-        }
-        return pago;
-    }
     
     public boolean generar() {
-        cliente.getHistorial().add(pago);
-        cliente.setCarrito(new LinkedList());
-//        historial(cliente);
-        return true;
+        PagoBO pagoBO = new PagoBO(pagoDTO);
+        return pagoBO.generarPago(clienteDTO);
     }
     
 //    private void historial(Cliente cliente){

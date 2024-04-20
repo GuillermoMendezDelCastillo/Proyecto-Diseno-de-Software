@@ -14,13 +14,9 @@ import dto.PagoDTO;
 public class fachadaGenerarPago implements IGenerarPago{
     @Override
     public boolean generarPago(ClienteDTO clienteDTO, PagoDTO pagoDTO){
-        GenerarPago genera = new GenerarPago(clienteDTO, pagoDTO);
+        controlGenerarPago genera = new controlGenerarPago(clienteDTO, pagoDTO);
         if(genera.esValido()){
-            if(genera.cliente()!=null){
-                if(genera.pago()!=null){
                     return genera.generar();
-                }
-            }
         }
         return false;
     }

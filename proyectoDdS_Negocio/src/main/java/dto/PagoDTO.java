@@ -21,12 +21,6 @@ public class PagoDTO {
     private String cvv;
     
     private String correo;
-
-//    public PagoDTO(String numero, String metodo, int total) {
-//        this.numero = numero;
-//        this.metodo = metodo;
-//        this.total = total;
-//    }
     
     public PagoDTO(String numero, String metodo, float total, String nombre, LocalDate caducidad, String cvv) {
         this.numero = numero;

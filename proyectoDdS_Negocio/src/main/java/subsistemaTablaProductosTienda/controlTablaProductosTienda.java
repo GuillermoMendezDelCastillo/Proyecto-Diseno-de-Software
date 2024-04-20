@@ -4,6 +4,7 @@
  */
 package subsistemaTablaProductosTienda;
 
+import bo.ProductoBO;
 import dto.ProductoDTO;
 import java.util.List;
 
@@ -11,12 +12,10 @@ import java.util.List;
  *
  * @author Gui26
  */
-public class fachadaTablaProductosTienda implements ITablaProductosTienda{
+public class controlTablaProductosTienda{
     
-    @Override
-    public List<ProductoDTO> tablaProductosTienda(){
-        controlTablaProductosTienda tabla = new controlTablaProductosTienda();
-        return tabla.consulta();
+    public List<ProductoDTO> consulta(){
+        ProductoBO productos = new ProductoBO();
+        return productos.productosDTO();
     }
-    
 }

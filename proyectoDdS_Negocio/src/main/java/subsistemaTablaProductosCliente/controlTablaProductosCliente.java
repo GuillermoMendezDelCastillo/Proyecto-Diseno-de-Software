@@ -4,6 +4,7 @@
  */
 package subsistemaTablaProductosCliente;
 
+import bo.ClienteBO;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
 import java.util.List;
@@ -12,11 +13,10 @@ import java.util.List;
  *
  * @author Gui26
  */
-public class fachadaTablaProductosCliente implements ITablaProductosCliente{
+public class controlTablaProductosCliente{
     
-    @Override
-    public List<ProductoDTO> tablaProductosCliente(ClienteDTO clienteDto){
-        controlTablaProductosCliente tabla = new controlTablaProductosCliente();
-        return tabla.consulta(clienteDto);
+    public List<ProductoDTO> consulta(ClienteDTO clienteDto){
+        ClienteBO clienteBO = new ClienteBO(clienteDto);
+        return clienteBO.buscaCarrito();
     }
 }

@@ -4,22 +4,20 @@
  */
 package subsistemaRegistroCliente;
 
+import bo.ClienteBO;
 import dto.ClienteDTO;
-import entidades.Cliente;
-import static entidades.Tienda.TIENDA;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ListIterator;
 
 /**
  *
  * @author Gui26
  */
-public class RegistroCliente{
+public class controlRegistroCliente{
     
     private ClienteDTO clienteDto;
 
-    public RegistroCliente(ClienteDTO clienteDto) {
+    public controlRegistroCliente(ClienteDTO clienteDto) {
         this.clienteDto = clienteDto;
     }
     
@@ -37,24 +35,13 @@ public class RegistroCliente{
     }
     
     public void registrar() {
-        String nombre = clienteDto.getApodo();
-        String contrasena = clienteDto.getContrasena();
-        LocalDate nacimiento = clienteDto.getNacimiento();
-        String correo = clienteDto.getCorreo();
-        TIENDA.getClientes().add(new Cliente(nombre, contrasena, nacimiento, correo));
+        ClienteBO cliente = new ClienteBO(clienteDto);
+        cliente.registra();
     }
     
     public boolean buscar() {
-        String usuario = clienteDto.getApodo();
-        Cliente cliente;
-        ListIterator<Cliente> lista = TIENDA.getClientes().listIterator();
-        while (lista.hasNext()) {
-            cliente = lista.next();
-            if(cliente.getApodo().equals(usuario)){
-                return true;
-            }
-        }
-        return false;
+        ClienteBO cliente = new ClienteBO(clienteDto);
+        return cliente.busca();
     }
     
 }

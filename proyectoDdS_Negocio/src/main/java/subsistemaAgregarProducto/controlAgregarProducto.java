@@ -4,16 +4,20 @@
  */
 package subsistemaAgregarProducto;
 
+import bo.ProductoBO;
 import dto.ClienteDTO;
 
 /**
  *
  * @author Gui26
  */
-public class fachadaAgregarProducto implements IAgregarProducto{
-    @Override
-    public void agregarProducto(ClienteDTO clienteDto, Long idproducto){
-        controlAgregarProducto agrega = new controlAgregarProducto();
-        agrega.agregar(clienteDto, idproducto);
+public class controlAgregarProducto{
+    
+    public void agregar(ClienteDTO clienteDto, Long idProducto) {
+        
+        ProductoBO productoBO = new ProductoBO();
+        productoBO.agregar(clienteDto, idProducto);
+
     }
+    
 }

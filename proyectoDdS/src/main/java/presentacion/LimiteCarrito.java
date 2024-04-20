@@ -160,7 +160,7 @@ public class LimiteCarrito extends javax.swing.JFrame {
         ButtonColumn btnEliminar = new ButtonColumn("Desactivar", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //System.out.println("test");
+                System.out.println("Este boton todavia no es funcional");
             }
         });
 

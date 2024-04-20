@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package subsistemaAgregarProducto;
+package conexion;
 
-import dto.ClienteDTO;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author Gui26
  */
-public interface IAgregarProducto {
-    public void agregarProducto(ClienteDTO clienteDto, Long idproducto);
+public interface IConexion {
+    public EntityManager crearConexion();
 }

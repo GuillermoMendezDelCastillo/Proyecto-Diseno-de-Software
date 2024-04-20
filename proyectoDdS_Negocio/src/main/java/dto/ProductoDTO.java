@@ -10,14 +10,26 @@ package dto;
  */
 public class ProductoDTO {
     
+    private Long id;
     private String nombre;
     private String url;
     private float costo;
 
+    public ProductoDTO(Long id, String nombre, String url, float costo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.url = url;
+        this.costo = costo;
+    }
+    
     public ProductoDTO(String nombre, String url, float costo) {
         this.nombre = nombre;
         this.url = url;
         this.costo = costo;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNombre() {

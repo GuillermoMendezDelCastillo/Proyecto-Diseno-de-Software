@@ -13,7 +13,7 @@ import dto.ClienteDTO;
 public class fachadaIniciarSesion implements IIniciarSesion{
     @Override
     public boolean iniciarSesion(ClienteDTO clienteDto){
-        IniciarSesion inicio = new IniciarSesion();
-        return inicio.buscar(clienteDto);
+        controlIniciarSesion inicio = new controlIniciarSesion();
+        return inicio.iniciar(clienteDto);
     }
 }

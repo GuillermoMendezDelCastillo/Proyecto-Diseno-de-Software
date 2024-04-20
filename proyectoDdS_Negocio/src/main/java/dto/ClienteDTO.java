@@ -12,6 +12,7 @@ import java.time.LocalDate;
  */
 public class ClienteDTO {
     
+    private Long idCliente;
     private String apodo;
     private String contrasena;
     private LocalDate nacimiento;
@@ -27,6 +28,10 @@ public class ClienteDTO {
         this.contrasena = contrasena;
         this.nacimiento = nacimiento;
         this.correo = correo;
+    }
+
+    public Long getIdCliente() {
+        return idCliente;
     }
     
     public String getApodo() {

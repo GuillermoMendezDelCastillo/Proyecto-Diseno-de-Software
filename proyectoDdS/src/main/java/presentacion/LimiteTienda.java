@@ -128,25 +128,30 @@ public class LimiteTienda extends javax.swing.JFrame {
         List<ProductoDTO> productos = lista.tablaProductosTienda();
 
         DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("");
         modelo.addColumn("Producto");
         modelo.addColumn("");
         modelo.addColumn("Precio");
         modelo.addColumn("");
         modelo.addColumn("");
         for (ProductoDTO producto : productos){
-            Object[] fila = {producto.getNombre(), producto.getUrl(), String.format("%.02f", producto.getCosto()), "Ver Producto", "Añadir a Carrito"};
+            Object[] fila = {producto.getId(), producto.getNombre(), producto.getUrl(), String.format("%.02f", producto.getCosto()), "Ver Producto", "Añadir a Carrito"};
             modelo.addRow(fila);
         }
-
+        
         tablaProductos.setRowHeight(40);
 
         tablaProductos.setModel(modelo);
         TableColumnModel columnModel = tablaProductos.getColumnModel();
-
+        
+        columnModel.getColumn(0).setMinWidth(0);
+        columnModel.getColumn(0).setMaxWidth(0);
+        columnModel.getColumn(0).setWidth(0);
+        
         ButtonColumn btnVerProducto = new ButtonColumn("", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String url = (String) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 1);
+                String url = (String) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 2);
                 LimiteProducto ventana = new LimiteProducto(clienteDto, url);
                 ventana.setVisible(true);
                 dispose();
@@ -156,20 +161,20 @@ public class LimiteTienda extends javax.swing.JFrame {
         ButtonColumn btnAñadir = new ButtonColumn("", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String producto = (String) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 0);
-                
+//                String producto = (String) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 0);
+                Long idproducto = (Long) tablaProductos.getModel().getValueAt(tablaProductos.convertRowIndexToModel(tablaProductos.getEditingRow()), 0);
                 IAgregarProducto agrega = new fachadaAgregarProducto();
-                agrega.agregarProducto(clienteDto, producto);
+                agrega.agregarProducto(clienteDto, idproducto);
             }
         });
 
-        columnModel.getColumn(1).setCellRenderer(new ImageRender());
+        columnModel.getColumn(2).setCellRenderer(new ImageRender());
 
-        columnModel.getColumn(3).setCellRenderer(btnVerProducto);
-        columnModel.getColumn(3).setCellEditor(btnVerProducto);
+        columnModel.getColumn(4).setCellRenderer(btnVerProducto);
+        columnModel.getColumn(4).setCellEditor(btnVerProducto);
 
-        columnModel.getColumn(4).setCellRenderer(btnAñadir);
-        columnModel.getColumn(4).setCellEditor(btnAñadir);
+        columnModel.getColumn(5).setCellRenderer(btnAñadir);
+        columnModel.getColumn(5).setCellEditor(btnAñadir);
 
     }
 

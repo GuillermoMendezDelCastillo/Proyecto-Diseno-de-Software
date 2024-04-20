@@ -4,39 +4,65 @@
  */
 package entidades;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author Gui26
  */
-public class Cliente {
-    
-    private String apodo;
-    private String contrasena;
-    private String correo;
-    private LocalDate nacimiento;
-    private List<Producto> carrito;
-    private List<Pago> historial;
+@Entity
+public class Cliente implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idCliente")
+    private Long id;
+    
+    @Column(name = "apodo", nullable = false, length = 200)
+    private String apodo;
+    
+    @Column(name = "contrasena", nullable = false, length = 200)
+    private String contrasena;
+    
+    @Column(name = "correo", nullable = false, length = 500)
+    private String correo;
+    
+    @Column(name = "nacimiento", nullable = false)
+    private LocalDate nacimiento;
+    
+    @ManyToMany
+    @JoinTable(name = "cliente_producto", joinColumns = @JoinColumn(name = "cliente_id"), inverseJoinColumns = @JoinColumn(name = "producto_id"))
+    private List<Producto> carrito;
+    
+    public Cliente() {
+    }
+    
     public Cliente(String apodo, String contrasena, LocalDate nacimiento, String correo) {
         this.apodo = apodo;
         this.contrasena = contrasena;
         this.nacimiento = nacimiento;
         this.correo = correo;
         this.carrito = new LinkedList<Producto>();
-        this.historial= new LinkedList<Pago>();
+//        this.historial= new LinkedList<Pago>();
+    }
+    
+    public Long getId() {
+        return id;
     }
 
-    public Cliente(String apodo, String contrasena, String correo, LocalDate nacimiento, List<Producto> carrito, List<Pago> historial) {
-        this.apodo = apodo;
-        this.contrasena = contrasena;
-        this.correo = correo;
-        this.nacimiento = nacimiento;
-        this.carrito = new LinkedList<Producto>();
-        this.historial = new LinkedList<Pago>();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getApodo() {
@@ -70,7 +96,7 @@ public class Cliente {
     public void setNacimiento(LocalDate nacimiento) {
         this.nacimiento = nacimiento;
     }
-    
+
     public List<Producto> getCarrito() {
         return carrito;
     }
@@ -79,12 +105,37 @@ public class Cliente {
         this.carrito = carrito;
     }
 
-    public List<Pago> getHistorial() {
-        return historial;
+    public void addProductoCarrito(Producto producto){
+        carrito.add(producto);
+    }
+    
+    public void clearProductoCarrito(){
+        carrito.clear();
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
-    public void setHistorial(List<Pago> historial) {
-        this.historial = historial;
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Cliente)) {
+            return false;
+        }
+        Cliente other = (Cliente) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entidades.Cliente[ id=" + id + " ]";
     }
     
 }
