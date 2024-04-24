@@ -5,11 +5,12 @@
 package bo;
 
 import dao.ClienteDAO;
+import dao.IClienteDAO;
+import dao.IProductoDAO;
 import dao.ProductoDAO;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
 import entidades.Cliente;
-import entidades.Pago;
 import entidades.Producto;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -127,27 +128,27 @@ public class ClienteBO {
     }
     
     public void registra(){
-        ClienteDAO clienteDao = new ClienteDAO();
+        IClienteDAO clienteDao = new ClienteDAO();
         clienteDao.agregar(new Cliente(apodo, contrasena, nacimiento, correo));
     }
     
     public boolean busca(){
-        ClienteDAO clienteDao = new ClienteDAO();
+        IClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = clienteDao.buscar(apodo);
         
         return cliente!=null;
     }
     
     public boolean inicia(){
-        ClienteDAO clienteDao = new ClienteDAO();
+        IClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = clienteDao.iniciar(apodo, contrasena);
         return cliente!=null;
     }
     
     public List<ProductoDTO> buscaCarrito(){
         List<ProductoDTO> productos = new LinkedList();
-        ClienteDAO clienteDao = new ClienteDAO();
-        ProductoDAO productoDao = new ProductoDAO();
+        IClienteDAO clienteDao = new ClienteDAO();
+        IProductoDAO productoDao = new ProductoDAO();
         
         ListIterator<Producto> lista = clienteDao.obtenerCarrito(clienteDao.buscar(apodo)).listIterator();
         while (lista.hasNext()) {

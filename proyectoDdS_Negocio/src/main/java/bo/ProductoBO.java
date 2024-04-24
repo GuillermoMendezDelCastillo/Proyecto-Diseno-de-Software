@@ -5,6 +5,7 @@
 package bo;
 
 import dao.ClienteDAO;
+import dao.IClienteDAO;
 import dao.IProductoDAO;
 import dao.ProductoDAO;
 import dto.ClienteDTO;
@@ -93,8 +94,8 @@ public class ProductoBO {
     }
     
     public void agregar(ClienteDTO clienteDto, Long idProducto){
-        ProductoDAO productoDao = new ProductoDAO();
-        ClienteDAO clienteDao = new ClienteDAO();
+        IProductoDAO productoDao = new ProductoDAO();
+        IClienteDAO clienteDao = new ClienteDAO();
         
         productoDao.agregarCarrito(clienteDao.buscar(clienteDto.getApodo()), productoDao.buscarProducto(idProducto));
     }

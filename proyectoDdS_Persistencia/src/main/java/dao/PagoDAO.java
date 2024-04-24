@@ -4,8 +4,6 @@
  */
 package dao;
 
-import conexion.Conexion;
-import conexion.IConexion;
 import entidades.Cliente;
 import entidades.Pago;
 import javax.persistence.EntityManager;

@@ -5,6 +5,8 @@
 package bo;
 
 import dao.ClienteDAO;
+import dao.IClienteDAO;
+import dao.IPagoDAO;
 import dao.PagoDAO;
 import dto.ClienteDTO;
 import dto.PagoDTO;
@@ -80,12 +82,12 @@ public class PagoBO {
     
     public boolean generarPago(ClienteDTO clienteDto){
         
-        ClienteDAO clienteDao = new ClienteDAO();
+        IClienteDAO clienteDao = new ClienteDAO();
         
         Cliente cliente = clienteDao.buscar(clienteDto.getApodo());
         clienteDao.obtenerCarrito(cliente);
         
-        PagoDAO pagoDao = new PagoDAO();
+        IPagoDAO pagoDao = new PagoDAO();
         Pago pago = new Pago(metodo, total, clienteDao.obtenerCarrito(cliente));
         
         return pagoDao.nuevoPago(cliente, pago)!=null;

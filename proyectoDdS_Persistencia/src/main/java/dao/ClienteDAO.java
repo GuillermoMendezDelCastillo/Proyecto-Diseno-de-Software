@@ -4,8 +4,6 @@
  */
 package dao;
 
-import conexion.Conexion;
-import conexion.IConexion;
 import entidades.Cliente;
 import entidades.Producto;
 import java.util.List;
