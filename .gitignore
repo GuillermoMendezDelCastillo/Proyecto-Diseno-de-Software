@@ -1,3 +1,12 @@
 /proyectoDdS_Persistencia/target/
 /proyectoDdS_Negocio/target/
 /proyectoDdS/target/
+/proyectoDdS_Negocio_bo/target/
+/proyectoDdS_Negocio_dto/target/
+/proyectoDdS_Negocio_subsistemaAgregarProducto/target/
+/proyectoDdS_Negocio_subsistemaCostoPago/target/
+/proyectoDdS_Negocio_subsistemaGenerarPago/target/
+/proyectoDdS_Negocio_subsistemaIniciarSesion/target/
+/proyectoDdS_Negocio_subsistemaRegistroCliente/target/
+/proyectoDdS_Negocio_subsistemaTablaProductosCliente/target/
+/proyectoDdS_Negocio_subsistemaTablaProductosTienda/target/

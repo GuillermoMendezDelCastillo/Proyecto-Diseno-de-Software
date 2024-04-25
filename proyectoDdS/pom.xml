@@ -8,11 +8,6 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>proyectoDdS_Negocio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>proyectoDdS_Persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -20,6 +15,41 @@
             <groupId>com.toedter</groupId>
             <artifactId>jcalendar</artifactId>
             <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaAgregarProducto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaCostoPago</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaGenerarPago</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaIniciarSesion</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaRegistroCliente</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaTablaProductosCliente</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaTablaProductosTienda</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <properties>
