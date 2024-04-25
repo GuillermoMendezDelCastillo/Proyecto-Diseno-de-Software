@@ -57,6 +57,16 @@ public class Cliente implements Serializable {
 //        this.historial= new LinkedList<Pago>();
     }
     
+        public Cliente(Long id, String apodo, String contrasena, LocalDate nacimiento, String correo) {
+        this.id = id;
+        this.apodo = apodo;
+        this.contrasena = contrasena;
+        this.nacimiento = nacimiento;
+        this.correo = correo;
+        this.carrito = new LinkedList<Producto>();
+//        this.historial= new LinkedList<Pago>();
+    }
+    
     public Long getId() {
         return id;
     }

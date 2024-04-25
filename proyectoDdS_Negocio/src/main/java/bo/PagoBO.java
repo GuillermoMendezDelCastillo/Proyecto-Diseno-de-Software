@@ -4,9 +4,11 @@
  */
 package bo;
 
+import dao.ListClienteDAO;
 import dao.ClienteDAO;
 import dao.IClienteDAO;
 import dao.IPagoDAO;
+import dao.ListPagoDAO;
 import dao.PagoDAO;
 import dto.ClienteDTO;
 import dto.PagoDTO;
@@ -73,20 +75,22 @@ public class PagoBO {
     
     public List<ProductoBO> listaProductosPago(List<Producto> productos){
         List<ProductoBO> listaProductosBO = new LinkedList();
-                ListIterator<Producto> listaProductos = productos.listIterator();
-            while (listaProductos.hasNext()) {
-                listaProductosBO.add(new ProductoBO(listaProductos.next()));
-            }
+        ListIterator<Producto> listaProductos = productos.listIterator();
+        while (listaProductos.hasNext()) {
+            listaProductosBO.add(new ProductoBO(listaProductos.next()));
+        }
         return listaProductosBO;
     }
     
     public boolean generarPago(ClienteDTO clienteDto){
         
+//        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new ClienteDAO();
         
         Cliente cliente = clienteDao.buscar(clienteDto.getApodo());
         clienteDao.obtenerCarrito(cliente);
         
+//        IPagoDAO pagoDao = new ListPagoDAO();
         IPagoDAO pagoDao = new PagoDAO();
         Pago pago = new Pago(metodo, total, clienteDao.obtenerCarrito(cliente));
         

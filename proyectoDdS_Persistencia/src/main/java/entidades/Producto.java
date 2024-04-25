@@ -56,6 +56,14 @@ public class Producto implements Serializable {
         this.cantidad = cantidad;
     }
     
+    public Producto(Long id, String nombre, String urlImagen, float costo, int cantidad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.urlImagen = urlImagen;
+        this.costo = costo;
+        this.cantidad = cantidad;
+    }
+    
     public Long getId() {
         return id;
     }

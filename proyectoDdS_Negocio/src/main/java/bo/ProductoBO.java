@@ -4,9 +4,11 @@
  */
 package bo;
 
+import dao.ListClienteDAO;
 import dao.ClienteDAO;
 import dao.IClienteDAO;
 import dao.IProductoDAO;
+import dao.ListProductoDAO;
 import dao.ProductoDAO;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
@@ -83,6 +85,7 @@ public class ProductoBO {
     public List<ProductoDTO> productosDTO(){
         List<ProductoDTO> productos = new LinkedList();
         
+//        IProductoDAO productoDao = new ListProductoDAO();
         IProductoDAO productoDao = new ProductoDAO();
         
         ListIterator<Producto> lista = productoDao.listaProductos().listIterator();
@@ -94,6 +97,8 @@ public class ProductoBO {
     }
     
     public void agregar(ClienteDTO clienteDto, Long idProducto){
+//        IProductoDAO productoDao = new ListProductoDAO();
+//        IClienteDAO clienteDao = new ListClienteDAO();
         IProductoDAO productoDao = new ProductoDAO();
         IClienteDAO clienteDao = new ClienteDAO();
         

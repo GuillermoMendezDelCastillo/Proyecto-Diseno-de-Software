@@ -4,9 +4,11 @@
  */
 package bo;
 
+import dao.ListClienteDAO;
 import dao.ClienteDAO;
 import dao.IClienteDAO;
 import dao.IProductoDAO;
+import dao.ListProductoDAO;
 import dao.ProductoDAO;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
@@ -128,11 +130,13 @@ public class ClienteBO {
     }
     
     public void registra(){
+//        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new ClienteDAO();
         clienteDao.agregar(new Cliente(apodo, contrasena, nacimiento, correo));
     }
     
     public boolean busca(){
+//        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = clienteDao.buscar(apodo);
         
@@ -140,6 +144,7 @@ public class ClienteBO {
     }
     
     public boolean inicia(){
+//        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new ClienteDAO();
         Cliente cliente = clienteDao.iniciar(apodo, contrasena);
         return cliente!=null;
@@ -147,6 +152,8 @@ public class ClienteBO {
     
     public List<ProductoDTO> buscaCarrito(){
         List<ProductoDTO> productos = new LinkedList();
+//        IClienteDAO clienteDao = new ListClienteDAO();
+//        IProductoDAO productoDao = new ListProductoDAO();
         IClienteDAO clienteDao = new ClienteDAO();
         IProductoDAO productoDao = new ProductoDAO();
         
