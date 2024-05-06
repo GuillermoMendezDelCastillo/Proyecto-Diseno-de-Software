@@ -42,6 +42,10 @@ public class Pago implements Serializable {
     @JoinColumn(name = "idCliente", nullable = false)
     private Cliente cliente;
     
+    private Cupon cupon;
+    
+    private float totalDescuento;
+    
     public Long getId() {
         return id;
     }
@@ -57,6 +61,14 @@ public class Pago implements Serializable {
         this.metodo = metodo;
         this.total = total;
         this.carrito = carrito;
+    }
+    
+    public Pago(String metodo, float total, List<Producto> carrito, Cupon cupon, float totalDescuento) {
+        this.metodo = metodo;
+        this.total = total;
+        this.carrito = carrito;
+        this.cupon = cupon;
+        this.totalDescuento = totalDescuento;
     }
 
     public String getMetodo() {
@@ -91,13 +103,29 @@ public class Pago implements Serializable {
         this.cliente = cliente;
     }
     
+    public Cupon getCupon() {
+        return cupon;
+    }
+
+    public void setCupon(Cupon cupon) {
+        this.cupon = cupon;
+    }
+
+    public float getTotalDescuento() {
+        return totalDescuento;
+    }
+
+    public void setTotalDescuento(float totalDescuento) {
+        this.totalDescuento = totalDescuento;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set

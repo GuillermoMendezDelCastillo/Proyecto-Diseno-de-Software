@@ -18,6 +18,7 @@ public class Tienda {
     private List<Cliente> clientes;
     private List<Producto> productos;
     private List<Pago> pagos;
+    private List<Cupon> cupones;
 
     public List<Cliente> getClientes() {
         return clientes;
@@ -50,11 +51,20 @@ public class Tienda {
     public void setPagos(List<Pago> pagos) {
         this.pagos = pagos;
     }
+
+    public List<Cupon> getCupones() {
+        return cupones;
+    }
+
+    public void setCupones(List<Cupon> cupones) {
+        this.cupones = cupones;
+    }
     
     public Tienda(){
         this.clientes = new LinkedList<>();
         this.productos = new LinkedList<>();
         this.pagos = new LinkedList<>();
+        this.cupones = new LinkedList<>();
         this.clientes.add(new Cliente(Long.valueOf(1),"Paco","12345", LocalDate.parse("2003-12-13"),"correo@gmail.com"));
         this.clientes.add(new Cliente(Long.valueOf(2),"Karen","12345", LocalDate.parse("2000-04-01"),"ejemplo@hotmail.com"));
         this.clientes.add(new Cliente(Long.valueOf(3),"Mario","12345", LocalDate.parse("2000-04-07"),"mario@gmail.com"));
@@ -73,6 +83,7 @@ public class Tienda {
         this.productos.add(new Producto(Long.valueOf(5), "Reloj",
                 "https://www.zurichvirtual.com.mx/wp-content/uploads/2023/07/TB09802OG_a.jpg",
                 100, 5));
+        this.cupones.add(new Cupon("0987654321",30));
     }
     
     public static Tienda tienda = new Tienda();

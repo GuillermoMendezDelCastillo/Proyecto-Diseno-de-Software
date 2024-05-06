@@ -37,6 +37,15 @@ public class controlGenerarPago{
         return pagoBO.generarPago(clienteDTO);
     }
     
+    public boolean esValidoDescuento(){
+        return pagoDTO.getTotalDescuento() > 0;
+    }
+    
+    public boolean generarConDescuento() {
+        PagoBO pagoBO = new PagoBO();
+        return pagoBO.generarPagoDescuento(pagoDTO, clienteDTO);
+    }
+    
 //    private void historial(Cliente cliente){
 //        Pago registrado;
 //        ListIterator<Pago> iterador = cliente.getHistorial().listIterator();

@@ -51,6 +51,11 @@
             <artifactId>proyectoDdS_Negocio_subsistemaTablaProductosTienda</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>proyectoDdS_Negocio_subsistemaCalcularDescuento</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
