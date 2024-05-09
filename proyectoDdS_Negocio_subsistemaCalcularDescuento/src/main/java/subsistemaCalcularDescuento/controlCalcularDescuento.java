@@ -13,7 +13,7 @@ import dto.CuponDTO;
  */
 public class controlCalcularDescuento {
     public Float calcular(String codigo, float total) {
-        
+        System.out.println("");
         CuponBO cuponBO = new CuponBO();
         CuponDTO cuponDto = cuponBO.buscar(codigo);
         if(cuponDto!=null){
