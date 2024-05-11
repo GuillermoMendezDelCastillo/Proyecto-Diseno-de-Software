@@ -13,7 +13,9 @@ public class CuponDTO {
     private String codigo;
     
     private float descuento;
-
+    
+    private boolean estado;
+    
     public CuponDTO(String codigo) {
         this.codigo = codigo;
     }
@@ -27,12 +29,21 @@ public class CuponDTO {
         this.descuento = descuento;
     }
 
+    public CuponDTO(float descuento, boolean estado) {
+        this.descuento = descuento;
+        this.estado = estado;
+    }
+    
     public String getCodigo() {
         return codigo;
     }
 
     public float getDescuento() {
         return descuento;
+    }
+
+    public boolean isEstado() {
+        return estado;
     }
     
 }

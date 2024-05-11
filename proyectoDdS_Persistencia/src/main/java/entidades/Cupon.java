@@ -4,15 +4,22 @@
  */
 package entidades;
 
+import java.util.Date;
+import javax.persistence.Column;
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Gui26
  */
 public class Cupon {
     
+    private ObjectId id;
+    
+    @Column(name = "codigo")
     private String codigo;
     
-    //private Date caducidad;
+    private Date caducidad;
     
     private float descuento;
     
@@ -27,12 +34,35 @@ public class Cupon {
         this.estado = true;
     }
 
+    public Cupon(String codigo, Date caducidad, float descuento) {
+        this.codigo = codigo;
+        this.caducidad = caducidad;
+        this.descuento = descuento;
+        this.estado = true;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+    
     public String getCodigo() {
         return codigo;
     }
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public Date getCaducidad() {
+        return caducidad;
+    }
+
+    public void setCaducidad(Date caducidad) {
+        this.caducidad = caducidad;
     }
 
     public float getDescuento() {

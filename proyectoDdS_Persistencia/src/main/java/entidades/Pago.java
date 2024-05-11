@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -42,8 +43,10 @@ public class Pago implements Serializable {
     @JoinColumn(name = "idCliente", nullable = false)
     private Cliente cliente;
     
-    private Cupon cupon;
+    @Column(name = "codigoCupon", nullable = true, length = 50)
+    private String codigoCupon;
     
+    @Column(name = "totalDescuento", nullable = true)
     private float totalDescuento;
     
     public Long getId() {
@@ -63,11 +66,11 @@ public class Pago implements Serializable {
         this.carrito = carrito;
     }
     
-    public Pago(String metodo, float total, List<Producto> carrito, Cupon cupon, float totalDescuento) {
+    public Pago(String metodo, float total, List<Producto> carrito, String codigoCupon, float totalDescuento) {
         this.metodo = metodo;
         this.total = total;
         this.carrito = carrito;
-        this.cupon = cupon;
+        this.codigoCupon = codigoCupon;
         this.totalDescuento = totalDescuento;
     }
 
@@ -103,12 +106,12 @@ public class Pago implements Serializable {
         this.cliente = cliente;
     }
     
-    public Cupon getCupon() {
-        return cupon;
+    public String getCodigoCupon() {
+        return codigoCupon;
     }
 
-    public void setCupon(Cupon cupon) {
-        this.cupon = cupon;
+    public void setCodigoCupon(String codigoCupon) {
+        this.codigoCupon = codigoCupon;
     }
 
     public float getTotalDescuento() {

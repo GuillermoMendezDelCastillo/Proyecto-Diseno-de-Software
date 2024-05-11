@@ -85,8 +85,8 @@ public class ProductoBO {
     public List<ProductoDTO> productosDTO(){
         List<ProductoDTO> productos = new LinkedList();
         
-        IProductoDAO productoDao = new ListProductoDAO();
-//        IProductoDAO productoDao = new ProductoDAO();
+//        IProductoDAO productoDao = new ListProductoDAO();
+        IProductoDAO productoDao = new ProductoDAO();
         
         ListIterator<Producto> lista = productoDao.listaProductos().listIterator();
         while (lista.hasNext()) {
@@ -97,10 +97,10 @@ public class ProductoBO {
     }
     
     public void agregar(ClienteDTO clienteDto, Long idProducto){
-        IProductoDAO productoDao = new ListProductoDAO();
-        IClienteDAO clienteDao = new ListClienteDAO();
-//        IProductoDAO productoDao = new ProductoDAO();
-//        IClienteDAO clienteDao = new ClienteDAO();
+//        IProductoDAO productoDao = new ListProductoDAO();
+//        IClienteDAO clienteDao = new ListClienteDAO();
+        IProductoDAO productoDao = new ProductoDAO();
+        IClienteDAO clienteDao = new ClienteDAO();
         
         productoDao.agregarCarrito(clienteDao.buscar(clienteDto.getApodo()), productoDao.buscarProducto(idProducto));
     }

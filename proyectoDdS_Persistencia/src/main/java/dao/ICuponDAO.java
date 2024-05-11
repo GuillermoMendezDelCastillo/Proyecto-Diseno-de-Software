@@ -12,4 +12,5 @@ import entidades.Cupon;
  */
 public interface ICuponDAO {
     public Cupon buscar(String codigo);
+    public boolean usar(String codigo);
 }
