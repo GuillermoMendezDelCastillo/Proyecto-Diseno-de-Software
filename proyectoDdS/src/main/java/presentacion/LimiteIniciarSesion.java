@@ -5,6 +5,8 @@
 package presentacion;
 
 import dto.ClienteDTO;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import subsistemaIniciarSesion.IIniciarSesion;
 import subsistemaIniciarSesion.fachadaIniciarSesion;
@@ -20,8 +22,28 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
      */
     public LimiteIniciarSesion() {
         initComponents();
+        
+        // creamos lo de el label registro clickeable
+        lblRegistrarse.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //abrimos los eventos de click en los label
+                abrirRegistro();
+            }
+        });
     }
 
+    /**
+     * Metodo para abrir Registro
+     */
+    private void abrirRegistro() {
+        // Crear una nueva instancia del JFrame que deseas abrir
+        LimiteRegistro registro = new LimiteRegistro();
+
+        registro.setVisible(true);
+        // Puedes cerrar el frame actual si es necesario
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,93 +53,85 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Agrupador = new javax.swing.JPanel();
         etiquetaUsuario = new javax.swing.JLabel();
         etiquetaContrasena = new javax.swing.JLabel();
-        textoUsuario = new javax.swing.JTextField();
         textoContrasena = new javax.swing.JTextField();
-        btnRegistrarse = new javax.swing.JButton();
+        textoUsuario = new javax.swing.JTextField();
         btnIniciarSesion = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        lblRegistrarse = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
 
+        Agrupador.setBackground(new java.awt.Color(255, 255, 255));
+        Agrupador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        etiquetaUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etiquetaUsuario.setForeground(new java.awt.Color(0, 0, 0));
         etiquetaUsuario.setText("Usuario:");
+        Agrupador.add(etiquetaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
+        etiquetaContrasena.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        etiquetaContrasena.setForeground(new java.awt.Color(0, 0, 0));
         etiquetaContrasena.setText("Contraseña:");
+        Agrupador.add(etiquetaContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
 
-        btnRegistrarse.setText("Registrarse");
-        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarseActionPerformed(evt);
-            }
-        });
+        textoContrasena.setBackground(new java.awt.Color(234, 234, 234));
+        textoContrasena.setForeground(new java.awt.Color(51, 51, 51));
+        Agrupador.add(textoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 180, -1));
 
+        textoUsuario.setBackground(new java.awt.Color(234, 234, 234));
+        textoUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        Agrupador.add(textoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 180, -1));
+
+        btnIniciarSesion.setBackground(new java.awt.Color(0, 102, 153));
         btnIniciarSesion.setText("Iniciar sesion");
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSesionActionPerformed(evt);
             }
         });
+        Agrupador.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 120, 40));
 
+        btnSalir.setBackground(new java.awt.Color(0, 102, 153));
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
+        Agrupador.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 120, 40));
+
+        lblRegistrarse.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        lblRegistrarse.setForeground(new java.awt.Color(0, 102, 153));
+        lblRegistrarse.setText("Registrarse");
+        Agrupador.add(lblRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("¿No tienes una cuenta?");
+        Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-Cuent.png"))); // NOI18N
+        Agrupador.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 160, 160));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetaUsuario)
-                    .addComponent(etiquetaContrasena))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(btnRegistrarse)
-                .addGap(42, 42, 42)
-                .addComponent(btnIniciarSesion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(27, 27, 27))
+            .addComponent(Agrupador, javax.swing.GroupLayout.DEFAULT_SIZE, 603, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etiquetaUsuario))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaContrasena)
-                    .addComponent(textoContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarse)
-                    .addComponent(btnIniciarSesion)
-                    .addComponent(btnSalir))
-                .addGap(16, 16, 16))
+            .addComponent(Agrupador, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        LimiteRegistro limite = new LimiteRegistro();
-        limite.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         
@@ -183,11 +197,14 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Agrupador;
     private javax.swing.JButton btnIniciarSesion;
-    private javax.swing.JButton btnRegistrarse;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel etiquetaContrasena;
     private javax.swing.JLabel etiquetaUsuario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblRegistrarse;
     private javax.swing.JTextField textoContrasena;
     private javax.swing.JTextField textoUsuario;
     // End of variables declaration//GEN-END:variables
