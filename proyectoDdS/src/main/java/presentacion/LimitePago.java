@@ -4,13 +4,25 @@
  */
 package presentacion;
 
+import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
+import com.toedter.calendar.JTextFieldDateEditor;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.Color;
 import dto.ClienteDTO;
 import dto.CuponDTO;
 import dto.PagoDTO;
 import subsistemaCostoPago.ICostoPago;
+import subsistemaBanco.IValidarTarjetaDebito;
+import subsistemaBanco.fachadaTarjetaDebito;
 import subsistemaGenerarPago.IGenerarPago;
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 import subsistemaCalcularDescuento.ICalcularDescuento;
 import subsistemaCalcularDescuento.fachadaCalcularDescuento;
 import subsistemaCostoPago.fachadaCostoPago;
@@ -68,6 +80,10 @@ public class LimitePago extends javax.swing.JFrame {
         txtNumeroCupon = new javax.swing.JTextField();
         rbCupon = new javax.swing.JRadioButton();
         btnAplicar = new javax.swing.JToggleButton();
+        labelErrorTarjeta = new javax.swing.JLabel();
+        labelErrorNombre = new javax.swing.JLabel();
+        labelErrorFechaCaducidad = new javax.swing.JLabel();
+        labelErrorCVV = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de pago");
@@ -104,9 +120,29 @@ public class LimitePago extends javax.swing.JFrame {
 
         jLabel4.setText("Numero:");
 
+        txtNumero.setPreferredSize(new java.awt.Dimension(82, 22));
+        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroKeyTyped(evt);
+            }
+        });
+
         lblCorreoNombre.setText("Nombre:");
 
+        txtCorreoNombre.setName(""); // NOI18N
+        txtCorreoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoNombreKeyTyped(evt);
+            }
+        });
+
         lblCvv.setText("CVV:");
+
+        txtCvv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCvvKeyTyped(evt);
+            }
+        });
 
         jDateFecha.setDateFormatString("yyyy-MM-dd");
 
@@ -157,7 +193,7 @@ public class LimitePago extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addComponent(lblCorreoNombre)
                                     .addComponent(lblFecha))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rbCupon)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,14 +203,14 @@ public class LimitePago extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(164, 164, 164)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCvv, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCorreoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNumeroCupon, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtCvv)
+                                    .addComponent(txtCorreoNombre)
+                                    .addComponent(cbMetodo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNumeroCupon)
+                                    .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lblDescuento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,8 +218,20 @@ public class LimitePago extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnCancelar)
                                 .addGap(165, 165, 165)
-                                .addComponent(btnRealizaPago)))
+                                .addComponent(btnRealizaPago))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(labelErrorFechaCaducidad)
+                                .addGap(61, 61, 61))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(labelErrorCVV)
+                                .addGap(69, 69, 69)))
                         .addContainerGap(33, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelErrorTarjeta, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(labelErrorNombre, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,19 +246,27 @@ public class LimitePago extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cbMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(10, 10, 10)
+                .addComponent(labelErrorTarjeta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelErrorNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCorreoNombre)
-                    .addComponent(txtCorreoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtCorreoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelErrorFechaCaducidad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFecha))
-                .addGap(18, 18, 18)
+                    .addComponent(lblFecha)
+                    .addComponent(jDateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(labelErrorCVV)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCvv)
                     .addComponent(txtCvv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -226,7 +282,7 @@ public class LimitePago extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotalConDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCancelar)
@@ -241,6 +297,11 @@ public class LimitePago extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    
+    
     private void cbMetodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMetodoActionPerformed
         if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")){
             lblCorreoNombre.setText("Nombre:");
@@ -258,69 +319,214 @@ public class LimitePago extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbMetodoActionPerformed
 
-    private void btnRealizaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizaPagoActionPerformed
+    private void restablecerBorders(){
+    
+// Guardar el borde original
+        Border originalBorder = txtNumero.getBorder();
+        Border originalBorderTitular = txtCorreoNombre.getBorder();
+        Border originalBorderFecha = jDateFecha.getBorder();
+         Border originalBorderCvv = txtCvv.getBorder();
+        // Agregar el DocumentListener a txtNumero
+        txtNumero.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                txtNumero.setBorder(originalBorder);
+                labelErrorTarjeta.setText("");
+            }        
+        });
         
+             // Agregar el DocumentListener a txtNumero
+        txtCorreoNombre.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                txtCorreoNombre.setBorder(originalBorderTitular);
+                labelErrorNombre.setText("");
+            }        
+        });
+        // Obtener el editor de texto del JDateChooser
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateFecha.getDateEditor();
+               // Agregar el DocumentListener a txtNumero
+        editor.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                jDateFecha.setBorder(originalBorderFecha);
+                labelErrorFechaCaducidad.setText("");
+            }        
+        });
+        
+         
+             // Agregar el DocumentListener a txtNumero
+        txtCvv.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                txtCvv.setBorder(originalBorderCvv);
+                labelErrorCVV.setText("");
+            }        
+        });
+        
+        
+    }
+    
+    private void btnRealizaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizaPagoActionPerformed
+
+        restablecerBorders();
         IGenerarPago pago = new fachadaGenerarPago();
-        if(validar()){
-            
-            if (rbCupon.isSelected()){
-                if(validar3()){
-                    PagoDTO pagoDTO = null;
-                    if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")){
-                        pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
-                        Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
-                        LocalDateTime.ofInstant(jDateFecha.getCalendar().toInstant(), jDateFecha.getCalendar().getTimeZone().toZoneId()).toLocalDate(),
-                        txtCvv.getText(), txtNumeroCupon.getText(),
-                        Float.parseFloat(lblTotalConDescuento.getText()));
+        if (validar()) {
+            List<String> validacionTarjeta = validarTarjetaDebito();
+
+            if (validacionTarjeta.contains("Valido")) {
+
+                if (rbCupon.isSelected()) {
+                    if (validar3()) {
+                        PagoDTO pagoDTO = null;
+                        if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")) {
+                            pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
+                                    Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
+                                    LocalDateTime.ofInstant(jDateFecha.getCalendar().toInstant(), jDateFecha.getCalendar().getTimeZone().toZoneId()).toLocalDate(),
+                                    txtCvv.getText(), txtNumeroCupon.getText(),
+                                    Float.parseFloat(lblTotalConDescuento.getText()));
+                        }
+                        if (cbMetodo.getSelectedItem().toString().equals("Transferencia Bancaria")) {
+                            pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
+                                    Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
+                                    txtNumeroCupon.getText(), Float.parseFloat(lblTotalConDescuento.getText()));
+                        }
+
+                        if (pago.generarPagoCupon(clienteDto, pagoDTO)) {
+                            JOptionPane.showMessageDialog(this, "Pago realizado");
+
+                            LimiteTienda limite = new LimiteTienda(clienteDto);
+                            limite.setVisible(true);
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Los datos del cupon son invalidos", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    if (cbMetodo.getSelectedItem().toString().equals("Transferencia Bancaria")){
+                } else {
+                    PagoDTO pagoDTO = null;
+                    if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")) {
                         pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
-                        Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
-                        txtNumeroCupon.getText(), Float.parseFloat(lblTotalConDescuento.getText()));
+                                Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
+                                LocalDateTime.ofInstant(jDateFecha.getCalendar().toInstant(), jDateFecha.getCalendar().getTimeZone().toZoneId()).toLocalDate(),
+                                txtCvv.getText());
+                    }
+                    if (cbMetodo.getSelectedItem().toString().equals("Transferencia Bancaria")) {
+                        pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
+                                Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText());
                     }
 
-                    if (pago.generarPagoCupon(clienteDto, pagoDTO)){
+                    if (pago.generarPago(clienteDto, pagoDTO)) {
                         JOptionPane.showMessageDialog(this, "Pago realizado");
 
                         LimiteTienda limite = new LimiteTienda(clienteDto);
                         limite.setVisible(true);
                         dispose();
-                    } else{
+                    } else {
                         JOptionPane.showMessageDialog(this, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Los datos del cupon son invalidos", "Error", JOptionPane.ERROR_MESSAGE);
                 }
+
             } else {
-                PagoDTO pagoDTO = null;
-                if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")){
-                    pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
-                    Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
-                    LocalDateTime.ofInstant(jDateFecha.getCalendar().toInstant(), jDateFecha.getCalendar().getTimeZone().toZoneId()).toLocalDate(),
-                    txtCvv.getText());
-                }
-                if (cbMetodo.getSelectedItem().toString().equals("Transferencia Bancaria")){
-                    pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
-                    Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText());
+                if (validacionTarjeta.contains("Error_Numero")) {
+                    // Cambiar el borde del JTextField a rojo
+                    txtNumero.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    // Mostrar el mensaje de error en labelErrorTarjeta
+                    labelErrorTarjeta.setText("La tarjeta no existe");
+                    labelErrorTarjeta.setForeground(Color.RED);
+
+                } else {
+                    // Iterar sobre la lista
+                    for (String valor : validacionTarjeta) {
+                        // Usar un switch para cada String en la lista
+                        switch (valor) {
+                            case "Error_Titular":
+                                // Cambiar el borde del JTextField a rojo
+                                txtCorreoNombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                                // Mostrar el mensaje de error en labelErrorTarjeta
+                                labelErrorNombre.setText("Nombre del Titular incorrecto");
+                                labelErrorNombre.setForeground(Color.RED);
+                                break;
+                            case "Error_Fecha":
+                                // Cambiar el borde del JTextField a rojo
+                                jDateFecha.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                                // Mostrar el mensaje de error en labelErrorTarjeta
+                                labelErrorFechaCaducidad.setText("Caducidad incorrecta");
+                                labelErrorFechaCaducidad.setForeground(Color.RED);
+                                break;
+                            case "Error_Codigo":
+                                // Cambiar el borde del JTextField a rojo
+                                txtCvv.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                                // Mostrar el mensaje de error en labelErrorTarjeta
+                                labelErrorCVV.setText("CVV incorrecto");
+                                labelErrorCVV.setForeground(Color.RED);
+                                break;
+                            default:
+                                System.out.println("Valor desconocido: " + valor);
+                                break;
+                        }
+                    }
+
                 }
 
-                if (pago.generarPago(clienteDto, pagoDTO)){
-                    JOptionPane.showMessageDialog(this, "Pago realizado");
-
-                    LimiteTienda limite = new LimiteTienda(clienteDto);
-                    limite.setVisible(true);
-                    dispose();
-                } else{
-                    JOptionPane.showMessageDialog(this, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
-                }
             }
-            
-        } else{
+        } else {
             JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnRealizaPagoActionPerformed
 
+    
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         LimiteCarrito limite = new LimiteCarrito(clienteDto);
         limite.setVisible(true);
@@ -341,6 +547,27 @@ public class LimitePago extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAplicarActionPerformed
 
+    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
+         char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume(); 
+          }
+    }//GEN-LAST:event_txtNumeroKeyTyped
+
+    private void txtCvvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCvvKeyTyped
+              char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume(); 
+          }
+    }//GEN-LAST:event_txtCvvKeyTyped
+
+    private void txtCorreoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoNombreKeyTyped
+          char c = evt.getKeyChar();
+    if (!Character.isLetter(c)) {
+        evt.consume();  // Ignora cualquier carácter que sea una letra
+    }
+    }//GEN-LAST:event_txtCorreoNombreKeyTyped
+
     public void calcularDescuento(){
         if (validar2()){
             ICalcularDescuento sesion = new fachadaCalcularDescuento();
@@ -360,6 +587,15 @@ public class LimitePago extends javax.swing.JFrame {
     public void mostrar(){
         ICostoPago costo= new fachadaCostoPago();
         lblTotal.setText(String.format("%.02f", costo.costoPago(clienteDto)));
+    }
+    
+    public List<String> validarTarjetaDebito(){
+        String numeroTarjeta = txtNumero.getText();
+        String titular =  txtCorreoNombre.getText();
+        Date fechaCaducidad = jDateFecha.getDate();
+        String cvv =   txtCvv.getText();
+        fachadaTarjetaDebito FTD = new fachadaTarjetaDebito();      
+        return FTD.validarTarjeta(numeroTarjeta,titular,fechaCaducidad,cvv);      
     }
     
     public boolean validar(){
@@ -421,6 +657,10 @@ public class LimitePago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel labelErrorCVV;
+    private javax.swing.JLabel labelErrorFechaCaducidad;
+    private javax.swing.JLabel labelErrorNombre;
+    private javax.swing.JLabel labelErrorTarjeta;
     private javax.swing.JLabel lblCorreoNombre;
     private javax.swing.JLabel lblCupon;
     private javax.swing.JLabel lblCvv;
