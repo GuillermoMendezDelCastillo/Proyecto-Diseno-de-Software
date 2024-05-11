@@ -25,16 +25,22 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  *
  * @author Gui26
  */
-public class CuponDAO implements ICuponDAO{
+public class MongoCuponDAO implements ICuponDAO{
 
-    public CuponDAO() {
+    private IConexion conexionBD;
+    
+    public MongoCuponDAO() {
+        IConexion conexion = new Conexion();
+        this.conexionBD = conexion;
     }
     
     @Override
     public Cupon buscar(String codigo) {
         
-        String nombreColeccion = "cupones";
-        MongoCollection<Cupon> coleccion = baseDatos().getCollection(nombreColeccion, Cupon.class);
+        MongoDatabase mongoDatabase= conexionBD.crearConexionMongo();
+        String nombreColeccion = "cupon";
+        
+        MongoCollection<Cupon> coleccion = mongoDatabase.getCollection(nombreColeccion, Cupon.class);
         
         List<Cupon> cupones = new LinkedList<>();
         coleccion.find().into(cupones);
@@ -52,8 +58,10 @@ public class CuponDAO implements ICuponDAO{
     @Override
     public boolean usar(String codigo) {
         
-        String nombreColeccion = "cupones";
-        MongoCollection<Document> coleccion = baseDatos().getCollection(nombreColeccion);
+        MongoDatabase mongoDatabase= conexionBD.crearConexionMongo();
+        String nombreColeccion = "cupon";
+        
+        MongoCollection<Document> coleccion = mongoDatabase.getCollection(nombreColeccion);
         
         coleccion.updateOne(eq("codigo", codigo), new Document("$set", new Document("estado", false)));
         
@@ -67,23 +75,22 @@ public class CuponDAO implements ICuponDAO{
         
     }
     
-    private MongoDatabase baseDatos(){
-        String cadenaConexion = "mongodb://127.0.0.1:27017";
-        String nombreBaseDatos = "tienda_virtual";
-        String nombreColeccion = "cupones";
-        
-        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-        
-        MongoClientSettings settings = MongoClientSettings.builder()
-        .applyConnectionString(new ConnectionString(cadenaConexion))
-        .codecRegistry(pojoCodecRegistry)
-        .build();
-        MongoClient mongo = MongoClients.create(settings);
-        
-        MongoDatabase baseDatos = mongo.getDatabase(nombreBaseDatos);
-        
-        return baseDatos;
-    }
+//    private MongoDatabase baseDatos(){
+//        String cadenaConexion = "mongodb://127.0.0.1:27017";
+//        String nombreBaseDatos = "tienda_virtual";
+//        
+//        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+//                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+//        
+//        MongoClientSettings settings = MongoClientSettings.builder()
+//        .applyConnectionString(new ConnectionString(cadenaConexion))
+//        .codecRegistry(pojoCodecRegistry)
+//        .build();
+//        MongoClient mongo = MongoClients.create(settings);
+//        
+//        MongoDatabase baseDatos = mongo.getDatabase(nombreBaseDatos);
+//        
+//        return baseDatos;
+//    }
     
 }

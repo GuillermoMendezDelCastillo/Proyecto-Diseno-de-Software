@@ -4,6 +4,7 @@
  */
 package dao;
 
+import com.mongodb.client.MongoDatabase;
 import javax.persistence.EntityManager;
 
 /**
@@ -12,4 +13,5 @@ import javax.persistence.EntityManager;
  */
 public interface IConexion {
     public EntityManager crearConexion();
+    public MongoDatabase crearConexionMongo();
 }

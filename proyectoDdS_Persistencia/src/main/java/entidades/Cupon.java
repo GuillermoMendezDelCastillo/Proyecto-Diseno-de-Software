@@ -5,7 +5,7 @@
 package entidades;
 
 import java.util.Date;
-import javax.persistence.Column;
+//import javax.persistence.Column;
 import org.bson.types.ObjectId;
 
 /**
@@ -16,7 +16,7 @@ public class Cupon {
     
     private ObjectId id;
     
-    @Column(name = "codigo")
+//    @Column(name = "codigo")
     private String codigo;
     
     private Date caducidad;

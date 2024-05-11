@@ -4,8 +4,8 @@
  */
 package bo;
 import dao.ICuponDAO;
-import dao.ListCuponDAO;
-import dao.CuponDAO;
+//import dao.ListCuponDAO;
+import dao.MongoCuponDAO;
 import dto.CuponDTO;
 import entidades.Cupon;
 /**
@@ -16,7 +16,7 @@ public class CuponBO {
     
     public CuponDTO buscar(String codigo){
 //        ICuponDAO cuponDao = new ListCuponDAO();
-        ICuponDAO cuponDao = new CuponDAO();
+        ICuponDAO cuponDao = new MongoCuponDAO();
         Cupon cupon = cuponDao.buscar(codigo);
         if(cupon!=null){
             return new CuponDTO(cupon.getDescuento(), cupon.isEstado());
@@ -26,7 +26,7 @@ public class CuponBO {
     }
     
     public boolean usar(String codigo){
-        ICuponDAO cuponDao = new CuponDAO();
+        ICuponDAO cuponDao = new MongoCuponDAO();
         return !cuponDao.usar(codigo);
     }
     
