@@ -4,6 +4,21 @@
  */
 package presentacion;
 
+
+///BANCO///
+import subsistemaBanco.fachadaTarjetaDebito;
+///otros //
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import java.util.List;
+import java.util.Date;
+import com.toedter.calendar.JTextFieldDateEditor;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.Color;
+//////////
+
+
 import dto.ClienteDTO;
 import dto.PagoDTO;
 import subsistemaCostoPago.ICostoPago;
@@ -60,6 +75,10 @@ public class LimitePago extends javax.swing.JFrame {
         btnCerrarSesion1 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        labelErrorTarjeta = new javax.swing.JLabel();
+        labelErrorNombre = new javax.swing.JLabel();
+        labelErrorFechaCaducidad = new javax.swing.JLabel();
+        labelErrorCVV = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de pago");
@@ -93,6 +112,11 @@ public class LimitePago extends javax.swing.JFrame {
         Agrupador.add(lblCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
 
         txtCvv.setForeground(new java.awt.Color(0, 0, 0));
+        txtCvv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCvvKeyTyped(evt);
+            }
+        });
         Agrupador.add(txtCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 152, -1));
 
         jDateFecha.setBackground(new java.awt.Color(255, 255, 255));
@@ -103,28 +127,38 @@ public class LimitePago extends javax.swing.JFrame {
         lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(0, 0, 0));
         lblFecha.setText("Fecha de caducidad:");
-        Agrupador.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+        Agrupador.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         lblCorreoNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCorreoNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblCorreoNombre.setText("Nombre:");
-        Agrupador.add(lblCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+        Agrupador.add(lblCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
         txtCorreoNombre.setForeground(new java.awt.Color(0, 0, 0));
-        Agrupador.add(txtCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 152, -1));
+        txtCorreoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoNombreKeyTyped(evt);
+            }
+        });
+        Agrupador.add(txtCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 152, -1));
 
         txtNumero.setForeground(new java.awt.Color(0, 0, 0));
-        Agrupador.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 152, -1));
+        txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroKeyTyped(evt);
+            }
+        });
+        Agrupador.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 152, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Numero:");
-        Agrupador.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+        Agrupador.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Metodo de pago:");
-        Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+        Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 10));
 
         cbMetodo.setBackground(new java.awt.Color(255, 255, 255));
         cbMetodo.setForeground(new java.awt.Color(0, 0, 0));
@@ -134,21 +168,21 @@ public class LimitePago extends javax.swing.JFrame {
                 cbMetodoActionPerformed(evt);
             }
         });
-        Agrupador.add(cbMetodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+        Agrupador.add(cbMetodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Agrupador.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 152, 25));
+        Agrupador.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 152, 25));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Total:");
-        Agrupador.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, 25));
+        Agrupador.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, 25));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Datos sobre pago");
-        Agrupador.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+        Agrupador.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
 
         panelMenu.setBackground(new java.awt.Color(0, 102, 153));
 
@@ -203,6 +237,16 @@ public class LimitePago extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tarjeta-de-credito (1).png"))); // NOI18N
         Agrupador.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 180, 190));
 
+        labelErrorTarjeta.setToolTipText("");
+        Agrupador.add(labelErrorTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+        Agrupador.add(labelErrorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, -1));
+
+        labelErrorFechaCaducidad.setToolTipText("");
+        Agrupador.add(labelErrorFechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
+
+        labelErrorCVV.setToolTipText("");
+        Agrupador.add(labelErrorCVV, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,10 +279,118 @@ public class LimitePago extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbMetodoActionPerformed
 
-    private void btnRealizaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizaPagoActionPerformed
+    // banco
+        private void restablecerBorders(){
+    
+        // Guardar el borde original
+        Border originalBorder = txtNumero.getBorder();
+        Border originalBorderTitular = txtCorreoNombre.getBorder();
+        Border originalBorderFecha = jDateFecha.getBorder();
+        Border originalBorderCvv = txtCvv.getBorder();
+        // Agregar el DocumentListener a txtNumero
+        txtNumero.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                txtNumero.setBorder(originalBorder);
+                labelErrorTarjeta.setText("");
+            }        
+        });
         
+             // Agregar el DocumentListener a txtNumero
+        txtCorreoNombre.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                txtCorreoNombre.setBorder(originalBorderTitular);
+                labelErrorNombre.setText("");
+            }        
+        });
+        // Obtener el editor de texto del JDateChooser
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) jDateFecha.getDateEditor();
+               // Agregar el DocumentListener a txtNumero
+        editor.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                jDateFecha.setBorder(originalBorderFecha);
+                labelErrorFechaCaducidad.setText("");
+            }        
+        });
+        
+         
+             // Agregar el DocumentListener a txtNumero
+        txtCvv.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                clearError();
+            }
+
+            // Método para limpiar el mensaje de error y el borde rojo
+            public void clearError() {
+                txtCvv.setBorder(originalBorderCvv);
+                labelErrorCVV.setText("");
+            }        
+        });
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    private void btnRealizaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizaPagoActionPerformed
+        restablecerBorders();
         IGenerarPago pago = new fachadaGenerarPago();
         if(validar()){
+            List<String> validacionTarjeta = validarTarjetaDebito();
+            
+            if (validacionTarjeta.contains("Valido")) {
+            
+            
             PagoDTO pagoDTO = null;
             if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")){
                 pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
@@ -260,12 +412,64 @@ public class LimitePago extends javax.swing.JFrame {
             } else{
                 JOptionPane.showMessageDialog(this, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
             }
+            
+            ///BANCO///
+            } else {
+                if (validacionTarjeta.contains("Error_Numero")) {
+                    // Cambiar el borde del JTextField a rojo
+                    txtNumero.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    // Mostrar el mensaje de error en labelErrorTarjeta
+                    labelErrorTarjeta.setText("La tarjeta no existe");
+                    labelErrorTarjeta.setForeground(Color.RED);
+
+                } else {
+                    // Iterar sobre la lista
+                    for (String valor : validacionTarjeta) {
+                        // Usar un switch para cada String en la lista
+                        switch (valor) {
+                            case "Error_Titular":
+                                // Cambiar el borde del JTextField a rojo
+                                txtCorreoNombre.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                                // Mostrar el mensaje de error en labelErrorTarjeta
+                                labelErrorNombre.setText("Nombre del Titular incorrecto");
+                                labelErrorNombre.setForeground(Color.RED);
+                                break;
+                            case "Error_Fecha":
+                                // Cambiar el borde del JTextField a rojo
+                                jDateFecha.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                                // Mostrar el mensaje de error en labelErrorTarjeta
+                                labelErrorFechaCaducidad.setText("Caducidad incorrecta");
+                                labelErrorFechaCaducidad.setForeground(Color.RED);
+                                break;
+                            case "Error_Codigo":
+                                // Cambiar el borde del JTextField a rojo
+                                txtCvv.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                                // Mostrar el mensaje de error en labelErrorTarjeta
+                                labelErrorCVV.setText("CVV incorrecto");
+                                labelErrorCVV.setForeground(Color.RED);
+                                break;
+                            default:
+                                System.out.println("Valor desconocido: " + valor);
+                                break;
+                        }
+                    }
+
+                }
+
+            }
+            
         } else{
             JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+            
+            
+            
+      
     }//GEN-LAST:event_btnRealizaPagoActionPerformed
 
+                              
+                 
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         LimiteCarrito limite = new LimiteCarrito(clienteDto);
         limite.setVisible(true);
@@ -284,10 +488,41 @@ public class LimitePago extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCerrarSesion1ActionPerformed
 
+    private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
+               char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume(); 
+          }
+    }//GEN-LAST:event_txtNumeroKeyTyped
+
+    private void txtCorreoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoNombreKeyTyped
+              char c = evt.getKeyChar();
+    if (!Character.isLetter(c)) {
+        evt.consume();  // Ignora cualquier carácter que sea una letra
+    }
+    }//GEN-LAST:event_txtCorreoNombreKeyTyped
+
+    private void txtCvvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCvvKeyTyped
+                   char c = evt.getKeyChar();
+    if (!Character.isDigit(c)) {
+        evt.consume(); 
+          }
+    }//GEN-LAST:event_txtCvvKeyTyped
+
     public void mostrar(){
         ICostoPago costo= new fachadaCostoPago();
         lblTotal.setText(String.format("%.02f", costo.costoPago(clienteDto)));
     }
+    /// banco
+       public List<String> validarTarjetaDebito() {
+        String numeroTarjeta = txtNumero.getText();
+        String titular = txtCorreoNombre.getText();
+        Date fechaCaducidad = jDateFecha.getDate();
+        String cvv = txtCvv.getText();
+        fachadaTarjetaDebito FTD = new fachadaTarjetaDebito();
+        return FTD.validarTarjeta(numeroTarjeta, titular, fechaCaducidad, cvv);
+    }
+    
     
     public boolean validar(){
         if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")){
@@ -317,6 +552,10 @@ public class LimitePago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel labelErrorCVV;
+    private javax.swing.JLabel labelErrorFechaCaducidad;
+    private javax.swing.JLabel labelErrorNombre;
+    private javax.swing.JLabel labelErrorTarjeta;
     private javax.swing.JLabel lblCorreoNombre;
     private javax.swing.JLabel lblCvv;
     private javax.swing.JLabel lblFecha;
