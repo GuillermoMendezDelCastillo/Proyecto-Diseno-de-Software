@@ -58,7 +58,8 @@ public class LimiteTienda extends javax.swing.JFrame {
         Agrupador.setBackground(new java.awt.Color(255, 255, 255));
         Agrupador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaProductos.setBackground(new java.awt.Color(204, 204, 204));
+        tablaProductos.setBackground(new java.awt.Color(255, 255, 255));
+        tablaProductos.setForeground(new java.awt.Color(102, 102, 102));
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -70,6 +71,8 @@ public class LimiteTienda extends javax.swing.JFrame {
 
             }
         ));
+        tablaProductos.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaProductos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tablaProductos);
 
         Agrupador.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 540, 321));

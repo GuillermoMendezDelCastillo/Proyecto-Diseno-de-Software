@@ -92,7 +92,6 @@ public class LimitePago extends javax.swing.JFrame {
         lblCvv.setText("CVV:");
         Agrupador.add(lblCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
 
-        txtCvv.setBackground(null);
         txtCvv.setForeground(new java.awt.Color(0, 0, 0));
         Agrupador.add(txtCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 152, -1));
 
@@ -111,11 +110,9 @@ public class LimitePago extends javax.swing.JFrame {
         lblCorreoNombre.setText("Nombre:");
         Agrupador.add(lblCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
-        txtCorreoNombre.setBackground(null);
         txtCorreoNombre.setForeground(new java.awt.Color(0, 0, 0));
         Agrupador.add(txtCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 152, -1));
 
-        txtNumero.setBackground(null);
         txtNumero.setForeground(new java.awt.Color(0, 0, 0));
         Agrupador.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 152, -1));
 
@@ -129,7 +126,7 @@ public class LimitePago extends javax.swing.JFrame {
         jLabel2.setText("Metodo de pago:");
         Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
 
-        cbMetodo.setBackground(new java.awt.Color(0, 0, 0));
+        cbMetodo.setBackground(new java.awt.Color(255, 255, 255));
         cbMetodo.setForeground(new java.awt.Color(0, 0, 0));
         cbMetodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta Bancaria", "Transferencia Bancaria" }));
         cbMetodo.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +136,6 @@ public class LimitePago extends javax.swing.JFrame {
         });
         Agrupador.add(cbMetodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
 
-        lblTotal.setBackground(null);
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Agrupador.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 152, 25));
