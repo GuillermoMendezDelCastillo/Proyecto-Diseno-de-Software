@@ -4,12 +4,14 @@
  */
 package bo;
 
-import dao.ListClienteDAO;
-import dao.ClienteDAO;
+//import dao.ListClienteDAO;
+//import dao.ClienteDAO;
 import dao.IClienteDAO;
 import dao.IProductoDAO;
-import dao.ListProductoDAO;
-import dao.ProductoDAO;
+import dao.MongoClienteDAO;
+import dao.MongoProductoDAO;
+//import dao.ListProductoDAO;
+//import dao.ProductoDAO;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
 import entidades.Cliente;
@@ -25,13 +27,12 @@ import java.util.ListIterator;
  */
 public class ClienteBO {
     
-    private Long idCliente;
     private String apodo;
     private String contrasena;
     private String correo;
     private LocalDate nacimiento;
-    private List<ProductoBO> carrito;
-    private List<PagoBO> historial;
+    private List<Long> carrito;
+//    private List<PagoBO> historial;
     
     public ClienteBO() {
     }
@@ -41,31 +42,30 @@ public class ClienteBO {
         this.contrasena = contrasena;
         this.nacimiento = nacimiento;
         this.correo = correo;
-        this.carrito = new LinkedList<ProductoBO>();
+        this.carrito = new LinkedList<>();
 //        this.historial= new LinkedList<PagoBO>();
     }
 
-    public ClienteBO(String apodo, String contrasena, String correo, LocalDate nacimiento, List<ProductoBO> carrito) {//, List<PagoBO> historial
+    public ClienteBO(String apodo, String contrasena, String correo, LocalDate nacimiento, List<Long> carrito) {//, List<PagoBO> historial
         this.apodo = apodo;
         this.contrasena = contrasena;
         this.correo = correo;
         this.nacimiento = nacimiento;
-        this.carrito = new LinkedList<ProductoBO>();
+        this.carrito = new LinkedList<>();
 //        this.historial = new LinkedList<PagoBO>();
     }
     
     public ClienteBO(Cliente cliente) {
-        this.idCliente = cliente.getId();
+//        this.idCliente = cliente.getId();
         this.apodo = cliente.getApodo();
         this.contrasena = cliente.getContrasena();
         this.nacimiento = cliente.getNacimiento();
         this.correo = cliente.getCorreo();
-        this.carrito = listaProductosCliente(cliente.getCarrito());
+        this.carrito = cliente.getCarrito();//listaProductosCliente(cliente.getCarrito());
 //        this.historial= listaPagosCliente(cliente.getHistorial());
     }
     
     public ClienteBO(ClienteDTO cliente) {
-        this.idCliente = cliente.getIdCliente();
         this.apodo = cliente.getApodo();
         this.contrasena = cliente.getContrasena();
         this.nacimiento = cliente.getNacimiento();
@@ -104,40 +104,40 @@ public class ClienteBO {
         this.nacimiento = nacimiento;
     }
     
-    public List<ProductoBO> getCarrito() {
+    public List<Long> getCarrito() {
         return carrito;
     }
 
-    public void setCarrito(List<ProductoBO> carrito) {
+    public void setCarrito(List<Long> carrito) {
         this.carrito = carrito;
     }
 
-    public List<PagoBO> getHistorial() {
-        return historial;
-    }
-
-    public void setHistorial(List<PagoBO> historial) {
-        this.historial = historial;
-    }
+//    public List<PagoBO> getHistorial() {
+//        return historial;
+//    }
+//
+//    public void setHistorial(List<PagoBO> historial) {
+//        this.historial = historial;
+//    }
     
-    public List<ProductoBO> listaProductosCliente(List<Producto> productos){
-        List<ProductoBO> listaProductosBO = new LinkedList();
-                ListIterator<Producto> listaProductos = productos.listIterator();
+    public List<Long> listaProductosCliente(List<Long> productos){
+        List<Long> listaProductosBO = new LinkedList();
+                ListIterator<Long> listaProductos = productos.listIterator();
             while (listaProductos.hasNext()) {
-                listaProductosBO.add(new ProductoBO(listaProductos.next()));
+                listaProductosBO.add(listaProductos.next());
             }
         return listaProductosBO;
     }
     
     public void registra(){
 //        IClienteDAO clienteDao = new ListClienteDAO();
-        IClienteDAO clienteDao = new ClienteDAO();
+        IClienteDAO clienteDao = new MongoClienteDAO();
         clienteDao.agregar(new Cliente(apodo, contrasena, nacimiento, correo));
     }
     
     public boolean busca(){
 //        IClienteDAO clienteDao = new ListClienteDAO();
-        IClienteDAO clienteDao = new ClienteDAO();
+        IClienteDAO clienteDao = new MongoClienteDAO();
         Cliente cliente = clienteDao.buscar(apodo);
         
         return cliente!=null;
@@ -145,7 +145,7 @@ public class ClienteBO {
     
     public boolean inicia(){
 //        IClienteDAO clienteDao = new ListClienteDAO();
-        IClienteDAO clienteDao = new ClienteDAO();
+        IClienteDAO clienteDao = new MongoClienteDAO();
         Cliente cliente = clienteDao.iniciar(apodo, contrasena);
         return cliente!=null;
     }
@@ -154,13 +154,13 @@ public class ClienteBO {
         List<ProductoDTO> productos = new LinkedList();
 //        IClienteDAO clienteDao = new ListClienteDAO();
 //        IProductoDAO productoDao = new ListProductoDAO();
-        IClienteDAO clienteDao = new ClienteDAO();
-        IProductoDAO productoDao = new ProductoDAO();
+        IClienteDAO clienteDao = new MongoClienteDAO();
+        IProductoDAO productoDao = new MongoProductoDAO();
         
         ListIterator<Producto> lista = clienteDao.obtenerCarrito(clienteDao.buscar(apodo)).listIterator();
         while (lista.hasNext()) {
             Producto producto = lista.next();
-            productos.add(new ProductoDTO(producto.getId(), producto.getNombre(), producto.getUrlImagen(), producto.getCosto()));
+            productos.add(new ProductoDTO(producto.getIdentificador(), producto.getNombre(), producto.getUrlImagen(), producto.getCosto()));
         }
 
         return productos;

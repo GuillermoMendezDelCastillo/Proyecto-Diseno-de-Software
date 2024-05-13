@@ -67,7 +67,6 @@ public class ClienteDAO implements IClienteDAO{
         }
     }
     
-    @Override
     public Cliente buscarPorId(Long id){
         
         EntityManager entityManager = null;

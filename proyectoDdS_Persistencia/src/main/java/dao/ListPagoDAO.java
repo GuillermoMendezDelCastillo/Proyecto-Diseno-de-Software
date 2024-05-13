@@ -29,10 +29,27 @@ public class ListPagoDAO implements IPagoDAO{
                 buscado.getCarrito().clear();
             }
         }
-        
+        historial();
 //        System.out.println(pago.getCliente().getApodo());
         return pago;
         
+    }
+    
+    //Metodo de pruebas
+    private void historial(){
+        Pago registrado;
+        ListIterator<Pago> iterador = Tienda.tienda.getPagos().listIterator();;
+        while (iterador.hasNext()) {
+            registrado = iterador.next();
+            System.out.println(registrado.getCliente().getApodo());
+            System.out.println(registrado.getMetodo());
+            System.out.println(registrado.getTotal());
+            if(registrado.getCodigoCupon()!=null){
+                System.out.println(registrado.getCodigoCupon());
+//                System.out.println(registrado.getCupon().getDescuento());
+            }
+            System.out.println("");
+        }
     }
     
 }

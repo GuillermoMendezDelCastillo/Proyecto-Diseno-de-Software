@@ -16,6 +16,6 @@ public interface IClienteDAO {
     public Cliente agregar(Cliente cliente);
     public Cliente buscar(String apodo);
     public Cliente iniciar(String apodo, String contrasena);
-    public Cliente buscarPorId(Long id);
+//    public Cliente buscarPorId(Long id);
     public List<Producto> obtenerCarrito(Cliente client);
 }

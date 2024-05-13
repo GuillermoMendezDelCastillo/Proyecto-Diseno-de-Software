@@ -16,7 +16,15 @@ public class fachadaGenerarPago implements IGenerarPago{
     public boolean generarPago(ClienteDTO clienteDTO, PagoDTO pagoDTO){
         controlGenerarPago genera = new controlGenerarPago(clienteDTO, pagoDTO);
         if(genera.esValido()){
-                    return genera.generar();
+            return genera.generar();
+        }
+        return false;
+    }
+    @Override
+    public boolean generarPagoCupon(ClienteDTO clienteDTO, PagoDTO pagoDTO){
+        controlGenerarPago genera = new controlGenerarPago(clienteDTO, pagoDTO);
+        if(genera.esValido()&&genera.esValidoDescuento()){
+            return genera.generarConDescuento();
         }
         return false;
     }

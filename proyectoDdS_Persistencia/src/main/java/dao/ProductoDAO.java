@@ -65,7 +65,7 @@ public class ProductoDAO implements IProductoDAO{
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-            cliente.addProductoCarrito(producto);
+//            cliente.addProductoCarrito(producto);
             entityManager.merge(cliente);
             transaction.commit();
         } catch (Exception e) {

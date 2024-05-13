@@ -38,7 +38,6 @@ public class ListClienteDAO implements IClienteDAO{
         
     }
     
-    @Override
     public Cliente buscarPorId(Long id){
         
         ListIterator<Cliente> listaClientes = Tienda.tienda.getClientes().listIterator();
@@ -73,7 +72,7 @@ public class ListClienteDAO implements IClienteDAO{
         while (listaClientes.hasNext()) {
             Cliente buscado = listaClientes.next();
             if(buscado.equals(client)){
-                return buscado.getCarrito();
+//                return buscado.getCarrito();
             }
         }
         return null;

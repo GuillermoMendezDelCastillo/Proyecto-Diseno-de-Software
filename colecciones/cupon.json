@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "663d5ff2332aeb26c38a0f34"
+  },
+  "codigo": "0987654321",
+  "descuento": 30,
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "663e5eb6ad7ada2a512ae377"
+  },
+  "codigo": "345345",
+  "descuento": 20,
+  "estado": true
+}]
