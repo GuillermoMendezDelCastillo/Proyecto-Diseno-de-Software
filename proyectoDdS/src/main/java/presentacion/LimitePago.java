@@ -6,6 +6,7 @@ package presentacion;
 
 
 ///BANCO///
+import CUGestionPerfil.Perfil;
 import subsistemaBanco.fachadaTarjetaDebito;
 ///otros //
 import javax.swing.BorderFactory;
@@ -120,9 +121,12 @@ public class LimitePago extends javax.swing.JFrame {
         Agrupador.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 100, 40));
 
         lblCvv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCvv.setForeground(new java.awt.Color(0, 0, 0));
         lblCvv.setText("CVV:");
         Agrupador.add(lblCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
+        txtCvv.setBackground(new java.awt.Color(255, 255, 255));
+        txtCvv.setForeground(new java.awt.Color(0, 0, 0));
         txtCvv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCvvKeyTyped(evt);
@@ -131,17 +135,22 @@ public class LimitePago extends javax.swing.JFrame {
         Agrupador.add(txtCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 152, -1));
 
         jDateFecha.setBackground(new java.awt.Color(255, 255, 255));
+        jDateFecha.setForeground(new java.awt.Color(0, 0, 0));
         jDateFecha.setDateFormatString("yyyy-MM-dd");
         Agrupador.add(jDateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 150, -1));
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(0, 0, 0));
         lblFecha.setText("Fecha de caducidad:");
         Agrupador.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         lblCorreoNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCorreoNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblCorreoNombre.setText("Nombre:");
         Agrupador.add(lblCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
+        txtCorreoNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txtCorreoNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtCorreoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCorreoNombreKeyTyped(evt);
@@ -149,6 +158,8 @@ public class LimitePago extends javax.swing.JFrame {
         });
         Agrupador.add(txtCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 152, -1));
 
+        txtNumero.setBackground(new java.awt.Color(255, 255, 255));
+        txtNumero.setForeground(new java.awt.Color(0, 0, 0));
         txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroKeyTyped(evt);
@@ -157,13 +168,17 @@ public class LimitePago extends javax.swing.JFrame {
         Agrupador.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 152, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Numero:");
         Agrupador.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Metodo de pago:");
         Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 10));
 
+        cbMetodo.setBackground(new java.awt.Color(255, 255, 255));
+        cbMetodo.setForeground(new java.awt.Color(0, 0, 0));
         cbMetodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta Bancaria", "Transferencia Bancaria" }));
         cbMetodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,10 +192,12 @@ public class LimitePago extends javax.swing.JFrame {
         Agrupador.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 152, 25));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Total:");
         Agrupador.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 25));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Datos sobre pago");
         Agrupador.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 20));
 
@@ -195,7 +212,8 @@ public class LimitePago extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarSesion1.setForeground(new java.awt.Color(51, 51, 51));
+        btnCerrarSesion1.setBackground(new java.awt.Color(255, 255, 255));
+        btnCerrarSesion1.setForeground(new java.awt.Color(0, 0, 0));
         btnCerrarSesion1.setText("Cerrar sesion");
         btnCerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,6 +223,11 @@ public class LimitePago extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userBOTON.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
@@ -246,6 +269,7 @@ public class LimitePago extends javax.swing.JFrame {
         labelErrorCVV.setToolTipText("");
         Agrupador.add(labelErrorCVV, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
+        rbCupon.setForeground(new java.awt.Color(0, 0, 0));
         rbCupon.setText("Cupon");
         rbCupon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,6 +278,8 @@ public class LimitePago extends javax.swing.JFrame {
         });
         Agrupador.add(rbCupon, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
 
+        btnAplicar.setBackground(new java.awt.Color(255, 255, 255));
+        btnAplicar.setForeground(new java.awt.Color(0, 0, 0));
         btnAplicar.setText("AplicarCupon");
         btnAplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,6 +288,8 @@ public class LimitePago extends javax.swing.JFrame {
         });
         Agrupador.add(btnAplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 270, 110, -1));
 
+        txtNumeroCupon.setBackground(new java.awt.Color(255, 255, 255));
+        txtNumeroCupon.setForeground(new java.awt.Color(0, 0, 0));
         txtNumeroCupon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroCuponActionPerformed(evt);
@@ -269,9 +297,11 @@ public class LimitePago extends javax.swing.JFrame {
         });
         Agrupador.add(txtNumeroCupon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 100, -1));
 
+        lblCupon.setForeground(new java.awt.Color(0, 0, 0));
         lblCupon.setText("Numero de cupon:");
         Agrupador.add(lblCupon, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
 
+        lblDescuento.setForeground(new java.awt.Color(0, 0, 0));
         lblDescuento.setText("Total con descuento aplicado:");
         Agrupador.add(lblDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
 
@@ -558,6 +588,14 @@ public class LimitePago extends javax.swing.JFrame {
     private void txtNumeroCuponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroCuponActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumeroCuponActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+          Perfil perfil = new Perfil();
+        
+        perfil.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void mostrar(){
         ICostoPago costo= new fachadaCostoPago();

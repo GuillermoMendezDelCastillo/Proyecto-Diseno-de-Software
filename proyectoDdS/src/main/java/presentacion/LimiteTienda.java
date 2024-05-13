@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import CUGestionPerfil.Perfil;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
 import subsistemaAgregarProducto.IAgregarProducto;
@@ -99,6 +100,11 @@ public class LimiteTienda extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 102, 153));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/userBOTON.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
@@ -153,6 +159,15 @@ public class LimiteTienda extends javax.swing.JFrame {
         limite.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        Perfil perfil = new Perfil();
+        
+        perfil.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void tabla(){
 
