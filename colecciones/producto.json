@@ -1,0 +1,40 @@
+{
+    "_id" : ObjectId("663f117c3d080a27afe59ee2"),
+    "cantidad" : NumberInt(50),
+    "costo" : NumberInt(10),
+    "nombre" : "Manzana",
+    "urlImagen" : "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
+    "identificador" : NumberInt(1)
+}
+{
+    "_id" : ObjectId("663f128e3d080a27afe59ee4"),
+    "cantidad" : NumberInt(30),
+    "costo" : NumberInt(20),
+    "nombre" : "Pelota",
+    "urlImagen" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMRYg1axSjcmoUNfqamz5-9Qk1zA43yTUO84uvV890Ig&s",
+    "identificador" : NumberInt(2)
+}
+{
+    "_id" : ObjectId("663f13bb3d080a27afe59ee9"),
+    "identificador" : NumberInt(3),
+    "cantidad" : NumberInt(10),
+    "costo" : NumberInt(30),
+    "nombre" : "Flores",
+    "urlImagen" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s"
+}
+{
+    "_id" : ObjectId("663f13f93d080a27afe59eea"),
+    "identificador" : NumberInt(4),
+    "cantidad" : NumberInt(60),
+    "costo" : NumberInt(5),
+    "nombre" : "Lapiz",
+    "urlImagen" : "https://clipspapeleria.com.mx/wp-content/uploads/2020/06/90860_2-1-324x324.png"
+}
+{
+    "_id" : ObjectId("663f14283d080a27afe59eeb"),
+    "identificador" : NumberInt(5),
+    "cantidad" : NumberInt(5),
+    "costo" : NumberInt(100),
+    "nombre" : "Reloj",
+    "urlImagen" : "https://www.zurichvirtual.com.mx/wp-content/uploads/2023/07/TB09802OG_a.jpg"
+}

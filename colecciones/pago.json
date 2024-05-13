@@ -1,0 +1,217 @@
+{
+    "_id" : ObjectId("663fd78172cefb7609b30165"),
+    "carrito" : [
+        {
+            "_id" : ObjectId("663f117c3d080a27afe59ee2"),
+            "cantidad" : NumberInt(50),
+            "costo" : 10.0,
+            "identificador" : NumberLong(1),
+            "nombre" : "Manzana",
+            "urlImagen" : "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg"
+        }
+    ],
+    "cliente" : {
+        "_id" : ObjectId("663f082a58801d42ad9defc6"),
+        "apodo" : "Paco",
+        "carrito" : [
+            NumberLong(1)
+        ],
+        "contrasena" : "12345",
+        "correo" : "correo@gmail.com",
+        "nacimiento" : ISODate("2000-05-04T00:00:00.000+0000")
+    },
+    "codigoCupon" : "0987654321",
+    "metodo" : "Tarjeta Bancaria",
+    "total" : 10.0,
+    "totalDescuento" : 7.0
+}
+{
+    "_id" : ObjectId("663fd92c2ef55878978ee8ce"),
+    "carrito" : [
+        {
+            "_id" : ObjectId("663f13bb3d080a27afe59ee9"),
+            "cantidad" : NumberInt(10),
+            "costo" : 30.0,
+            "identificador" : NumberLong(3),
+            "nombre" : "Flores",
+            "urlImagen" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s"
+        },
+        {
+            "_id" : ObjectId("663f13f93d080a27afe59eea"),
+            "cantidad" : NumberInt(60),
+            "costo" : 5.0,
+            "identificador" : NumberLong(4),
+            "nombre" : "Lapiz",
+            "urlImagen" : "https://clipspapeleria.com.mx/wp-content/uploads/2020/06/90860_2-1-324x324.png"
+        }
+    ],
+    "cliente" : {
+        "_id" : ObjectId("663f0e2d688609097442a092"),
+        "apodo" : "Mario",
+        "carrito" : [
+            NumberLong(3),
+            NumberLong(4)
+        ],
+        "contrasena" : "12345",
+        "correo" : "mario@gmail.com",
+        "nacimiento" : ISODate("2000-05-04T00:00:00.000+0000")
+    },
+    "metodo" : "Tarjeta Bancaria",
+    "total" : 35.0
+}
+{
+    "_id" : ObjectId("664024ba0e19e238d1cae13a"),
+    "carrito" : [
+        {
+            "_id" : ObjectId("663f117c3d080a27afe59ee2"),
+            "cantidad" : NumberInt(50),
+            "costo" : 10.0,
+            "identificador" : NumberLong(1),
+            "nombre" : "Manzana",
+            "urlImagen" : "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg"
+        },
+        {
+            "_id" : ObjectId("663f128e3d080a27afe59ee4"),
+            "cantidad" : NumberInt(30),
+            "costo" : 20.0,
+            "identificador" : NumberLong(2),
+            "nombre" : "Pelota",
+            "urlImagen" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMRYg1axSjcmoUNfqamz5-9Qk1zA43yTUO84uvV890Ig&s"
+        },
+        {
+            "_id" : ObjectId("663f13bb3d080a27afe59ee9"),
+            "cantidad" : NumberInt(10),
+            "costo" : 30.0,
+            "identificador" : NumberLong(3),
+            "nombre" : "Flores",
+            "urlImagen" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s"
+        }
+    ],
+    "cliente" : {
+        "_id" : ObjectId("663f082a58801d42ad9defc6"),
+        "apodo" : "Paco",
+        "carrito" : [
+            NumberLong(1),
+            NumberLong(2),
+            NumberLong(3)
+        ],
+        "contrasena" : "12345",
+        "correo" : "correo@gmail.com",
+        "nacimiento" : ISODate("2000-05-04T00:00:00.000+0000")
+    },
+    "codigoCupon" : "345345",
+    "metodo" : "Tarjeta Bancaria",
+    "total" : 60.0,
+    "totalDescuento" : 48.0
+}
+{
+    "_id" : ObjectId("6640255c0e19e238d1cae149"),
+    "carrito" : [
+        {
+            "_id" : ObjectId("663f13f93d080a27afe59eea"),
+            "cantidad" : NumberInt(60),
+            "costo" : 5.0,
+            "identificador" : NumberLong(4),
+            "nombre" : "Lapiz",
+            "urlImagen" : "https://clipspapeleria.com.mx/wp-content/uploads/2020/06/90860_2-1-324x324.png"
+        }
+    ],
+    "cliente" : {
+        "_id" : ObjectId("663f082a58801d42ad9defc6"),
+        "apodo" : "Paco",
+        "carrito" : [
+            NumberLong(4)
+        ],
+        "contrasena" : "12345",
+        "correo" : "correo@gmail.com",
+        "nacimiento" : ISODate("2000-05-04T00:00:00.000+0000")
+    },
+    "metodo" : "Tarjeta Bancaria",
+    "total" : 5.0
+}
+{
+    "_id" : ObjectId("6641707b39952a70efe4437f"),
+    "carrito" : [
+        {
+            "_id" : ObjectId("663f117c3d080a27afe59ee2"),
+            "cantidad" : NumberInt(50),
+            "costo" : 10.0,
+            "identificador" : NumberLong(1),
+            "nombre" : "Manzana",
+            "urlImagen" : "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg"
+        },
+        {
+            "_id" : ObjectId("663f13f93d080a27afe59eea"),
+            "cantidad" : NumberInt(60),
+            "costo" : 5.0,
+            "identificador" : NumberLong(4),
+            "nombre" : "Lapiz",
+            "urlImagen" : "https://clipspapeleria.com.mx/wp-content/uploads/2020/06/90860_2-1-324x324.png"
+        }
+    ],
+    "cliente" : {
+        "_id" : ObjectId("663f082a58801d42ad9defc6"),
+        "apodo" : "Paco",
+        "carrito" : [
+            NumberLong(4),
+            NumberLong(1)
+        ],
+        "contrasena" : "12345",
+        "correo" : "correo@gmail.com",
+        "nacimiento" : ISODate("2000-05-04T00:00:00.000+0000")
+    },
+    "metodo" : "Tarjeta Bancaria",
+    "total" : 15.0
+}
+{
+    "_id" : ObjectId("664171231e5e6f75c57a92e9"),
+    "carrito" : [
+        {
+            "_id" : ObjectId("663f13bb3d080a27afe59ee9"),
+            "cantidad" : NumberInt(10),
+            "costo" : 30.0,
+            "identificador" : NumberLong(3),
+            "nombre" : "Flores",
+            "urlImagen" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s"
+        }
+    ],
+    "cliente" : {
+        "_id" : ObjectId("663f0e2d688609097442a092"),
+        "apodo" : "Mario",
+        "carrito" : [
+            NumberLong(3)
+        ],
+        "contrasena" : "12345",
+        "correo" : "mario@gmail.com",
+        "nacimiento" : ISODate("2000-05-04T00:00:00.000+0000")
+    },
+    "codigoCupon" : "345345",
+    "metodo" : "Tarjeta Bancaria",
+    "total" : 30.0,
+    "totalDescuento" : 24.0
+}
+{
+    "_id" : ObjectId("66417c8356ba5f47681a33a6"),
+    "carrito" : [
+        {
+            "_id" : ObjectId("663f13bb3d080a27afe59ee9"),
+            "cantidad" : NumberInt(10),
+            "costo" : 30.0,
+            "identificador" : NumberLong(3),
+            "nombre" : "Flores",
+            "urlImagen" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s"
+        }
+    ],
+    "cliente" : {
+        "_id" : ObjectId("663f0bb758801d42ad9df203"),
+        "apodo" : "Karen",
+        "carrito" : [
+            NumberLong(3)
+        ],
+        "contrasena" : "12345",
+        "correo" : "ejemplo@hotmail.com",
+        "nacimiento" : ISODate("2000-05-01T00:00:00.000+0000")
+    },
+    "metodo" : "Tarjeta Bancaria",
+    "total" : 30.0
+}

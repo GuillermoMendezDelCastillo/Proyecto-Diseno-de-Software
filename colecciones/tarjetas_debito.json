@@ -1,0 +1,48 @@
+{
+    "_id" : ObjectId("663c52927a500142c69f92b1"),
+    "numero_tarjeta" : "4916123456789012",
+    "titular" : "Hector",
+    "fecha_expiracion" : "2026-09-30",
+    "codigo_seguridad" : "789",
+    "banco" : "Banamex"
+}
+{
+    "_id" : ObjectId("663c52927a500142c69f92b2"),
+    "numero_tarjeta" : "5577123456789012",
+    "titular" : "María García",
+    "fecha_expiracion" : "2026-09-30",
+    "codigo_seguridad" : "456",
+    "banco" : "BBVA Bancomer"
+}
+{
+    "_id" : ObjectId("663c52927a500142c69f92b3"),
+    "numero_tarjeta" : "4912123456789012",
+    "titular" : "Carlos Rodríguez",
+    "fecha_expiracion" : "2024-12-31",
+    "codigo_seguridad" : "321",
+    "banco" : "Santander"
+}
+{
+    "_id" : ObjectId("663c52927a500142c69f92b4"),
+    "numero_tarjeta" : "4028123456789012",
+    "titular" : "Ana Martínez",
+    "fecha_expiracion" : "2027-11-30",
+    "codigo_seguridad" : "678",
+    "banco" : "HSBC México"
+}
+{
+    "_id" : ObjectId("663c52927a500142c69f92b5"),
+    "numero_tarjeta" : "4166123456789012",
+    "titular" : "Pedro López",
+    "fecha_expiracion" : "2023-08-31",
+    "codigo_seguridad" : "234",
+    "banco" : "Scotiabank México"
+}
+{
+    "_id" : ObjectId("663c52927a500142c69f92b6"),
+    "numero_tarjeta" : "4156123456789012",
+    "titular" : "Laura González",
+    "fecha_expiracion" : "2025-06-30",
+    "codigo_seguridad" : "890",
+    "banco" : "Banco Inbursa"
+}
