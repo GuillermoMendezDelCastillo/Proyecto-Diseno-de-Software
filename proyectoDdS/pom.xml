@@ -57,9 +57,9 @@
             <version>RELEASE210</version>
         </dependency>
         <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>ProyectoDdS_Negocio_subsistemaBanco-1.0-SNAPSHOT</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ProyectoDdS_Negocio_subsistemaBanco</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <properties>

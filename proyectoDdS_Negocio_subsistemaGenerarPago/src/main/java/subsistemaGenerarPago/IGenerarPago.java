@@ -14,5 +14,6 @@ import dto.PagoDTO;
 public interface IGenerarPago {
     
     public boolean generarPago(ClienteDTO clienteDTO, PagoDTO pagoDTO);
+    public boolean generarPagoCupon(ClienteDTO clienteDTO, PagoDTO pagoDTO);
     
 }

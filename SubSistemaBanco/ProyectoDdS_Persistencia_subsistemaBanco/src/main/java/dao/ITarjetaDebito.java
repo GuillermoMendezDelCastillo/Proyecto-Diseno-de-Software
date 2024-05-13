@@ -2,14 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package subsistemaCostoPago;
+package dao;
+import java.util.List;
 
-import dto.ClienteDTO;
+import entidades.TarjetaDebito;
 
 /**
  *
- * @author Gui26
+ * @author Hector
  */
-public interface ICostoPago {
-    public float costoPago(ClienteDTO clienteDto);
+public interface ITarjetaDebito {
+    public TarjetaDebito obtenerTarjetaPorNumero(String numeroTarjeta);
 }

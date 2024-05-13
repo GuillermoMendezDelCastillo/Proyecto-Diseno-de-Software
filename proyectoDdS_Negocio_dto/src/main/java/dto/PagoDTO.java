@@ -22,6 +22,10 @@ public class PagoDTO {
     
     private String correo;
     
+    private String codigoCupon;
+    private float totalDescuento;
+    
+    
     public PagoDTO(String numero, String metodo, float total, String nombre, LocalDate caducidad, String cvv) {
         this.numero = numero;
         this.metodo = metodo;
@@ -36,6 +40,26 @@ public class PagoDTO {
         this.metodo = metodo;
         this.total = total;
         this.correo = correo;
+    }
+    
+    public PagoDTO(String numero, String metodo, float total, String nombre, LocalDate caducidad, String cvv, String codigoCupon, float totalDescuento) {
+        this.numero = numero;
+        this.metodo = metodo;
+        this.total = total;
+        this.nombre = nombre;
+        this.caducidad = caducidad;
+        this.cvv = cvv;
+        this.codigoCupon = codigoCupon;
+        this.totalDescuento = totalDescuento;
+    }
+
+    public PagoDTO(String numero, String metodo, float total, String correo, String codigoCupon, float totalDescuento) {
+        this.numero = numero;
+        this.metodo = metodo;
+        this.total = total;
+        this.correo = correo;
+        this.codigoCupon = codigoCupon;
+        this.totalDescuento = totalDescuento;
     }
     
     public String getNumero() {
@@ -64,6 +88,14 @@ public class PagoDTO {
 
     public String getCorreo() {
         return correo;
+    }
+
+    public String getCodigoCupon() {
+        return codigoCupon;
+    }
+
+    public float getTotalDescuento() {
+        return totalDescuento;
     }
     
 }
