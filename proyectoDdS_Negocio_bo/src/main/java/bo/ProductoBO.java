@@ -4,12 +4,14 @@
  */
 package bo;
 
-import dao.ListClienteDAO;
-import dao.ClienteDAO;
+//import dao.ListClienteDAO;
+//import dao.ClienteDAO;
 import dao.IClienteDAO;
 import dao.IProductoDAO;
-import dao.ListProductoDAO;
-import dao.ProductoDAO;
+import dao.MongoClienteDAO;
+import dao.MongoProductoDAO;
+//import dao.ListProductoDAO;
+//import dao.ProductoDAO;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
 import entidades.Producto;
@@ -85,22 +87,22 @@ public class ProductoBO {
     public List<ProductoDTO> productosDTO(){
         List<ProductoDTO> productos = new LinkedList();
         
-        IProductoDAO productoDao = new ListProductoDAO();
-//        IProductoDAO productoDao = new ProductoDAO();
+//        IProductoDAO productoDao = new ListProductoDAO();
+        IProductoDAO productoDao = new MongoProductoDAO();
         
         ListIterator<Producto> lista = productoDao.listaProductos().listIterator();
         while (lista.hasNext()) {
             Producto producto = lista.next();
-            productos.add(new ProductoDTO(producto.getId(), producto.getNombre(), producto.getUrlImagen(), producto.getCosto()));
+            productos.add(new ProductoDTO(producto.getIdentificador(), producto.getNombre(), producto.getUrlImagen(), producto.getCosto()));
         }
         return productos;
     }
     
     public void agregar(ClienteDTO clienteDto, Long idProducto){
-        IProductoDAO productoDao = new ListProductoDAO();
-        IClienteDAO clienteDao = new ListClienteDAO();
-//        IProductoDAO productoDao = new ProductoDAO();
-//        IClienteDAO clienteDao = new ClienteDAO();
+//        IProductoDAO productoDao = new ListProductoDAO();
+//        IClienteDAO clienteDao = new ListClienteDAO();
+        IProductoDAO productoDao = new MongoProductoDAO();
+        IClienteDAO clienteDao = new MongoClienteDAO();
         
         productoDao.agregarCarrito(clienteDao.buscar(clienteDto.getApodo()), productoDao.buscarProducto(idProducto));
     }

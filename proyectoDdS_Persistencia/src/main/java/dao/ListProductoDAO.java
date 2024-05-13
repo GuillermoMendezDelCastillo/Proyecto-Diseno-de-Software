@@ -44,7 +44,7 @@ public class ListProductoDAO implements IProductoDAO{
         while (listaClientes.hasNext()) {
             Cliente buscado = listaClientes.next();
             if(buscado.equals(cliente)){
-                buscado.getCarrito().add(producto);
+//                buscado.getCarrito().add(producto);
             }
         }
         return producto;

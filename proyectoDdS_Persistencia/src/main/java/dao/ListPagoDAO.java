@@ -44,9 +44,9 @@ public class ListPagoDAO implements IPagoDAO{
             System.out.println(registrado.getCliente().getApodo());
             System.out.println(registrado.getMetodo());
             System.out.println(registrado.getTotal());
-            if(registrado.getCupon()!=null){
-                System.out.println(registrado.getCupon().getCodigo());
-                System.out.println(registrado.getCupon().getDescuento());
+            if(registrado.getCodigoCupon()!=null){
+                System.out.println(registrado.getCodigoCupon());
+//                System.out.println(registrado.getCupon().getDescuento());
             }
             System.out.println("");
         }

@@ -4,6 +4,7 @@
  */
 package subsistemaGenerarPago;
 
+import bo.CuponBO;
 import bo.PagoBO;
 import dto.ClienteDTO;
 import dto.PagoDTO;
@@ -43,7 +44,10 @@ public class controlGenerarPago{
     
     public boolean generarConDescuento() {
         PagoBO pagoBO = new PagoBO();
-        return pagoBO.generarPagoDescuento(pagoDTO, clienteDTO);
+        CuponBO cuponBO = new CuponBO();
+        boolean generado = pagoBO.generarPagoDescuento(pagoDTO, clienteDTO);
+        cuponBO.usar(pagoDTO.getCodigoCupon());
+        return generado;
     }
     
 //    private void historial(Cliente cliente){

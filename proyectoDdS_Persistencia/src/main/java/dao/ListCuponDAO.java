@@ -27,5 +27,10 @@ public class ListCuponDAO implements ICuponDAO{
         }
         return null;
     }
+
+    @Override
+    public boolean usar(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

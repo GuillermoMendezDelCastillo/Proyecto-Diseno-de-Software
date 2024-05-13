@@ -17,9 +17,12 @@ public class controlCalcularDescuento {
         CuponBO cuponBO = new CuponBO();
         CuponDTO cuponDto = cuponBO.buscar(codigo);
         if(cuponDto!=null){
-            Float descuento = cuponDto.getDescuento();
-            Float descontado = total - (total*descuento/100);
-            return descontado;
+            if(cuponDto.isEstado()){
+                Float descuento = cuponDto.getDescuento();
+                Float descontado = total - (total*descuento/100);
+                return descontado;
+            }
+            return null;
         }else{
             return null;
         }

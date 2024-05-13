@@ -4,14 +4,17 @@
  */
 package bo;
 
-import dao.ListClienteDAO;
-import dao.ClienteDAO;
+//import dao.ListClienteDAO;
+//import dao.ClienteDAO;
 import dao.IClienteDAO;
 import dao.ICuponDAO;
 import dao.IPagoDAO;
-import dao.ListCuponDAO;
-import dao.ListPagoDAO;
-import dao.PagoDAO;
+import dao.MongoClienteDAO;
+//import dao.ListCuponDAO;
+import dao.MongoCuponDAO;
+import dao.MongoPagoDAO;
+//import dao.ListPagoDAO;
+//import dao.PagoDAO;
 import dto.ClienteDTO;
 import dto.PagoDTO;
 import entidades.Cliente;
@@ -87,14 +90,14 @@ public class PagoBO {
     
     public boolean generarPago(ClienteDTO clienteDto){
         
-        IClienteDAO clienteDao = new ListClienteDAO();
-//        IClienteDAO clienteDao = new ClienteDAO();
+//        IClienteDAO clienteDao = new ListClienteDAO();
+        IClienteDAO clienteDao = new MongoClienteDAO();
         
         Cliente cliente = clienteDao.buscar(clienteDto.getApodo());
         clienteDao.obtenerCarrito(cliente);
         
-        IPagoDAO pagoDao = new ListPagoDAO();
-//        IPagoDAO pagoDao = new PagoDAO();
+//        IPagoDAO pagoDao = new ListPagoDAO();
+        IPagoDAO pagoDao = new MongoPagoDAO();
         Pago pago = new Pago(metodo, total, clienteDao.obtenerCarrito(cliente));
         
         return pagoDao.nuevoPago(cliente, pago)!=null;
@@ -102,32 +105,32 @@ public class PagoBO {
     
     public boolean generarPagoDescuento(PagoDTO pagoDto, ClienteDTO clienteDto){
         
-        IClienteDAO clienteDao = new ListClienteDAO();
-//        IClienteDAO clienteDao = new ClienteDAO();
+//        IClienteDAO clienteDao = new ListClienteDAO();
+        IClienteDAO clienteDao = new MongoClienteDAO();
         
         Cliente cliente = clienteDao.buscar(clienteDto.getApodo());
         List<Producto> carrito = clienteDao.obtenerCarrito(cliente);
         
-        ICuponDAO cuponDao = new ListCuponDAO();
-//        ICuponDAO cuponDao = new CuponDAO();
+//        ICuponDAO cuponDao = new ListCuponDAO();
+        ICuponDAO cuponDao = new MongoCuponDAO();
         Cupon cupon = cuponDao.buscar(pagoDto.getCodigoCupon());
         
-        IPagoDAO pagoDao = new ListPagoDAO();
-//        IPagoDAO pagoDao = new PagoDAO();
-        Pago pago = new Pago(pagoDto.getMetodo(), pagoDto.getTotal(), carrito, cupon, pagoDto.getTotalDescuento());
+//        IPagoDAO pagoDao = new ListPagoDAO();
+        IPagoDAO pagoDao = new MongoPagoDAO();
+        Pago pago = new Pago(pagoDto.getMetodo(), pagoDto.getTotal(), carrito, cupon.getCodigo(), pagoDto.getTotalDescuento());
         
-        carrito(carrito);
+//        carrito(carrito);
         
         return pagoDao.nuevoPago(cliente, pago)!=null;
     }
     
-    private void carrito(List<Producto> carrito){
-        Producto guardado;
-        ListIterator<Producto> iterador = carrito.listIterator();
-        while (iterador.hasNext()) {
-            guardado = iterador.next();
-            System.out.println(guardado.getNombre());
-        }
-    }
+//    private void carrito(List<Producto> carrito){
+//        Producto guardado;
+//        ListIterator<Producto> iterador = carrito.listIterator();
+//        while (iterador.hasNext()) {
+//            guardado = iterador.next();
+//            System.out.println(guardado.getNombre());
+//        }
+//    }
     
 }

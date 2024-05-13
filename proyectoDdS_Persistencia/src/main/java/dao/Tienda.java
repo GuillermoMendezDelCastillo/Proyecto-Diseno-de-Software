@@ -65,25 +65,25 @@ public class Tienda {
         this.productos = new LinkedList<>();
         this.pagos = new LinkedList<>();
         this.cupones = new LinkedList<>();
-        this.clientes.add(new Cliente(Long.valueOf(1),"Paco","12345", LocalDate.parse("2003-12-13"),"correo@gmail.com"));
-        this.clientes.add(new Cliente(Long.valueOf(2),"Karen","12345", LocalDate.parse("2000-04-01"),"ejemplo@hotmail.com"));
-        this.clientes.add(new Cliente(Long.valueOf(3),"Mario","12345", LocalDate.parse("2000-04-07"),"mario@gmail.com"));
-        this.productos.add(new Producto(Long.valueOf(1), "Manzana",
-                "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
-                10, 50));
-        this.productos.add(new Producto(Long.valueOf(2), "Pelota",
-                "https://lamariposa.com.mx/11704-large_default/pelota-de-pl%C3%A1stico.jpg",
-                20, 30));
-        this.productos.add(new Producto(Long.valueOf(3), "Flores",
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s",
-                30, 10));
-        this.productos.add(new Producto(Long.valueOf(4), "Lapiz",
-                "https://clipspapeleria.com.mx/wp-content/uploads/2020/06/90860_2-1-324x324.png",
-                5, 60));
-        this.productos.add(new Producto(Long.valueOf(5), "Reloj",
-                "https://www.zurichvirtual.com.mx/wp-content/uploads/2023/07/TB09802OG_a.jpg",
-                100, 5));
-        this.cupones.add(new Cupon("0987654321",30));
+//        this.clientes.add(new Cliente(Long.valueOf(1),"Paco","12345", LocalDate.parse("2003-12-13"),"correo@gmail.com"));
+//        this.clientes.add(new Cliente(Long.valueOf(2),"Karen","12345", LocalDate.parse("2000-04-01"),"ejemplo@hotmail.com"));
+//        this.clientes.add(new Cliente(Long.valueOf(3),"Mario","12345", LocalDate.parse("2000-04-07"),"mario@gmail.com"));
+//        this.productos.add(new Producto(Long.valueOf(1), "Manzana",
+//                "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
+//                10, 50));
+//        this.productos.add(new Producto(Long.valueOf(2), "Pelota",
+//                "https://lamariposa.com.mx/11704-large_default/pelota-de-pl%C3%A1stico.jpg",
+//                20, 30));
+//        this.productos.add(new Producto(Long.valueOf(3), "Flores",
+//                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s",
+//                30, 10));
+//        this.productos.add(new Producto(Long.valueOf(4), "Lapiz",
+//                "https://clipspapeleria.com.mx/wp-content/uploads/2020/06/90860_2-1-324x324.png",
+//                5, 60));
+//        this.productos.add(new Producto(Long.valueOf(5), "Reloj",
+//                "https://www.zurichvirtual.com.mx/wp-content/uploads/2023/07/TB09802OG_a.jpg",
+//                100, 5));
+//        this.cupones.add(new Cupon("0987654321",30));
     }
     
     public static Tienda tienda = new Tienda();
