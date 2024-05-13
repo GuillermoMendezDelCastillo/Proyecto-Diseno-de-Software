@@ -25,6 +25,8 @@ import subsistemaCostoPago.ICostoPago;
 import subsistemaGenerarPago.IGenerarPago;
 import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
+import subsistemaCalcularDescuento.ICalcularDescuento;
+import subsistemaCalcularDescuento.fachadaCalcularDescuento;
 import subsistemaCostoPago.fachadaCostoPago;
 import subsistemaGenerarPago.fachadaGenerarPago;
 
@@ -42,6 +44,11 @@ public class LimitePago extends javax.swing.JFrame {
     public LimitePago(ClienteDTO clienteDto) {
         this.clienteDto = clienteDto;
         initComponents();
+        btnAplicar.setVisible(false);
+        lblCupon.setVisible(false);
+        txtNumeroCupon.setVisible(false);
+        lblDescuento.setVisible(false);
+        lblTotalConDescuento.setVisible(false);
         mostrar();
     }
 
@@ -79,6 +86,12 @@ public class LimitePago extends javax.swing.JFrame {
         labelErrorNombre = new javax.swing.JLabel();
         labelErrorFechaCaducidad = new javax.swing.JLabel();
         labelErrorCVV = new javax.swing.JLabel();
+        rbCupon = new javax.swing.JRadioButton();
+        btnAplicar = new javax.swing.JToggleButton();
+        txtNumeroCupon = new javax.swing.JTextField();
+        lblCupon = new javax.swing.JLabel();
+        lblDescuento = new javax.swing.JLabel();
+        lblTotalConDescuento = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pantalla de pago");
@@ -94,7 +107,7 @@ public class LimitePago extends javax.swing.JFrame {
                 btnRealizaPagoActionPerformed(evt);
             }
         });
-        Agrupador.add(btnRealizaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 100, 40));
+        Agrupador.add(btnRealizaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 100, 40));
 
         btnCancelar.setBackground(new java.awt.Color(0, 102, 153));
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -104,85 +117,72 @@ public class LimitePago extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        Agrupador.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 100, 40));
+        Agrupador.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 100, 40));
 
         lblCvv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblCvv.setForeground(new java.awt.Color(0, 0, 0));
         lblCvv.setText("CVV:");
-        Agrupador.add(lblCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+        Agrupador.add(lblCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        txtCvv.setForeground(new java.awt.Color(0, 0, 0));
         txtCvv.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCvvKeyTyped(evt);
             }
         });
-        Agrupador.add(txtCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 152, -1));
+        Agrupador.add(txtCvv, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 152, -1));
 
         jDateFecha.setBackground(new java.awt.Color(255, 255, 255));
-        jDateFecha.setForeground(new java.awt.Color(0, 0, 0));
         jDateFecha.setDateFormatString("yyyy-MM-dd");
-        Agrupador.add(jDateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 150, -1));
+        Agrupador.add(jDateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 150, -1));
 
         lblFecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblFecha.setForeground(new java.awt.Color(0, 0, 0));
         lblFecha.setText("Fecha de caducidad:");
-        Agrupador.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        Agrupador.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         lblCorreoNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblCorreoNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblCorreoNombre.setText("Nombre:");
-        Agrupador.add(lblCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
+        Agrupador.add(lblCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        txtCorreoNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtCorreoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCorreoNombreKeyTyped(evt);
             }
         });
-        Agrupador.add(txtCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 152, -1));
+        Agrupador.add(txtCorreoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 152, -1));
 
-        txtNumero.setForeground(new java.awt.Color(0, 0, 0));
         txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroKeyTyped(evt);
             }
         });
-        Agrupador.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 152, -1));
+        Agrupador.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 152, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Numero:");
-        Agrupador.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        Agrupador.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Metodo de pago:");
-        Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, 10));
+        Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 10));
 
-        cbMetodo.setBackground(new java.awt.Color(255, 255, 255));
-        cbMetodo.setForeground(new java.awt.Color(0, 0, 0));
         cbMetodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tarjeta Bancaria", "Transferencia Bancaria" }));
         cbMetodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMetodoActionPerformed(evt);
             }
         });
-        Agrupador.add(cbMetodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
+        Agrupador.add(cbMetodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
 
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Agrupador.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 152, 25));
+        Agrupador.add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 152, 25));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Total:");
-        Agrupador.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, 25));
+        Agrupador.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 25));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Datos sobre pago");
-        Agrupador.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, 20));
+        Agrupador.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, 20));
 
         panelMenu.setBackground(new java.awt.Color(0, 102, 153));
 
@@ -195,7 +195,6 @@ public class LimitePago extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarSesion1.setBackground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion1.setForeground(new java.awt.Color(51, 51, 51));
         btnCerrarSesion1.setText("Cerrar sesion");
         btnCerrarSesion1.addActionListener(new java.awt.event.ActionListener() {
@@ -235,7 +234,7 @@ public class LimitePago extends javax.swing.JFrame {
         Agrupador.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/tarjeta-de-credito (1).png"))); // NOI18N
-        Agrupador.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 180, 190));
+        Agrupador.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 180, 190));
 
         labelErrorTarjeta.setToolTipText("");
         Agrupador.add(labelErrorTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
@@ -246,6 +245,39 @@ public class LimitePago extends javax.swing.JFrame {
 
         labelErrorCVV.setToolTipText("");
         Agrupador.add(labelErrorCVV, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+
+        rbCupon.setText("Cupon");
+        rbCupon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCuponActionPerformed(evt);
+            }
+        });
+        Agrupador.add(rbCupon, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
+
+        btnAplicar.setText("AplicarCupon");
+        btnAplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarActionPerformed(evt);
+            }
+        });
+        Agrupador.add(btnAplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 270, 110, -1));
+
+        txtNumeroCupon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroCuponActionPerformed(evt);
+            }
+        });
+        Agrupador.add(txtNumeroCupon, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 100, -1));
+
+        lblCupon.setText("Numero de cupon:");
+        Agrupador.add(lblCupon, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
+
+        lblDescuento.setText("Total con descuento aplicado:");
+        Agrupador.add(lblDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
+
+        lblTotalConDescuento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalConDescuento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Agrupador.add(lblTotalConDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 100, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -509,6 +541,24 @@ public class LimitePago extends javax.swing.JFrame {
           }
     }//GEN-LAST:event_txtCvvKeyTyped
 
+    private void rbCuponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCuponActionPerformed
+        cupon();
+    }//GEN-LAST:event_rbCuponActionPerformed
+
+    private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
+        if(btnAplicar.isSelected()){
+            txtNumeroCupon.setEditable(false);
+            calcularDescuento();
+        } else {
+            txtNumeroCupon.setEditable(true);
+            lblTotalConDescuento.setText(null);
+        }
+    }//GEN-LAST:event_btnAplicarActionPerformed
+
+    private void txtNumeroCuponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroCuponActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumeroCuponActionPerformed
+
     public void mostrar(){
         ICostoPago costo= new fachadaCostoPago();
         lblTotal.setText(String.format("%.02f", costo.costoPago(clienteDto)));
@@ -538,8 +588,60 @@ public class LimitePago extends javax.swing.JFrame {
         return false;
     }
 
+    public void cupon(){
+        if (rbCupon.isSelected()){
+            btnAplicar.setVisible(true);
+            lblCupon.setVisible(true);
+            txtNumeroCupon.setEditable(true);
+            txtNumeroCupon.setVisible(true);
+            lblDescuento.setVisible(true);
+            lblTotalConDescuento.setVisible(true);
+        } else {
+            btnAplicar.setVisible(false);
+            btnAplicar.setSelected(false);
+            lblCupon.setVisible(false);
+            txtNumeroCupon.setVisible(false);
+            txtNumeroCupon.setText(null);
+            txtNumeroCupon.setEditable(true);
+            lblDescuento.setVisible(false);
+            lblTotalConDescuento.setVisible(false);
+            lblTotalConDescuento.setText(null);
+        }
+    }
+    
+    public void calcularDescuento(){
+        if (validar2()){
+            ICalcularDescuento sesion = new fachadaCalcularDescuento();
+            Float totalConDescuento = sesion.calcularDescuento(txtNumeroCupon.getText(), Float.parseFloat(lblTotal.getText()));
+            if (totalConDescuento!=null){
+                lblTotalConDescuento.setText(String.valueOf(totalConDescuento));
+            } else{
+                btnAplicar.setSelected(false);
+                JOptionPane.showMessageDialog(this, "No se pudo encontrar el cupon");
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "El campo del codigo del cupon esta vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            btnAplicar.setSelected(false);
+        }
+    }
+    
+    public boolean validar2(){
+        return !(txtNumeroCupon.getText().isBlank()||txtNumeroCupon.getText().isEmpty());
+    }
+    public boolean validar3(){
+        if (lblTotalConDescuento.getText()!=null){
+            if (lblTotalConDescuento.getText().isBlank()||lblTotalConDescuento.getText().isEmpty()){
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return validar2();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Agrupador;
+    private javax.swing.JToggleButton btnAplicar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCarrito1;
     private javax.swing.JButton btnCerrarSesion1;
@@ -557,12 +659,17 @@ public class LimitePago extends javax.swing.JFrame {
     private javax.swing.JLabel labelErrorNombre;
     private javax.swing.JLabel labelErrorTarjeta;
     private javax.swing.JLabel lblCorreoNombre;
+    private javax.swing.JLabel lblCupon;
     private javax.swing.JLabel lblCvv;
+    private javax.swing.JLabel lblDescuento;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotalConDescuento;
     private javax.swing.JPanel panelMenu;
+    private javax.swing.JRadioButton rbCupon;
     private javax.swing.JTextField txtCorreoNombre;
     private javax.swing.JTextField txtCvv;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtNumeroCupon;
     // End of variables declaration//GEN-END:variables
 }
