@@ -39,7 +39,6 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     private void abrirRegistro() {
         // Crear una nueva instancia del JFrame que deseas abrir
         LimiteRegistro registro = new LimiteRegistro();
-
         registro.setVisible(true);
         // Puedes cerrar el frame actual si es necesario
         this.dispose();
@@ -56,13 +55,13 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         Agrupador = new javax.swing.JPanel();
         etiquetaUsuario = new javax.swing.JLabel();
         etiquetaContrasena = new javax.swing.JLabel();
-        textoContrasena = new javax.swing.JTextField();
         textoUsuario = new javax.swing.JTextField();
         btnIniciarSesion = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblRegistrarse = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        textoContrasena = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
@@ -71,18 +70,12 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         Agrupador.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         etiquetaUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etiquetaUsuario.setForeground(new java.awt.Color(0, 0, 0));
         etiquetaUsuario.setText("Usuario:");
         Agrupador.add(etiquetaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
         etiquetaContrasena.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        etiquetaContrasena.setForeground(new java.awt.Color(0, 0, 0));
         etiquetaContrasena.setText("Contraseña:");
         Agrupador.add(etiquetaContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
-
-        textoContrasena.setBackground(new java.awt.Color(234, 234, 234));
-        textoContrasena.setForeground(new java.awt.Color(51, 51, 51));
-        Agrupador.add(textoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 180, -1));
 
         textoUsuario.setBackground(new java.awt.Color(234, 234, 234));
         textoUsuario.setForeground(new java.awt.Color(51, 51, 51));
@@ -111,12 +104,12 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         lblRegistrarse.setText("Registrarse");
         Agrupador.add(lblRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, -1, -1));
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("¿No tienes una cuenta?");
         Agrupador.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-Cuent.png"))); // NOI18N
         Agrupador.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 160, 160));
+        Agrupador.add(textoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 180, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,7 +129,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         
         if (validar()){
-            ClienteDTO clienteDto = new ClienteDTO(textoUsuario.getText(), textoContrasena.getText());
+            ClienteDTO clienteDto = new ClienteDTO(textoUsuario.getText(), String.valueOf(textoContrasena.getPassword()));
             IIniciarSesion sesion = new fachadaIniciarSesion();
             if (sesion.iniciarSesion(clienteDto)){
                 LimiteTienda limite = new LimiteTienda(clienteDto);
@@ -193,7 +186,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     
     public boolean validar() {
         return !(textoUsuario.getText().isBlank()||textoUsuario.getText().isEmpty()
-                ||textoContrasena.getText().isBlank()||textoContrasena.getText().isEmpty());
+                ||textoContrasena.getPassword().length<1);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -205,7 +198,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblRegistrarse;
-    private javax.swing.JTextField textoContrasena;
+    private javax.swing.JPasswordField textoContrasena;
     private javax.swing.JTextField textoUsuario;
     // End of variables declaration//GEN-END:variables
 }

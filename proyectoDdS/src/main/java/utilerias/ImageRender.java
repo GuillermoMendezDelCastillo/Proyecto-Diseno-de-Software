@@ -25,8 +25,9 @@ public class ImageRender extends DefaultTableCellRenderer{
         String url = value.toString();
 
         ImageIcon imageIcon = null;
-        try {
-            Image imagen = new ImageIcon(URI.create(url).toURL()).getImage();
+//        try {
+            Image imagen = new ImageIcon("src\\main\\resources\\images\\"+url).getImage();
+            //Image imagen = new ImageIcon(URI.create(url).toURL()).getImage();
             ImageIcon imagenT = new ImageIcon(imagen);
             float altura = imagenT.getIconHeight();
             float ancho = imagenT.getIconWidth();
@@ -35,9 +36,9 @@ public class ImageRender extends DefaultTableCellRenderer{
                     (int)((definido*ancho)/altura), definido, Image.SCALE_DEFAULT));
 //            imageIcon = new ImageIcon(new ImageIcon(URI.create(url).toURL()).getImage().getScaledInstance(
 //                    60, 40, Image.SCALE_DEFAULT));
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ImageRender.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (MalformedURLException ex) {
+//            Logger.getLogger(ImageRender.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         return new JLabel(imageIcon);
     }
 }
