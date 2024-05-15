@@ -5,7 +5,7 @@
 package presentacion;
 
 import CUGestionPerfil.LimitePerfil;
-import DTO.UsuarioDTO;
+//import DTO.UsuarioDTO;
 import Interfaz.IAdmin;
 import dto.ClienteDTO;
 import implementaciones.Administrador;
@@ -176,7 +176,19 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-      
+      if (validar()){
+            ClienteDTO clienteDto = new ClienteDTO(txtCorreo.getText(), txtContrasena.getText());
+            IIniciarSesion sesion = new fachadaIniciarSesion();
+            if (sesion.iniciarSesion(clienteDto)){
+                LimiteTienda limite = new LimiteTienda(clienteDto);
+                limite.setVisible(true);
+                dispose();
+            } else{
+                JOptionPane.showMessageDialog(this, "No se pudo encontrar el cliente");
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -218,6 +230,10 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         });
     }
     
+    public boolean validar() {
+        return !(txtCorreo.getText().isBlank()||txtCorreo.getText().isEmpty()
+                ||txtContrasena.getText().isBlank()||txtContrasena.getText().isEmpty());
+    }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Agrupador;

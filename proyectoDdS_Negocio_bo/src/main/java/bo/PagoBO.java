@@ -93,7 +93,7 @@ public class PagoBO {
 //        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
         
-        Cliente cliente = clienteDao.buscar(clienteDto.getNombre());
+        Cliente cliente = clienteDao.buscar(clienteDto.getCorreo());
         clienteDao.obtenerCarrito(cliente);
         
 //        IPagoDAO pagoDao = new ListPagoDAO();
@@ -108,7 +108,7 @@ public class PagoBO {
 //        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
         
-        Cliente cliente = clienteDao.buscar(clienteDto.getNombre());
+        Cliente cliente = clienteDao.buscar(clienteDto.getCorreo());
         List<Producto> carrito = clienteDao.obtenerCarrito(cliente);
         
 //        ICuponDAO cuponDao = new ListCuponDAO();

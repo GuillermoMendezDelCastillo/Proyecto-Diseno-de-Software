@@ -104,6 +104,6 @@ public class ProductoBO {
         IProductoDAO productoDao = new MongoProductoDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
         
-        productoDao.agregarCarrito(clienteDao.buscar(clienteDto.getNombre()), productoDao.buscarProducto(idProducto));
+        productoDao.agregarCarrito(clienteDao.buscar(clienteDto.getCorreo()), productoDao.buscarProducto(idProducto));
     }
 }

@@ -52,27 +52,27 @@ public class MongoClienteDAO implements IClienteDAO {
     }
 
     @Override
-    public Cliente buscar(String apodo) {
+    public Cliente buscar(String correo) {
 
         MongoDatabase mongoDatabase = conexionBD.crearConexionMongo();
         String nombreColeccion = "cliente";
 
         MongoCollection<Cliente> coleccion = mongoDatabase.getCollection(nombreColeccion, Cliente.class);
 
-        Cliente cliente = coleccion.find(eq("apodo", apodo)).first();
+        Cliente cliente = coleccion.find(eq("correo", correo)).first();
 
         return cliente;
 
     }
     
-     public Cliente buscarCorreo(String apodo) {
+     public Cliente buscarCorreo(String correo) {
 
         MongoDatabase mongoDatabase = conexionBD.crearConexionMongo();
         String nombreColeccion = "cliente";
 
         MongoCollection<Cliente> coleccion = mongoDatabase.getCollection(nombreColeccion, Cliente.class);
 
-        Cliente cliente = coleccion.find(eq("email", apodo)).first();
+        Cliente cliente = coleccion.find(eq("email", correo)).first();
 
         return cliente;
 
@@ -96,14 +96,14 @@ public class MongoClienteDAO implements IClienteDAO {
 //        }
 //    }
     @Override
-    public Cliente iniciar(String apodo, String contrasena) {
+    public Cliente iniciar(String correo, String contrasena) {
 
         MongoDatabase mongoDatabase = conexionBD.crearConexionMongo();
         String nombreColeccion = "cliente";
 
         MongoCollection<Cliente> coleccion = mongoDatabase.getCollection(nombreColeccion, Cliente.class);
 
-        Cliente cliente = coleccion.find(and(eq("apodo", apodo), eq("contrasena", contrasena))).first();
+        Cliente cliente = coleccion.find(and(eq("correo", correo), eq("contrasena", contrasena))).first();
 
         return cliente;
 
@@ -117,7 +117,7 @@ public class MongoClienteDAO implements IClienteDAO {
 
         MongoCollection<Cliente> coleccionCliente = mongoDatabase.getCollection(nombreColeccion, Cliente.class);
 
-        Cliente cliente = coleccionCliente.find(eq("apodo", client.getNombre())).first();
+        Cliente cliente = coleccionCliente.find(eq("correo", client.getEmail())).first();
 
         nombreColeccion = "producto";
 

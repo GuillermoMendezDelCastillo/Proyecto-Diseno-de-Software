@@ -71,7 +71,7 @@ public class MongoProductoDAO implements IProductoDAO{
         MongoCollection<Producto> coleccionProducto = mongoDatabase.getCollection(nombreColeccion, Producto.class);
         Producto buscado = coleccionProducto.find(eq("identificador", producto.getIdentificador())).first();
 //        System.out.println(buscado.toString());
-        coleccionCliente.updateOne(eq("apodo", cliente.getNombre()), addToSet("carrito",buscado.getIdentificador())
+        coleccionCliente.updateOne(eq("correo", cliente.getEmail()), addToSet("carrito", buscado.getIdentificador())
 //                new Document("$addToSet",
 //                        new Document("carrito",
 //                                new Document("$each", Arrays.asList())))

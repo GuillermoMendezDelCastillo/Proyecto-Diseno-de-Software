@@ -142,7 +142,7 @@ public class ClienteBO {
     public boolean busca() {
 //        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
-        Cliente cliente = clienteDao.buscar(apodo);
+        Cliente cliente = clienteDao.buscar(correo);
 
         return cliente != null;
     }
@@ -150,7 +150,7 @@ public class ClienteBO {
     public boolean inicia() {
 //        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
-        Cliente cliente = clienteDao.iniciar(apodo, contrasena);
+        Cliente cliente = clienteDao.iniciar(correo, contrasena);
         return cliente != null;
     }
 
@@ -161,7 +161,7 @@ public class ClienteBO {
         IClienteDAO clienteDao = new MongoClienteDAO();
         IProductoDAO productoDao = new MongoProductoDAO();
 
-        ListIterator<Producto> lista = clienteDao.obtenerCarrito(clienteDao.buscar(apodo)).listIterator();
+        ListIterator<Producto> lista = clienteDao.obtenerCarrito(clienteDao.buscar(correo)).listIterator();
         while (lista.hasNext()) {
             Producto producto = lista.next();
             productos.add(new ProductoDTO(producto.getIdentificador(), producto.getNombre(), producto.getUrlImagen(), producto.getCosto()));

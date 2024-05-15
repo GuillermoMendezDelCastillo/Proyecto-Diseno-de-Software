@@ -29,6 +29,11 @@ public class ClienteDTO {
         this.Nacimiento = Nacimiento;
         this.estado = estado;
     }
+    
+    public ClienteDTO(String Correo, String Contrasena) {
+        this.Contrasena = Contrasena;
+        this.Correo = Correo;
+    }
 
     public String getNombre() {
         return Nombre;

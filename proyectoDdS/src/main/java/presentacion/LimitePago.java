@@ -6,7 +6,7 @@ package presentacion;
 
 
 ///BANCO///
-import CUGestionPerfil.Perfil;
+//import CUGestionPerfil.Perfil;
 import subsistemaBanco.fachadaTarjetaDebito;
 ///otros //
 import javax.swing.BorderFactory;
@@ -591,9 +591,9 @@ public class LimitePago extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-          Perfil perfil = new Perfil();
-        
-        perfil.setVisible(true);
+//          Perfil perfil = new Perfil();
+//        
+//        perfil.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
