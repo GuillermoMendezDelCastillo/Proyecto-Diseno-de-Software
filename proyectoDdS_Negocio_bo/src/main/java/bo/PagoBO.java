@@ -6,9 +6,9 @@ package bo;
 
 //import dao.ListClienteDAO;
 //import dao.ClienteDAO;
-import dao.IClienteDAO;
-import dao.ICuponDAO;
-import dao.IPagoDAO;
+import Interfaces.IClienteDAO;
+import Interfaces.ICuponDAO;
+import Interfaces.IPagoDAO;
 import dao.MongoClienteDAO;
 //import dao.ListCuponDAO;
 import dao.MongoCuponDAO;
@@ -93,7 +93,7 @@ public class PagoBO {
 //        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
         
-        Cliente cliente = clienteDao.buscar(clienteDto.getApodo());
+        Cliente cliente = clienteDao.buscar(clienteDto.getNombre());
         clienteDao.obtenerCarrito(cliente);
         
 //        IPagoDAO pagoDao = new ListPagoDAO();
@@ -108,7 +108,7 @@ public class PagoBO {
 //        IClienteDAO clienteDao = new ListClienteDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
         
-        Cliente cliente = clienteDao.buscar(clienteDto.getApodo());
+        Cliente cliente = clienteDao.buscar(clienteDto.getNombre());
         List<Producto> carrito = clienteDao.obtenerCarrito(cliente);
         
 //        ICuponDAO cuponDao = new ListCuponDAO();

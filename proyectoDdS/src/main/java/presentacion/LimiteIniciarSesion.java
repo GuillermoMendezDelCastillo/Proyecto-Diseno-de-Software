@@ -4,7 +4,11 @@
  */
 package presentacion;
 
+import CUGestionPerfil.LimitePerfil;
+import DTO.UsuarioDTO;
+import Interfaz.IAdmin;
 import dto.ClienteDTO;
+import implementaciones.Administrador;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
@@ -44,6 +48,44 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         // Puedes cerrar el frame actual si es necesario
         this.dispose();
     }
+    
+    private void entrar() {
+        IAdmin admin = new Administrador();
+
+        String correo = txtCorreo.getText();
+        String contrasena = txtContrasena.getText();
+
+        // Llamar al método del subsistema para iniciar sesión y obtener información del usuario
+        ClienteDTO clienteDTO = admin.ObtenerInfo(correo, contrasena);
+
+        // Verificar si se obtuvo información del usuario
+        if (clienteDTO != null) {
+            // Verificar el estado de la cuenta
+            if (clienteDTO.getEstado().equals("eliminado")) {
+                String correoUsuario = txtCorreo.getText();
+                JOptionPane.showMessageDialog(this, "Tu cuenta ha sido eliminada. No puedes iniciar sesion.", "Error de inicio de sesion", JOptionPane.ERROR_MESSAGE);
+
+            } else if (clienteDTO.getEstado().equals("desactivado")) {
+
+                int opcion = JOptionPane.showConfirmDialog(this, "La cuenta esta desactivada. ¿Desea activarla?", "Error de inicio de sesion", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+
+                if (opcion == JOptionPane.YES_OPTION) {
+                    clienteDTO.setEstado("activado");
+                    admin.actualizarEstado(clienteDTO);
+
+                }
+            } else {
+                LimitePerfil perfil = new LimitePerfil();
+                perfil.mostrarDatosUsuario(clienteDTO);
+                perfil.setVisible(true);
+                dispose(); // Cerrar la ventana de inicio de sesión
+            }
+        } else {
+            // Mostrar mensaje de error si las credenciales son incorrectas o la cuenta no existe
+            JOptionPane.showMessageDialog(this, "Error: Correo o contraseña incorrectos.", "Error de inicio de sesión", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,8 +98,8 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         Agrupador = new javax.swing.JPanel();
         etiquetaUsuario = new javax.swing.JLabel();
         etiquetaContrasena = new javax.swing.JLabel();
-        textoContrasena = new javax.swing.JTextField();
-        textoUsuario = new javax.swing.JTextField();
+        txtContrasena = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         btnIniciarSesion = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         lblRegistrarse = new javax.swing.JLabel();
@@ -72,7 +114,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
 
         etiquetaUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         etiquetaUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        etiquetaUsuario.setText("Usuario:");
+        etiquetaUsuario.setText("Correo:");
         Agrupador.add(etiquetaUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
 
         etiquetaContrasena.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -80,13 +122,13 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         etiquetaContrasena.setText("Contraseña:");
         Agrupador.add(etiquetaContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
 
-        textoContrasena.setBackground(new java.awt.Color(234, 234, 234));
-        textoContrasena.setForeground(new java.awt.Color(51, 51, 51));
-        Agrupador.add(textoContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 180, -1));
+        txtContrasena.setBackground(new java.awt.Color(234, 234, 234));
+        txtContrasena.setForeground(new java.awt.Color(51, 51, 51));
+        Agrupador.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 180, -1));
 
-        textoUsuario.setBackground(new java.awt.Color(234, 234, 234));
-        textoUsuario.setForeground(new java.awt.Color(51, 51, 51));
-        Agrupador.add(textoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 180, -1));
+        txtCorreo.setBackground(new java.awt.Color(234, 234, 234));
+        txtCorreo.setForeground(new java.awt.Color(51, 51, 51));
+        Agrupador.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 180, -1));
 
         btnIniciarSesion.setBackground(new java.awt.Color(0, 102, 153));
         btnIniciarSesion.setText("Iniciar sesion");
@@ -134,22 +176,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        
-        if (validar()){
-            ClienteDTO clienteDto = new ClienteDTO(textoUsuario.getText(), textoContrasena.getText());
-            IIniciarSesion sesion = new fachadaIniciarSesion();
-            if (sesion.iniciarSesion(clienteDto)){
-                LimiteTienda limite = new LimiteTienda(clienteDto);
-                limite.setVisible(true);
-                dispose();
-            } else{
-                JOptionPane.showMessageDialog(this, "No se pudo encontrar el cliente");
-            }
-        } else{
-            JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        
+      
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -191,11 +218,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
         });
     }
     
-    public boolean validar() {
-        return !(textoUsuario.getText().isBlank()||textoUsuario.getText().isEmpty()
-                ||textoContrasena.getText().isBlank()||textoContrasena.getText().isEmpty());
-    }
-    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Agrupador;
     private javax.swing.JButton btnIniciarSesion;
@@ -205,7 +228,7 @@ public class LimiteIniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblRegistrarse;
-    private javax.swing.JTextField textoContrasena;
-    private javax.swing.JTextField textoUsuario;
+    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }

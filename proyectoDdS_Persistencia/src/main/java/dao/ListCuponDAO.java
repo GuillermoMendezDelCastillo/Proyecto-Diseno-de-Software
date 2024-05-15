@@ -4,6 +4,7 @@
  */
 package dao;
 
+import Interfaces.ICuponDAO;
 import entidades.Cupon;
 import java.util.ListIterator;
 

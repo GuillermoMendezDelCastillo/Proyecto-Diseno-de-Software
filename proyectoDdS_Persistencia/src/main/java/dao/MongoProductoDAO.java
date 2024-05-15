@@ -4,6 +4,8 @@
  */
 package dao;
 
+import Interfaces.IConexion;
+import Interfaces.IProductoDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
@@ -69,7 +71,7 @@ public class MongoProductoDAO implements IProductoDAO{
         MongoCollection<Producto> coleccionProducto = mongoDatabase.getCollection(nombreColeccion, Producto.class);
         Producto buscado = coleccionProducto.find(eq("identificador", producto.getIdentificador())).first();
 //        System.out.println(buscado.toString());
-        coleccionCliente.updateOne(eq("apodo", cliente.getApodo()), addToSet("carrito",buscado.getIdentificador())
+        coleccionCliente.updateOne(eq("apodo", cliente.getNombre()), addToSet("carrito",buscado.getIdentificador())
 //                new Document("$addToSet",
 //                        new Document("carrito",
 //                                new Document("$each", Arrays.asList())))

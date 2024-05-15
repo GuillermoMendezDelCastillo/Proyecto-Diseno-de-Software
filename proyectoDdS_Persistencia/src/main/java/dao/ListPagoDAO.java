@@ -4,6 +4,7 @@
  */
 package dao;
 
+import Interfaces.IPagoDAO;
 import entidades.Cliente;
 import entidades.Pago;
 import java.util.ListIterator;
@@ -41,7 +42,7 @@ public class ListPagoDAO implements IPagoDAO{
         ListIterator<Pago> iterador = Tienda.tienda.getPagos().listIterator();;
         while (iterador.hasNext()) {
             registrado = iterador.next();
-            System.out.println(registrado.getCliente().getApodo());
+            System.out.println(registrado.getCliente().getNombre());
             System.out.println(registrado.getMetodo());
             System.out.println(registrado.getTotal());
             if(registrado.getCodigoCupon()!=null){

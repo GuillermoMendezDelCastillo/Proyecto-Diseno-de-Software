@@ -4,6 +4,8 @@
  */
 package dao;
 
+import Interfaces.IConexion;
+import Interfaces.IPagoDAO;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
@@ -40,7 +42,7 @@ public class MongoPagoDAO implements IPagoDAO{
         MongoCollection<Pago> coleccionPago = mongoDatabase.getCollection(nombreColeccion, Pago.class);
         
         coleccionPago.insertOne(pago);
-        coleccionCliente.updateOne(eq("apodo", cliente.getApodo()),
+        coleccionCliente.updateOne(eq("apodo", cliente.getNombre()),
                 new Document("$set",
                         new Document("carrito", new LinkedList()))
         );

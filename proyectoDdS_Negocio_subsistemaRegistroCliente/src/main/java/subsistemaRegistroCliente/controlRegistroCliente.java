@@ -8,40 +8,38 @@ import bo.ClienteBO;
 import dto.ClienteDTO;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 
 /**
  *
  * @author Gui26
  */
-public class controlRegistroCliente{
-    
+public class controlRegistroCliente {
+
     private ClienteDTO clienteDto;
 
     public controlRegistroCliente(ClienteDTO clienteDto) {
         this.clienteDto = clienteDto;
     }
-    
-    public boolean esValido(){
-        LocalDate nacimiento = clienteDto.getNacimiento();
+
+    public boolean esValido() {
+        LocalDate nacimiento = clienteDto.getNacimiento().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate hoy = LocalDate.now();
-        
-        if (hoy.compareTo(nacimiento)<0){
+
+        if (hoy.isBefore(nacimiento)) {
             return false;
         }
-        
+
         int edad = Period.between(nacimiento, hoy).getYears();
-        //System.out.println(edad);
-        return edad>=18;
+        // System.out.println(edad);
+        return edad >= 18;
     }
-    
+
     public void registrar() {
         ClienteBO cliente = new ClienteBO(clienteDto);
-        cliente.registra();
+        cliente.crearCuenta(clienteDto);
     }
-    
-    public boolean buscar() {
-        ClienteBO cliente = new ClienteBO(clienteDto);
-        return cliente.busca();
-    }
-    
+
+ 
+
 }

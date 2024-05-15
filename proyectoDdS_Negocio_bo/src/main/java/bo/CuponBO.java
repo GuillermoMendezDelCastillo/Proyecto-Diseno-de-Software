@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package bo;
-import dao.ICuponDAO;
+import Interfaces.ICuponDAO;
 //import dao.ListCuponDAO;
 import dao.MongoCuponDAO;
 import dto.CuponDTO;

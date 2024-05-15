@@ -5,49 +5,71 @@
 package dto;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  *
  * @author Gui26
  */
 public class ClienteDTO {
-    
-    private Long idCliente;
-    private String apodo;
-    private String contrasena;
-    private LocalDate nacimiento;
-    private String correo;
-    
-    public ClienteDTO(String apodo, String contrasena) {
-        this.apodo = apodo;
-        this.contrasena = contrasena;
-    }
-    
-    public ClienteDTO(String apodo, String contrasena, LocalDate nacimiento, String correo) {
-        this.apodo = apodo;
-        this.contrasena = contrasena;
-        this.nacimiento = nacimiento;
-        this.correo = correo;
+
+    public String Nombre;
+    public String Contrasena;
+    public String Correo;
+    public Date Nacimiento;
+    public String estado;
+
+    public ClienteDTO() {
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public ClienteDTO(String Nombre, String Contrasena, String Correo, Date Nacimiento, String estado) {
+        this.Nombre = Nombre;
+        this.Contrasena = Contrasena;
+        this.Correo = Correo;
+        this.Nacimiento = Nacimiento;
+        this.estado = estado;
     }
-    
-    public String getApodo() {
-        return apodo;
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public String getContrasena() {
-        return contrasena;
+        return Contrasena;
     }
 
-    public LocalDate getNacimiento() {
-        return nacimiento;
+    public void setContrasena(String Contrasena) {
+        this.Contrasena = Contrasena;
     }
 
     public String getCorreo() {
-        return correo;
+        return Correo;
     }
-    
+
+    public void setCorreo(String Correo) {
+        this.Correo = Correo;
+    }
+
+    public Date getNacimiento() {
+        return Nacimiento;
+    }
+
+    public void setNacimiento(Date Nacimiento) {
+        this.Nacimiento = Nacimiento;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+
+
 }

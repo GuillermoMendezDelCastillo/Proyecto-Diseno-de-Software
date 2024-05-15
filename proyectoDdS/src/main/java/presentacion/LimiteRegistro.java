@@ -4,8 +4,13 @@
  */
 package presentacion;
 
+import Interfaz.IAdmin;
 import dto.ClienteDTO;
+import implementaciones.Administrador;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import subsistemaRegistroCliente.IRegistroCliente;
 import javax.swing.JOptionPane;
 import subsistemaRegistroCliente.fachadaRegistroCliente;
@@ -22,6 +27,47 @@ public class LimiteRegistro extends javax.swing.JFrame {
     public LimiteRegistro() {
         initComponents();
     }
+    
+     private void registrarUsuario() {
+
+        IAdmin admin = new Administrador();
+
+        // Obtener los datos del formulario
+        String nombre = txtNombre.getText();
+        String contrasena = txtContrasena.getText();
+        String correo = txtCorreo.getText();
+        String fechaNacimiento = dateNacimiento.getDate().toString();
+
+        // Convertir la fecha de nacimiento de String a Date
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaNacimientoDate = dateFormat.parse(fechaNacimiento);
+
+            // Crear un objeto UsuarioDTO con los datos del formulario
+            ClienteDTO clientedto = new ClienteDTO();
+            clientedto.setNombre(nombre);
+            clientedto.setContrasena(contrasena);
+            clientedto.setCorreo(correo);
+            clientedto.setNacimiento(fechaNacimientoDate);
+
+            // Llamar al método de registro en el admin
+            ;
+
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
+
+            // Limpiar los campos del formulario
+            txtNombre.setText("");
+            txtContrasena.setText("");
+            txtCorreo.setText("");
+            dateNacimiento.setDate(null);
+        } catch (ParseException e) {
+            e.printStackTrace();  // Manejo de error en caso de que la cadena no sea un formato válido
+        }
+    }
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,12 +84,12 @@ public class LimiteRegistro extends javax.swing.JFrame {
         txtCorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jDateFecha = new com.toedter.calendar.JDateChooser();
         txtContrasena = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        dateNacimiento = new com.github.lgooddatepicker.components.DatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registro");
@@ -60,8 +106,8 @@ public class LimiteRegistro extends javax.swing.JFrame {
         });
         Agrupador.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 100, 40));
 
-        btnRegistrarse.setBackground(new java.awt.Color(0, 102, 153));
         btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.setBackground(new java.awt.Color(0, 102, 153));
         btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarseActionPerformed(evt);
@@ -83,11 +129,6 @@ public class LimiteRegistro extends javax.swing.JFrame {
         jLabel4.setText("Fecha de nacimiento:");
         Agrupador.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
 
-        jDateFecha.setBackground(new java.awt.Color(255, 255, 255));
-        jDateFecha.setForeground(new java.awt.Color(0, 0, 0));
-        jDateFecha.setDateFormatString("yyyy-MM-dd");
-        Agrupador.add(jDateFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 120, -1));
-
         txtContrasena.setBackground(new java.awt.Color(242, 242, 242));
         txtContrasena.setForeground(new java.awt.Color(0, 0, 0));
         Agrupador.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 120, -1));
@@ -108,6 +149,7 @@ public class LimiteRegistro extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/registro-icom.png"))); // NOI18N
         Agrupador.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 180, 190));
+        Agrupador.add(dateNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,38 +173,48 @@ public class LimiteRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        
-        if (validar()){
-            ClienteDTO clienteDto = new ClienteDTO(txtNombre.getText(), txtContrasena.getText(),
-                    LocalDateTime.ofInstant(jDateFecha.getCalendar().toInstant(), jDateFecha.getCalendar().getTimeZone().toZoneId()).toLocalDate(),
-                    txtCorreo.getText());
-            IRegistroCliente registro = new fachadaRegistroCliente();
-            if (registro.registroCliente(clienteDto)){
-                LimiteIniciarSesion limite = new LimiteIniciarSesion();
-                limite.setVisible(true);
-                dispose();
-            } else{
-                JOptionPane.showMessageDialog(this, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else{
-            JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
+       // Obtener los datos del formulario
+        String nombre = txtNombre.getText();
+        String contrasena = txtContrasena.getText();
+        String correo = txtCorreo.getText();
+        String fechaNacimiento = dateNacimiento.getDate().toString();
+
+        // Validar que los campos no estén vacíos
+        if (nombre.isEmpty() || contrasena.isEmpty() || correo.isEmpty() || fechaNacimiento.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución del método si hay campos vacíos
         }
-        
-        
+
+        try {
+            registrarUsuario();
+
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
+
+            // Limpiar los campos del formulario
+            txtNombre.setText("");
+            txtContrasena.setText("");
+            txtCorreo.setText("");
+            dateNacimiento.setDate(null);
+
+            // Abrir la ventana de inicio de sesión
+            LimiteIniciarSesion inicio = new LimiteIniciarSesion();
+            inicio.setVisible(true);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un problema al registrar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(); // Mostrar información sobre el error en la consola
+        }
+      
     }//GEN-LAST:event_btnRegistrarseActionPerformed
     
-    public boolean validar() {
-        return !(txtNombre.getText().isBlank()||txtNombre.getText().isEmpty()
-                ||txtContrasena.getText().isBlank()||txtContrasena.getText().isEmpty()
-                ||!(jDateFecha.getCalendar()!=null)
-                ||txtCorreo.getText().isBlank()||txtCorreo.getText().isEmpty());
-    }
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Agrupador;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrarse;
-    private com.toedter.calendar.JDateChooser jDateFecha;
+    private com.github.lgooddatepicker.components.DatePicker dateNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

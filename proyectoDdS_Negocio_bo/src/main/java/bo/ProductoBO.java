@@ -6,8 +6,8 @@ package bo;
 
 //import dao.ListClienteDAO;
 //import dao.ClienteDAO;
-import dao.IClienteDAO;
-import dao.IProductoDAO;
+import Interfaces.IClienteDAO;
+import Interfaces.IProductoDAO;
 import dao.MongoClienteDAO;
 import dao.MongoProductoDAO;
 //import dao.ListProductoDAO;
@@ -104,6 +104,6 @@ public class ProductoBO {
         IProductoDAO productoDao = new MongoProductoDAO();
         IClienteDAO clienteDao = new MongoClienteDAO();
         
-        productoDao.agregarCarrito(clienteDao.buscar(clienteDto.getApodo()), productoDao.buscarProducto(idProducto));
+        productoDao.agregarCarrito(clienteDao.buscar(clienteDto.getNombre()), productoDao.buscarProducto(idProducto));
     }
 }

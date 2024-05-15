@@ -6,6 +6,7 @@ package entidades;
 
 //import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import org.bson.types.ObjectId;
@@ -24,48 +25,47 @@ import org.bson.types.ObjectId;
  */
 //@Entity
 public class Cliente {//implements Serializable {
-    private ObjectId id;
+
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "idCliente")
 //    private Long id;
-    
 //    @Column(name = "apodo", nullable = false, length = 200)
-    private String apodo;
-    
 //    @Column(name = "contrasena", nullable = false, length = 200)
-    private String contrasena;
-    
 //    @Column(name = "correo", nullable = false, length = 500)
-    private String correo;
-    
 //    @Column(name = "nacimiento", nullable = false)
-    private LocalDate nacimiento;
-    
 //    @ManyToMany
 //    @JoinTable(name = "cliente_producto", joinColumns = @JoinColumn(name = "cliente_id"), inverseJoinColumns = @JoinColumn(name = "producto_id"))
+    private ObjectId id;
+    private String nombre;
+    private String email;
+    private String contrasena;
+    private Date fechaNacimiento;
+    private String estado;
     private List<Long> carrito;
-    
+
     public Cliente() {
     }
-    
-    public Cliente(String apodo, String contrasena, LocalDate nacimiento, String correo) {
-        this.apodo = apodo;
-        this.contrasena = contrasena;
-        this.nacimiento = nacimiento;
-        this.correo = correo;
-        this.carrito = new LinkedList<Long>();
-//        this.historial= new LinkedList<Pago>();
-    }
-    
-        public Cliente(ObjectId id, String apodo, String contrasena, LocalDate nacimiento, String correo) {
+
+    public Cliente(ObjectId id, String nombre, String email, String contrasena, Date fechaNacimiento, String estado, List<Long> carrito) {
         this.id = id;
-        this.apodo = apodo;
+        this.nombre = nombre;
+        this.email = email;
         this.contrasena = contrasena;
-        this.nacimiento = nacimiento;
-        this.correo = correo;
-        this.carrito = new LinkedList<Long>();
-//        this.historial= new LinkedList<Pago>();
+        this.fechaNacimiento = fechaNacimiento;
+        this.estado = estado;
+        this.carrito = carrito;;
+        //        this.historial= new LinkedList<Pago>();
+
+    }
+
+    public Cliente(String nombre, String email, String contrasena, Date fechaNacimiento, String estado, List<Long> carrito) {
+        this.nombre = nombre;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estado = estado;
+        this.carrito = carrito;
     }
 
     public ObjectId getId() {
@@ -75,21 +75,21 @@ public class Cliente {//implements Serializable {
     public void setId(ObjectId id) {
         this.id = id;
     }
- 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
 
-    public String getApodo() {
-        return apodo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setApodo(String apodo) {
-        this.apodo = apodo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getContrasena() {
@@ -100,20 +100,20 @@ public class Cliente {//implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public String getCorreo() {
-        return correo;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public LocalDate getNacimiento() {
-        return nacimiento;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setNacimiento(LocalDate nacimiento) {
-        this.nacimiento = nacimiento;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public List<Long> getCarrito() {
@@ -124,14 +124,23 @@ public class Cliente {//implements Serializable {
         this.carrito = carrito;
     }
 
-    public void addProductoCarrito(Long producto){
+    
+    
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+    public void addProductoCarrito(Long producto) {
         carrito.add(producto);
     }
-    
-    public void clearProductoCarrito(){
+
+    public void clearProductoCarrito() {
         carrito.clear();
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -156,5 +165,5 @@ public class Cliente {//implements Serializable {
     public String toString() {
         return "entidades.Cliente[ id=" + id + " ]";
     }
-    
+
 }
