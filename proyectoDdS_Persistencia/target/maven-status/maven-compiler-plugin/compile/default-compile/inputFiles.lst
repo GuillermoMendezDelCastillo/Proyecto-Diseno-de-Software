@@ -1,22 +1,41 @@
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\MongoClienteDAO.java
+<<<<<<< Updated upstream
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\IClienteDAO.java
+=======
+>>>>>>> Stashed changes
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\MongoCuponDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\entidades\TransferenciaBancaria.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ClienteDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\Conexion.java
+<<<<<<< Updated upstream
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\MongoProductoDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\entidades\Cliente.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\IConexion.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ICuponDAO.java
+=======
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\Interfaces\IProductoDAO.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\MongoProductoDAO.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\entidades\Cliente.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\Interfaces\IConexion.java
+>>>>>>> Stashed changes
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ListPagoDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ProductoDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\entidades\TarjetaBancaria.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\Tienda.java
+<<<<<<< Updated upstream
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ListCuponDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\IPagoDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\IProductoDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ListProductoDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\entidades\Pago.java
+=======
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\Interfaces\ICuponDAO.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ListCuponDAO.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\Interfaces\IPagoDAO.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ListProductoDAO.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\entidades\Pago.java
+C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\Interfaces\IClienteDAO.java
+>>>>>>> Stashed changes
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\MongoPagoDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\ListClienteDAO.java
 C:\Users\jesus\OneDrive\Documentos\GitHub\Main\Proyecto-Diseno-de-Software\proyectoDdS_Persistencia\src\main\java\dao\PagoDAO.java
