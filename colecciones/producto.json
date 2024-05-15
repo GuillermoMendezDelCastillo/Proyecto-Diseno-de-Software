@@ -5,7 +5,7 @@
   "cantidad": 50,
   "costo": 10,
   "nombre": "Manzana",
-  "urlImagen": "https://www.recetasnestle.com.mx/sites/default/files/inline-images/tipos-de-manzana-royal-gala.jpg",
+  "urlImagen": "Manzana.jpg",
   "identificador": 1
 },
 {
@@ -15,7 +15,7 @@
   "cantidad": 30,
   "costo": 20,
   "nombre": "Pelota",
-  "urlImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMRYg1axSjcmoUNfqamz5-9Qk1zA43yTUO84uvV890Ig&s",
+  "urlImagen": "Pelota.jpg",
   "identificador": 2
 },
 {
@@ -26,7 +26,7 @@
   "cantidad": 10,
   "costo": 30,
   "nombre": "Flores",
-  "urlImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdBC1SIqhr3x5uFIpbGu44QpKsbRC_YDxn7EPmou90XQ&s"
+  "urlImagen": "Flores.jpg"
 },
 {
   "_id": {
@@ -36,7 +36,7 @@
   "cantidad": 60,
   "costo": 5,
   "nombre": "Lapiz",
-  "urlImagen": "https://clipspapeleria.com.mx/wp-content/uploads/2020/06/90860_2-1-324x324.png"
+  "urlImagen": "Lapiz.jpg"
 },
 {
   "_id": {
@@ -46,5 +46,5 @@
   "cantidad": 5,
   "costo": 100,
   "nombre": "Reloj",
-  "urlImagen": "https://www.zurichvirtual.com.mx/wp-content/uploads/2023/07/TB09802OG_a.jpg"
+  "urlImagen": "Reloj.jpg"
 }]

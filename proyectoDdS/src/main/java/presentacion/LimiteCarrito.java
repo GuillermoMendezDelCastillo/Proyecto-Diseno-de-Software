@@ -5,6 +5,7 @@
 package presentacion;
 
 //import CUGestionPerfil.Perfil;
+import CUGestionPerfil.LimitePerfil;
 import dto.ClienteDTO;
 import dto.ProductoDTO;
 import subsistemaTablaProductosCliente.ITablaProductosCliente;
@@ -198,9 +199,9 @@ public class LimiteCarrito extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-//          Perfil perfil = new Perfil();
-//        
-//        perfil.setVisible(true);
+        LimitePerfil perfil = new LimitePerfil();
+        
+        perfil.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
