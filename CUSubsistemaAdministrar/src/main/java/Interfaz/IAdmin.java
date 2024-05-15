@@ -5,21 +5,29 @@
 package Interfaz;
 
 import DTO.UsuarioDTO;
+import dto.ClienteDTO;
+import java.util.Date;
 
 /**
  *
  * @author jesus
  */
 public interface IAdmin {
-    
-    public void Editar(UsuarioDTO usuarioDTO);
-    
-    public void Eliminar(UsuarioDTO usuarioDTO, String contraseñaConfirmada);
-    
-    public void desactivar(UsuarioDTO usuarioDTO, String contraseñaConfirmada);
-    
-    public void actualizar(UsuarioDTO usuarioDTO);
-    
-    public UsuarioDTO ObtenerInfo(String correoElectronico, String contrasena);
-    
+
+    public void crearCuenta(ClienteDTO clienteDTO);
+
+    public void Editar(ClienteDTO clienteDTO);
+
+    public void Eliminar(ClienteDTO clienteDTO, String contrasenaConfirmada);
+
+    public void desactivar(ClienteDTO clienteDTO, String contraseñaConfirmada);
+
+    public void actualizar(ClienteDTO clienteDTO);
+
+    public void actualizarEstado(ClienteDTO clienteDTO);
+
+    public ClienteDTO ObtenerInfo(String correoElectronico, String contrasena);
+
+    public void actualizarDatosUsuario(String correo, String contrasena, String nombre, Date fechaNacimiento);
+
 }
