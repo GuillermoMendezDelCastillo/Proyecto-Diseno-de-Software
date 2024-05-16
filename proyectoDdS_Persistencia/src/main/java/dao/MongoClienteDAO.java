@@ -48,7 +48,7 @@ public class MongoClienteDAO implements IClienteDAO {
 
         coleccion.insertOne(cliente);
 
-        return buscar(cliente.getNombre()); //cambiar para que devuelva el 
+        return buscar(cliente.getEmail()); //cambiar para que devuelva el 
     }
 
     @Override

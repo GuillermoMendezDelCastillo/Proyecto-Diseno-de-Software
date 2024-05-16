@@ -10,6 +10,7 @@ import implementaciones.Administrador;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import subsistemaRegistroCliente.IRegistroCliente;
 import javax.swing.JOptionPane;
@@ -37,7 +38,13 @@ public class LimiteRegistro extends javax.swing.JFrame {
         String contrasena = txtContrasena.getText();
         String correo = txtCorreo.getText();
         String fechaNacimiento = dateNacimiento.getDate().toString();
-
+        
+        // Validar que los campos no estén vacíos
+        if (nombre.isEmpty() || contrasena.isEmpty() || correo.isEmpty() || fechaNacimiento.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener la ejecución del método si hay campos vacíos
+        }
+        
         // Convertir la fecha de nacimiento de String a Date
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,22 +59,28 @@ public class LimiteRegistro extends javax.swing.JFrame {
 
             // Llamar al método de registro en el admin
             ;
-
+            
+            registrar2();
+            
             // Mostrar mensaje de éxito
             JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
-
-            // Limpiar los campos del formulario
-            txtNombre.setText("");
-            txtContrasena.setText("");
-            txtCorreo.setText("");
-            dateNacimiento.setDate(null);
+//
+//            // Limpiar los campos del formulario
+//            txtNombre.setText("");
+//            txtContrasena.setText("");
+//            txtCorreo.setText("");
+//            dateNacimiento.setDate(null);
+//            
+//            // Abrir la ventana de inicio de sesión
+//            LimiteIniciarSesion inicio = new LimiteIniciarSesion();
+//            inicio.setVisible(true);
+//            dispose();
+            
         } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un problema al registrar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();  // Manejo de error en caso de que la cadena no sea un formato válido
         }
     }
-
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -173,42 +186,35 @@ public class LimiteRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-       // Obtener los datos del formulario
-        String nombre = txtNombre.getText();
-        String contrasena = txtContrasena.getText();
-        String correo = txtCorreo.getText();
-        String fechaNacimiento = dateNacimiento.getDate().toString();
 
-        // Validar que los campos no estén vacíos
-        if (nombre.isEmpty() || contrasena.isEmpty() || correo.isEmpty() || fechaNacimiento.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Detener la ejecución del método si hay campos vacíos
-        }
-
-        try {
-            registrarUsuario();
-
-            // Mostrar mensaje de éxito
-            JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
-
-            // Limpiar los campos del formulario
-            txtNombre.setText("");
-            txtContrasena.setText("");
-            txtCorreo.setText("");
-            dateNacimiento.setDate(null);
-
-            // Abrir la ventana de inicio de sesión
-            LimiteIniciarSesion inicio = new LimiteIniciarSesion();
-            inicio.setVisible(true);
-            dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un problema al registrar el usuario.", "Error", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); // Mostrar información sobre el error en la consola
-        }
+        registrarUsuario();
       
     }//GEN-LAST:event_btnRegistrarseActionPerformed
     
-   
+    public void registrar2(){
+        if (validar()){
+            ClienteDTO clienteDto = new ClienteDTO(txtNombre.getText(), txtContrasena.getText(),
+                    Date.from(dateNacimiento.getDate().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()),
+                    txtCorreo.getText());
+            IRegistroCliente registro = new fachadaRegistroCliente();
+            if (registro.registroCliente(clienteDto)){
+                LimiteIniciarSesion limite = new LimiteIniciarSesion();
+                limite.setVisible(true);
+                dispose();
+            } else{
+                JOptionPane.showMessageDialog(this, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public boolean validar() {
+        return !(txtNombre.getText().isBlank()||txtNombre.getText().isEmpty()
+                ||txtContrasena.getText().isBlank()||txtContrasena.getText().isEmpty()
+                ||!(dateNacimiento!=null)
+                ||txtCorreo.getText().isBlank()||txtCorreo.getText().isEmpty());
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Agrupador;

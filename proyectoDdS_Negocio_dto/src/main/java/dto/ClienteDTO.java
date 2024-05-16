@@ -30,6 +30,13 @@ public class ClienteDTO {
         this.estado = estado;
     }
     
+    public ClienteDTO(String Nombre, String Contrasena, Date Nacimiento, String Correo) {
+        this.Nombre = Nombre;
+        this.Contrasena = Contrasena;
+        this.Correo = Correo;
+        this.Nacimiento = Nacimiento;
+    }
+    
     public ClienteDTO(String Correo, String Contrasena) {
         this.Contrasena = Contrasena;
         this.Correo = Correo;
