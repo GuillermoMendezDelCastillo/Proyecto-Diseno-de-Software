@@ -449,6 +449,37 @@ public class LimitePago extends javax.swing.JFrame {
         restablecerBorders();
         IGenerarPago pago = new fachadaGenerarPago();
         if(validar()){
+            
+            if (rbCupon.isSelected()){
+                if(validar3()){
+                    PagoDTO pagoDTO = null;
+                    if (cbMetodo.getSelectedItem().toString().equals("Tarjeta Bancaria")){
+                        pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
+                        Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
+                        LocalDateTime.ofInstant(jDateFecha.getCalendar().toInstant(), jDateFecha.getCalendar().getTimeZone().toZoneId()).toLocalDate(),
+                        txtCvv.getText(), txtNumeroCupon.getText(),
+                        Float.parseFloat(lblTotalConDescuento.getText()));
+                    }
+                    if (cbMetodo.getSelectedItem().toString().equals("Transferencia Bancaria")){
+                        pagoDTO = new PagoDTO(txtNumero.getText(), cbMetodo.getSelectedItem().toString(),
+                        Float.parseFloat(lblTotal.getText()), txtCorreoNombre.getText(),
+                        txtNumeroCupon.getText(), Float.parseFloat(lblTotalConDescuento.getText()));
+                    }
+
+                    if (pago.generarPagoCupon(clienteDto, pagoDTO)){
+                        JOptionPane.showMessageDialog(this, "Pago realizado");
+
+                        LimiteTienda limite = new LimiteTienda(clienteDto);
+                        limite.setVisible(true);
+                        dispose();
+                    } else{
+                        JOptionPane.showMessageDialog(this, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Los datos del cupon son invalidos", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+            
             List<String> validacionTarjeta = validarTarjetaDebito();
             
             if (validacionTarjeta.contains("Valido")) {
@@ -520,7 +551,7 @@ public class LimitePago extends javax.swing.JFrame {
                 }
 
             }
-            
+            }
         } else{
             JOptionPane.showMessageDialog(this, "Campo vacio", "Error", JOptionPane.ERROR_MESSAGE);
         }
