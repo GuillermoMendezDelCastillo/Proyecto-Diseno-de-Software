@@ -13,65 +13,65 @@ import java.util.Date;
  */
 public class ClienteDTO {
 
-    public String Nombre;
-    public String Contrasena;
-    public String Correo;
-    public Date Nacimiento;
+    public String nombre;
+    public String contrasena;
+    public String correo;
+    public Date nacimiento;
     public String estado;
 
     public ClienteDTO() {
     }
 
     public ClienteDTO(String Nombre, String Contrasena, String Correo, Date Nacimiento, String estado) {
-        this.Nombre = Nombre;
-        this.Contrasena = Contrasena;
-        this.Correo = Correo;
-        this.Nacimiento = Nacimiento;
+        this.nombre = Nombre;
+        this.contrasena = Contrasena;
+        this.correo = Correo;
+        this.nacimiento = Nacimiento;
         this.estado = estado;
     }
     
     public ClienteDTO(String Nombre, String Contrasena, Date Nacimiento, String Correo) {
-        this.Nombre = Nombre;
-        this.Contrasena = Contrasena;
-        this.Correo = Correo;
-        this.Nacimiento = Nacimiento;
+        this.nombre = Nombre;
+        this.contrasena = Contrasena;
+        this.correo = Correo;
+        this.nacimiento = Nacimiento;
     }
     
     public ClienteDTO(String Correo, String Contrasena) {
-        this.Contrasena = Contrasena;
-        this.Correo = Correo;
+        this.contrasena = Contrasena;
+        this.correo = Correo;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+        this.nombre = Nombre;
     }
 
     public String getContrasena() {
-        return Contrasena;
+        return contrasena;
     }
 
     public void setContrasena(String Contrasena) {
-        this.Contrasena = Contrasena;
+        this.contrasena = Contrasena;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     public void setCorreo(String Correo) {
-        this.Correo = Correo;
+        this.correo = Correo;
     }
 
     public Date getNacimiento() {
-        return Nacimiento;
+        return nacimiento;
     }
 
     public void setNacimiento(Date Nacimiento) {
-        this.Nacimiento = Nacimiento;
+        this.nacimiento = Nacimiento;
     }
 
     public String getEstado() {

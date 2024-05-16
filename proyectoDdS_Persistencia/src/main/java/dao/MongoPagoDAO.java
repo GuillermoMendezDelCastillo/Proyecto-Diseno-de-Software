@@ -42,7 +42,7 @@ public class MongoPagoDAO implements IPagoDAO{
         MongoCollection<Pago> coleccionPago = mongoDatabase.getCollection(nombreColeccion, Pago.class);
         
         coleccionPago.insertOne(pago);
-        coleccionCliente.updateOne(eq("correo", cliente.getEmail()),
+        coleccionCliente.updateOne(eq("email", cliente.getEmail()),
                 new Document("$set",
                         new Document("carrito", new LinkedList()))
         );

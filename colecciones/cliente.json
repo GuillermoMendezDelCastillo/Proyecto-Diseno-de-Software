@@ -2,11 +2,13 @@
   "_id": {
     "$oid": "663f082a58801d42ad9defc6"
   },
-  "apodo": "Paco",
-  "carrito": [],
+  "carrito": [
+    1
+  ],
   "contrasena": "12345",
-  "correo": "correo@gmail.com",
-  "nacimiento": {
+  "nombre": "Paco",
+  "email": "correo@gmail.com",
+  "fechaNacimiento": {
     "$date": "2000-05-04T00:00:00.000Z"
   }
 },
@@ -14,11 +16,11 @@
   "_id": {
     "$oid": "663f0bb758801d42ad9df203"
   },
-  "apodo": "Karen",
   "carrito": [],
   "contrasena": "12345",
-  "correo": "ejemplo@hotmail.com",
-  "nacimiento": {
+  "nombre": "Karen",
+  "email": "ejemplo@hotmail.com",
+  "fechaNacimiento": {
     "$date": "2000-05-01T00:00:00.000Z"
   }
 },
@@ -26,11 +28,11 @@
   "_id": {
     "$oid": "663f0e2d688609097442a092"
   },
-  "apodo": "Mario",
   "carrito": [],
   "contrasena": "12345",
-  "correo": "mario@gmail.com",
-  "nacimiento": {
+  "nombre": "Mario",
+  "email": "mario@gmail.com",
+  "fechaNacimiento": {
     "$date": "2000-05-04T00:00:00.000Z"
   }
 }]

@@ -59,7 +59,7 @@ public class MongoClienteDAO implements IClienteDAO {
 
         MongoCollection<Cliente> coleccion = mongoDatabase.getCollection(nombreColeccion, Cliente.class);
 
-        Cliente cliente = coleccion.find(eq("correo", correo)).first();
+        Cliente cliente = coleccion.find(eq("email", correo)).first();
 
         return cliente;
 
@@ -103,7 +103,7 @@ public class MongoClienteDAO implements IClienteDAO {
 
         MongoCollection<Cliente> coleccion = mongoDatabase.getCollection(nombreColeccion, Cliente.class);
 
-        Cliente cliente = coleccion.find(and(eq("correo", correo), eq("contrasena", contrasena))).first();
+        Cliente cliente = coleccion.find(and(eq("email", correo), eq("contrasena", contrasena))).first();
 
         return cliente;
 
@@ -117,7 +117,7 @@ public class MongoClienteDAO implements IClienteDAO {
 
         MongoCollection<Cliente> coleccionCliente = mongoDatabase.getCollection(nombreColeccion, Cliente.class);
 
-        Cliente cliente = coleccionCliente.find(eq("correo", client.getEmail())).first();
+        Cliente cliente = coleccionCliente.find(eq("email", client.getEmail())).first();
 
         nombreColeccion = "producto";
 

@@ -27,7 +27,7 @@ public class Conexion implements IConexion {
 
     private static MongoClient mongoClient;
     private static final String direccion = "mongodb://localhost:27017/";
-    private static final String nombreBD = "tienda_virtual2";
+    private static final String nombreBD = "tienda_virtual";
 
     @Override
     public EntityManager crearConexion() {

@@ -54,7 +54,7 @@ public class Cliente {//implements Serializable {
         this.contrasena = contrasena;
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
-        this.carrito = carrito;;
+        this.carrito = new LinkedList<Long>();
         //        this.historial= new LinkedList<Pago>();
 
     }
@@ -65,7 +65,7 @@ public class Cliente {//implements Serializable {
         this.contrasena = contrasena;
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
-        this.carrito = carrito;
+        this.carrito = new LinkedList<Long>();
     }
 
     public ObjectId getId() {
